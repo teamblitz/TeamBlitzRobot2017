@@ -13,6 +13,8 @@ import org.usfirst.frc2083.TeamBlitzRobot2015.RobotMap;
 public class DriveCommand extends CommandBase {
     
     public static Joystick xbox;
+    public double prevX;
+    public double prevY;
 
     public DriveCommand() {
         // Use requires() here to declare subsystem dependencies
@@ -47,13 +49,43 @@ public class DriveCommand extends CommandBase {
 
     	} else {
     		X = xbox.getX();
+    		if(X > prevX)
+    		{
+    			prevX = prevX + 0.1;
+    		}
+    		
+    		else if(X < prevX) 
+    		{
+    		 prevX = prevX - 0.1;
+    		}
+    		else
+    		{
+    			prevX = X;
+    		}
+    		if(prevX > 1)
+    		{
+    			prevX = 1;
+    		}
+    		if(prevX < -1)
+    		{
+    			prevX = -1;
+    		}
+    		X = prevX;
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
     		//    	System.out.println("X = " + X);
     		Y = -xbox.getY(); //-xbox.getRawAxis(5);
     		//    	System.out.println("Y = " + Y);
     		if (Math.abs(X) < 0.1) X = 0;
     		if (Math.abs(Y) < 0.1) Y = 0;
     		X = X*Math.abs(X);
-    		Y = Y*Math.abs(Y)*.5;
+    		Y = Y*Math.abs(Y);
     	}
 
     	System.out.println("Y = " + Y);
