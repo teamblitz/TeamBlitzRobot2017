@@ -13,7 +13,6 @@ import org.usfirst.frc2083.TeamBlitzRobot2015.RobotMap;
 public class DriveCommand extends CommandBase {
     
     public static Joystick xbox;
-    public double prevX;
     public double prevY;
 
     public DriveCommand() {
@@ -49,30 +48,49 @@ public class DriveCommand extends CommandBase {
 
     	} else {
     		X = xbox.getX();
-    		if(X > prevX)
-    		{
-    			prevX = prevX + 0.1;
-    		}
     		
-    		else if(X < prevX) 
+    		
+    		Y = -xbox.getY(); //-xbox.getRawAxis(5);
+
+    		if(Y > prevY )
     		{
-    		 prevX = prevX - 0.1;
+    			if(Y > 0)
+    			{
+    				//accelerating with slow ramping forwards
+    				prevY = prevY + 0.01;	
+    			}
+    			else
+    			{
+    				//decelerating with fast ramping forwards
+    				prevY = Y;
+    			}
+    			
+    		}
+    		else if(Y < prevY) 
+    		{
+    			if (Y > 0)
+    			{ //decelerating with fast ramping backwards
+    				prevY = Y;
+    			}
+    			else
+    			{
+    				//accelerating backwards slow ramping
+    				prevY = prevY - 0.01;
+    			}
     		}
     		else
     		{
-    			prevX = X;
+    			prevY = Y;
     		}
-    		if(prevX > 1)
+    		if(prevY > 1)
     		{
-    			prevX = 1;
+    			prevY = 1;
     		}
-    		if(prevX < -1)
+    		if(prevY < -1)
     		{
-    			prevX = -1;
+    			prevY = -1;
     		}
-    		X = prevX;
-    		
-    		
+    		Y = prevY;
     		
     		
     		
@@ -80,7 +98,6 @@ public class DriveCommand extends CommandBase {
     		
     		
     		//    	System.out.println("X = " + X);
-    		Y = -xbox.getY(); //-xbox.getRawAxis(5);
     		//    	System.out.println("Y = " + Y);
     		if (Math.abs(X) < 0.1) X = 0;
     		if (Math.abs(Y) < 0.1) Y = 0;
