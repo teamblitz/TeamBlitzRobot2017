@@ -3,4 +3,4 @@
 bin/*
 **.class
 *.jar
-
+sysProps.xml
