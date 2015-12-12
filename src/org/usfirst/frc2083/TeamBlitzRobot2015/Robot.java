@@ -133,12 +133,22 @@ public class Robot extends IterativeRobot {
         gripperCommand.disableControl();
         fourBarCommand.disableControl();
     }
-
+    void MoveRobot(double leftPercentage, double rightPercentage)
+    {
+    	RobotMap.leftForwardMotorController.set(leftPercentage);
+    	RobotMap.rightForwardMotorController.set(rightPercentage);
+    }
     public void autonomousInit() {
     	RobotMap.auto = true;
     	RobotMap.autoTimer = System.currentTimeMillis();
     	if (autoDistSelect.get()) {
-    		RobotMap.autoDriveTime = 0; // if jumper is unplugged
+    		/*RobotMap.autoDriveTime = 0; // if jumper is unplugged
+    		Timer timer1 = new Timer();
+        	timer1.start();
+        	if(timer1.get() == 1)
+        	{
+        		MoveRobot(0,.5);
+        	}*/
     	} else {
     		RobotMap.autoDriveTime = 1500; // if jumper is plugged in
     	}
@@ -152,7 +162,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
     	if(System.currentTimeMillis()-RobotMap.autoTimer < RobotMap.autoDriveTime ){
-    		RobotMap.autoY = .5;
+    		RobotMap.autoY = .333;
 //    		System.out.println("autoY = .5, System Time millis = " 
 //    				+ System.currentTimeMillis() + 
 //    				", autoTimer = " + RobotMap.autoTimer);

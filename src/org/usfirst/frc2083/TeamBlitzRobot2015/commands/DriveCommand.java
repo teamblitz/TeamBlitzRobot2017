@@ -44,7 +44,6 @@ public class DriveCommand extends CommandBase {
 
     	if (RobotMap.auto) {
     		Y = RobotMap.autoY;
-
     	} else {
     		X = xbox.getX();
     		//    	System.out.println("X = " + X);
