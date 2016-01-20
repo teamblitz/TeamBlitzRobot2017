@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.CANJaguar;
-import edu.wpi.first.wpilibj.CANJaguar.ControlMode;
+import edu.wpi.first.wpilibj.CANJaguar.JaguarControlMode;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Relay;
@@ -76,7 +76,7 @@ public class Robot extends IterativeRobot {
         RobotMap.gripperRightMotorController.setVoltageMode();
         
         RobotMap.fourBarMotorController = new CANTalon(RobotMap.fourBarMotorControllerID);
-        RobotMap.fourBarMotorController.changeControlMode(CANTalon.ControlMode.PercentVbus);
+        RobotMap.fourBarMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
         
         RobotMap.fourBarMotorController.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
         RobotMap.fourBarMotorController.enableBrakeMode(true);
