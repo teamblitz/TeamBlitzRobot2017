@@ -1,6 +1,7 @@
 .DS_Store
 *~
 bin/*
+bin/**
 **.class
 *.jar
 sysProps.xml
