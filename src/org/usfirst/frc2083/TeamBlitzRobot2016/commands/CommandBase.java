@@ -1,10 +1,12 @@
 package org.usfirst.frc2083.TeamBlitzRobot2016.commands;
 
+import org.usfirst.frc2083.TeamBlitzRobot2016.OI;
+import org.usfirst.frc2083.TeamBlitzRobot2016.subsystems.ArmSubsystem;
+import org.usfirst.frc2083.TeamBlitzRobot2016.subsystems.LeftDriveSubsystem;
+import org.usfirst.frc2083.TeamBlitzRobot2016.subsystems.RightDriveSubsystem;
+
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc2083.TeamBlitzRobot2016.OI;
-import org.usfirst.frc2083.TeamBlitzRobot2016.subsystems.*;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -14,7 +16,6 @@ import org.usfirst.frc2083.TeamBlitzRobot2016.subsystems.*;
  */
 public abstract class CommandBase extends Command {
 
-    
     public static LeftDriveSubsystem leftDrive = new LeftDriveSubsystem();
     public static RightDriveSubsystem rightDrive = new RightDriveSubsystem();
     public static ArmSubsystem armBar = new ArmSubsystem();
