@@ -1,10 +1,9 @@
 
-package org.usfirst.frc2083.TeamBlitzRobot2015.commands;
+package org.usfirst.frc2083.TeamBlitzRobot2016.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Relay;
 
-import org.usfirst.frc2083.TeamBlitzRobot2015.RobotMap;
+import org.usfirst.frc2083.TeamBlitzRobot2016.RobotMap;
 
 /**
  *

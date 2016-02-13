@@ -9,7 +9,7 @@
 // it from being updated in the future.
 
 
-package org.usfirst.frc2083.TeamBlitzRobot2015;
+package org.usfirst.frc2083.TeamBlitzRobot2016;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -24,8 +24,8 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DigitalInput;
 
-import org.usfirst.frc2083.TeamBlitzRobot2015.commands.*;
-import org.usfirst.frc2083.TeamBlitzRobot2015.subsystems.*;
+import org.usfirst.frc2083.TeamBlitzRobot2016.commands.*;
+import org.usfirst.frc2083.TeamBlitzRobot2016.subsystems.*;
 
 
 /**
@@ -38,8 +38,7 @@ import org.usfirst.frc2083.TeamBlitzRobot2015.subsystems.*;
 public class Robot extends IterativeRobot {
 
     DriveCommand driveCommand;
-    GripperCommand gripperCommand;
-    FourBarCommand fourBarCommand;
+    ArmCommand armCommand;
     DigitalInput autoDistSelect;
 //    ClawCommand clawCommand;
 //    ShootCommand shootCommand;
@@ -65,25 +64,15 @@ public class Robot extends IterativeRobot {
         RobotMap.leftForwardMotorController.setVoltageMode(CANJaguar.kQuadEncoder, 360);
         RobotMap.rightForwardMotorController.setVoltageMode(CANJaguar.kQuadEncoder, 250);
         
-        RobotMap.gripperLeftMotorController = new CANJaguar(RobotMap.gripperLeftMotorControllerID);
-        RobotMap.gripperRightMotorController = new CANJaguar(RobotMap.gripperRightMotorControllerID);
-        RobotMap.gripperLeftMotorController.configNeutralMode(CANJaguar.NeutralMode.Brake);
-        RobotMap.gripperRightMotorController.configNeutralMode(CANJaguar.NeutralMode.Brake);
-        RobotMap.gripperLeftMotorController.configLimitMode(CANJaguar.LimitMode.SwitchInputsOnly);
-        RobotMap.gripperRightMotorController.configLimitMode(CANJaguar.LimitMode.SwitchInputsOnly);
+        RobotMap.armBarMotorController = new CANTalon(RobotMap.armBarMotorControllerID);
+        RobotMap.armBarMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
         
-        RobotMap.gripperLeftMotorController.setVoltageMode();
-        RobotMap.gripperRightMotorController.setVoltageMode();
-        
-        RobotMap.fourBarMotorController = new CANTalon(RobotMap.fourBarMotorControllerID);
-        RobotMap.fourBarMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-        
-        RobotMap.fourBarMotorController.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
-        RobotMap.fourBarMotorController.enableBrakeMode(true);
-        RobotMap.fourBarMotorController.setForwardSoftLimit(756);
-        RobotMap.fourBarMotorController.enableForwardSoftLimit(true);
-        RobotMap.fourBarMotorController.setReverseSoftLimit(100);  //was 8
-        RobotMap.fourBarMotorController.enableReverseSoftLimit(true);
+        RobotMap.armBarMotorController.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
+        RobotMap.armBarMotorController.enableBrakeMode(true);
+        RobotMap.armBarMotorController.setForwardSoftLimit(756);
+        RobotMap.armBarMotorController.enableForwardSoftLimit(true);
+        RobotMap.armBarMotorController.setReverseSoftLimit(100);  //was 8
+        RobotMap.armBarMotorController.enableReverseSoftLimit(true);
         
         autoDistSelect = new DigitalInput(RobotMap.autoDistSelectChannel);
         
@@ -94,8 +83,8 @@ public class Robot extends IterativeRobot {
 //        int izone = 0;
 //        double closeLoopRampRate = 10;
 //        int profile = 0;
-        //RobotMap.fourBarMotorController.setPID(p , i , d, f, izone, closeLoopRampRate, profile);
-       // RobotMap.fourBarMotorController.reverseSensor(false);
+        //RobotMap.armBarMotorController.setPID(p , i , d, f, izone, closeLoopRampRate, profile);
+       // RobotMap.armBarMotorController.reverseSensor(false);
         
         
 //        RobotMap.leftFront.setPositionMode(CANJaguar.kQuadEncoder, 360, 0.01, 0, 0);
@@ -116,12 +105,10 @@ public class Robot extends IterativeRobot {
         // Initialize all subsystems
         CommandBase.init();
         driveCommand = new DriveCommand();
-        gripperCommand = new GripperCommand();
-        fourBarCommand = new FourBarCommand();
+        armCommand = new ArmCommand();
 //            clawCommand = new ClawCommand();
         DriveCommand.xbox = new Joystick(0);
-        GripperCommand.xbox = DriveCommand.xbox;
-        FourBarCommand.xbox = DriveCommand.xbox;
+        ArmCommand.xbox = DriveCommand.xbox;
 //            ClawCommand.xbox = DriveCommand.xbox;
 //            shootCommand = new ShootCommand();
 //            ShootCommand.xbox = DriveCommand.xbox;
@@ -130,8 +117,7 @@ public class Robot extends IterativeRobot {
         
 //            clawCommand.disableControl();
         driveCommand.disableControl();
-        gripperCommand.disableControl();
-        fourBarCommand.disableControl();
+        armCommand.disableControl();
     }
 
     public void autonomousInit() {
@@ -167,10 +153,8 @@ public class Robot extends IterativeRobot {
         System.out.println("TELEOP INIT");
         driveCommand.enableControl();
         driveCommand.start();
-        gripperCommand.enableControl();
-        gripperCommand.start();
-        fourBarCommand.enableControl();
-        fourBarCommand.start();
+        armCommand.enableControl();
+        armCommand.start();
     }
 
     /**

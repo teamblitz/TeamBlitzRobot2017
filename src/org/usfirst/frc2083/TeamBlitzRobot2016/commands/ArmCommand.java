@@ -1,35 +1,35 @@
 
 
 
-package org.usfirst.frc2083.TeamBlitzRobot2015.commands;
+package org.usfirst.frc2083.TeamBlitzRobot2016.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc2083.TeamBlitzRobot2015.Robot;
-import org.usfirst.frc2083.TeamBlitzRobot2015.RobotMap;
+import org.usfirst.frc2083.TeamBlitzRobot2016.Robot;
+import org.usfirst.frc2083.TeamBlitzRobot2016.RobotMap;
 
 /**
  *
  */
-public class  FourBarCommand extends CommandBase {
+public class  ArmCommand extends CommandBase {
 	public static Joystick xbox;
 	//public double position = 0;
 
-	public FourBarCommand() {
+	public ArmCommand() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
-		requires(fourBar);
-		fourBar.setVoltage(0);
+		requires(armBar);
+		armBar.setVoltage(0);
 		//position = fourBar.getController().getAnalogInPosition();
 	}
 
 	public void enableControl() {
-		fourBar.enableControl();
+		armBar.enableControl();
 	}
 
 	public void disableControl() {
-		fourBar.disableControl();
+		armBar.disableControl();
 	}
 
 	// Called just before this Command runs the first time
@@ -44,9 +44,9 @@ public class  FourBarCommand extends CommandBase {
 		if (Math.abs(Y) < 0.1) Y = 0;
 		Y = Y*Math.abs(Y)*.5;
 		//position += 2 * Y;
-		double curpos = fourBar.getController().getAnalogInPosition();
+		//double curpos = armBar.getController().getAnalogInPosition();
 		//System.out.println("Y = " + Y + ", rY = " + rY + ", curpos = " + curpos);
-		fourBar.setVoltage(Y);
+		armBar.setVoltage(Y);
  
 
 		

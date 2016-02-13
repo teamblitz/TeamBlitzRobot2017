@@ -9,7 +9,7 @@
 // it from being updated in the future.
 
 
-package org.usfirst.frc2083.TeamBlitzRobot2015;
+package org.usfirst.frc2083.TeamBlitzRobot2016;
     
 import edu.wpi.first.wpilibj.*;
 
@@ -45,14 +45,9 @@ public class RobotMap {
     public static int openButton = 2;
     public static int closeButton = 1;
 
-    public static CANJaguar gripperLeftMotorController;
-    public static CANJaguar gripperRightMotorController;
-    public static CANTalon fourBarMotorController;
-    public static final int gripperLeftMotorControllerID = 5;
-    public static final int gripperRightMotorControllerID = 2;
-    public static final int fourBarMotorControllerID = 3;
-    public static final double gripperMotorVoltageLimit = 9.0;
-    public static final double gripperMotorCurrentLimit = 15.0;
+    public static CANTalon armBarMotorController;
+    public static final int armBarMotorControllerID = 3;
+    
     public static final int xboxLeftTriggerAxisNum = 2; 
     public static final int xboxRightTriggerAxisNum = 3; 
 
