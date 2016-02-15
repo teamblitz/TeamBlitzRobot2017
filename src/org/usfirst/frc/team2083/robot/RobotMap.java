@@ -9,7 +9,7 @@
 // it from being updated in the future.
 
 
-package org.usfirst.frc2083.TeamBlitzRobot2016;
+package org.usfirst.frc.team2083.robot;
     
 import edu.wpi.first.wpilibj.*;
 
@@ -23,10 +23,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class RobotMap {
 
-    public static final int leftForwardMotorControllerID = 12;
+    public static final int leftForwardMotorControllerID = 1;
     public static final int leftBackMotorControllerID = 7;
-    public static final int rightForwardMotorControllerID = 1;
-    public static final int rightBackMotorControllerID = 8;
+    public static final int rightForwardMotorControllerID = 8;
+    public static final int rightBackMotorControllerID = 12;
 
     public static CANJaguar leftForwardMotorController;
     public static CANJaguar leftBackMotorController;
@@ -46,7 +46,7 @@ public class RobotMap {
     public static int closeButton = 1;
 
     public static CANTalon armBarMotorController;
-    public static final int armBarMotorControllerID = 3;
+    public static final int armBarMotorControllerID = 18;
     
     public static final int xboxLeftTriggerAxisNum = 2; 
     public static final int xboxRightTriggerAxisNum = 3; 

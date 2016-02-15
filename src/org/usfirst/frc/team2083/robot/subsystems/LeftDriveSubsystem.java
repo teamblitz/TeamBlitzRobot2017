@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-package org.usfirst.frc2083.TeamBlitzRobot2016.subsystems;
+package org.usfirst.frc.team2083.robot.subsystems;
 
-import org.usfirst.frc2083.TeamBlitzRobot2016.RobotMap;
+import org.usfirst.frc.team2083.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;

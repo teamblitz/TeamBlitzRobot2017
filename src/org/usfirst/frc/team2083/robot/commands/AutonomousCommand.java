@@ -9,11 +9,11 @@
 // it from being updated in the future.
 
 
-package org.usfirst.frc2083.TeamBlitzRobot2016.commands;
+package org.usfirst.frc.team2083.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc2083.TeamBlitzRobot2016.Robot;
+import org.usfirst.frc.team2083.robot.Robot;
 
 /**
  *

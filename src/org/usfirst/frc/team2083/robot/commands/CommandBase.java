@@ -1,9 +1,9 @@
-package org.usfirst.frc2083.TeamBlitzRobot2016.commands;
+package org.usfirst.frc.team2083.robot.commands;
 
-import org.usfirst.frc2083.TeamBlitzRobot2016.OI;
-import org.usfirst.frc2083.TeamBlitzRobot2016.subsystems.ArmSubsystem;
-import org.usfirst.frc2083.TeamBlitzRobot2016.subsystems.LeftDriveSubsystem;
-import org.usfirst.frc2083.TeamBlitzRobot2016.subsystems.RightDriveSubsystem;
+import org.usfirst.frc.team2083.robot.OI;
+import org.usfirst.frc.team2083.robot.subsystems.ArmSubsystem;
+import org.usfirst.frc.team2083.robot.subsystems.LeftDriveSubsystem;
+import org.usfirst.frc.team2083.robot.subsystems.RightDriveSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
