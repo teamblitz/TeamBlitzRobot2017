@@ -40,8 +40,6 @@ public class Robot extends IterativeRobot {
     DriveCommand driveCommand;
     ArmCommand armCommand;
     DigitalInput autoDistSelect;
-//    ClawCommand clawCommand;
-//    ShootCommand shootCommand;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -94,28 +92,15 @@ public class Robot extends IterativeRobot {
 //        RobotMap.rightFront.setSpeedReference(CANJaguar.SpeedReference.kQuadEncoder);
 //        RobotMap.leftFront.setPositionReference(CANJaguar.PositionReference.kQuadEncoder);
 //        RobotMap.rightFront.setPositionReference(CANJaguar.PositionReference.kQuadEncoder);
-                
-//            RobotMap.compressorRelay = new Relay(1);
-//            RobotMap.compressorRelay.setDirection(Relay.Direction.kForward);
-//            RobotMap.solenoidRelay = new Relay(2);
-//            RobotMap.solenoidRelay.setDirection(Relay.Direction.kForward);
-//            RobotMap.shooterValveSolenoid = new Solenoid(1);
-//            RobotMap.shooterValveSolenoid.set(false);
-                    
+                                    
         // Initialize all subsystems
         CommandBase.init();
         driveCommand = new DriveCommand();
-        armCommand = new ArmCommand();
-//            clawCommand = new ClawCommand();
         DriveCommand.xbox = new Joystick(0);
+
+        armCommand = new ArmCommand();
         ArmCommand.xbox = DriveCommand.xbox;
-//            ClawCommand.xbox = DriveCommand.xbox;
-//            shootCommand = new ShootCommand();
-//            ShootCommand.xbox = DriveCommand.xbox;
         
-       
-        
-//            clawCommand.disableControl();
         driveCommand.disableControl();
         armCommand.disableControl();
     }

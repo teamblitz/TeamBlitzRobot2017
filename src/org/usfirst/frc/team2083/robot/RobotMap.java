@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class RobotMap {
 
+	// Drive wheels
     public static final int leftForwardMotorControllerID = 1;
     public static final int leftBackMotorControllerID = 7;
     public static final int rightForwardMotorControllerID = 8;
@@ -38,16 +39,17 @@ public class RobotMap {
     public static double autoTimer = -1;
     public static double autoDriveTime = 0;
     public static int autoDistSelectChannel = 5;
-    
 
+    // Arm
+    public static final int armBarMotorControllerID = 18;
+    public static CANTalon armBarMotorController;
+
+    // Controller
     public static int downButton = 4;
     public static int upButton = 3;
     public static int openButton = 2;
     public static int closeButton = 1;
 
-    public static CANTalon armBarMotorController;
-    public static final int armBarMotorControllerID = 18;
-    
     public static final int xboxLeftTriggerAxisNum = 2; 
     public static final int xboxRightTriggerAxisNum = 3; 
 
