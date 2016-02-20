@@ -36,7 +36,7 @@ public class ArmSubsystem extends Subsystem {
     	armController.disableControl();
     }
     
-    public void setVoltage(double v) {
+    public void setPercentVBus(double v) {
     	armController.set(v);
     }
     public CANTalon getController() {

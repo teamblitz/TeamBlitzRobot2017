@@ -20,7 +20,7 @@ public class  ArmCommand extends CommandBase {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(armBar);
-		armBar.setVoltage(0);
+		armBar.setPercentVBus(0);
 		//position = fourBar.getController().getAnalogInPosition();
 	}
 
@@ -41,7 +41,7 @@ public class  ArmCommand extends CommandBase {
 		double rY;
 		rY = -xbox.getRawAxis(5);
 		double Y = rY; 		
-		Y = Y*Math.abs(Y)*12*.2;
+		Y = Y*Math.abs(Y)*.2;
 		if (Math.abs(Y) < 0.15) {
 			Y = 0;
 		}
@@ -52,7 +52,7 @@ public class  ArmCommand extends CommandBase {
 		//position += 2 * Y;
 		//double curpos = armBar.getController().getAnalogInPosition();
 		//System.out.println("Y = " + Y + ", rY = " + rY + ", curpos = " + curpos);
-		armBar.setVoltage(Y);
+		armBar.setPercentVBus(Y);
  
 	 
 		
