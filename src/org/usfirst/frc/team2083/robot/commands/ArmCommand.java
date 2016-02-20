@@ -41,7 +41,7 @@ public class  ArmCommand extends CommandBase {
 		double rY;
 		rY = -xbox.getRawAxis(5);
 		double Y = rY; 		
-		Y = Y*Math.abs(Y)*.2;
+		Y = Y*Math.abs(Y)*12*.2;
 		if (Math.abs(Y) < 0.15) {
 			Y = 0;
 		}
