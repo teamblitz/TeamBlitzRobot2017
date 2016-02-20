@@ -16,17 +16,18 @@ import org.usfirst.frc.team2083.robot.RobotMap;
  *
  * @author Owner
  */
-public class RightDriveSubsystem extends PIDSubsystem {
+public class RightDriveSubsystem extends Subsystem {
     
     public CANJaguar rightFront;
     public CANJaguar rightBack;
     
     public RightDriveSubsystem() {
-        super("Right Drive", 0.01, 0, 0, 0.02);
-        this.rightFront = RobotMap.rightForwardMotorController;
+    //    super("Right Drive", 0.01, 0, 0, 0.02);
+    	super("Right Drive");
+    	this.rightFront = RobotMap.rightForwardMotorController;
         this.rightBack = RobotMap.rightBackMotorController;
-        this.enable();
-        this.getPIDController().setOutputRange(-12, 12);
+    //    this.enable();
+    //    this.getPIDController().setOutputRange(-12, 12);
         
     }
 
@@ -42,14 +43,19 @@ public class RightDriveSubsystem extends PIDSubsystem {
         rightFront.disableControl();
     }
 
-    public double returnPIDInput() {
-        return -rightFront.getSpeed();
+//    public double returnPIDInput() {
+//       return -rightFront.getSpeed();
+//    }
+//
+//    public void usePIDOutput(double d) {
+////    	System.out.println("Right " + getSetpoint() + " " + returnPIDInput() + " " + d + " " + rightFront.getOutputCurrent() + " " + rightBack.getOutputCurrent());
+////    	System.out.println("Right d = " + d);
+//        rightFront.set(-d);
+//        rightBack.set(-d);
+//    }
+    public void setVoltage(double voltage)
+    {
+    	rightFront.set(-voltage);
+        rightBack.set(-voltage);
     }
-
-    public void usePIDOutput(double d) {
-//        System.out.println("Right " + getSetpoint() + " " + returnPIDInput() + " " + d + " " + rightFront.getOutputCurrent() + " " + rightBack.getOutputCurrent());
-        rightFront.set(d);
-        rightBack.set(d);
-    }
-    
 }

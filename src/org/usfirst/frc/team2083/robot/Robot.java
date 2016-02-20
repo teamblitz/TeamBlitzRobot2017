@@ -46,21 +46,22 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+        System.out.println("ROBOT INIT");
 
         RobotMap.leftForwardMotorController = new CANJaguar(RobotMap.leftForwardMotorControllerID);
         RobotMap.leftBackMotorController = new CANJaguar(RobotMap.leftBackMotorControllerID);
         RobotMap.rightForwardMotorController = new CANJaguar(RobotMap.rightForwardMotorControllerID);
         RobotMap.rightBackMotorController = new CANJaguar(RobotMap.rightBackMotorControllerID);
+
         RobotMap.leftForwardMotorController.configNeutralMode(CANJaguar.NeutralMode.Brake);
         RobotMap.leftBackMotorController.configNeutralMode(CANJaguar.NeutralMode.Brake);
         RobotMap.rightForwardMotorController.configNeutralMode(CANJaguar.NeutralMode.Brake);
         RobotMap.rightBackMotorController.configNeutralMode(CANJaguar.NeutralMode.Brake);
         
         RobotMap.rightBackMotorController.setVoltageMode();
+        RobotMap.rightForwardMotorController.setVoltageMode();
         RobotMap.leftBackMotorController.setVoltageMode();
-        
-        RobotMap.leftForwardMotorController.setVoltageMode(CANJaguar.kQuadEncoder, 360);
-        RobotMap.rightForwardMotorController.setVoltageMode(CANJaguar.kQuadEncoder, 250);
+        RobotMap.leftForwardMotorController.setVoltageMode();
         
         RobotMap.armBarMotorController = new CANTalon(RobotMap.armBarMotorControllerID);
         RobotMap.armBarMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
@@ -106,7 +107,9 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-    	RobotMap.auto = true;
+        System.out.println("AUTONOMOUS INIT");
+
+        RobotMap.auto = true;
     	RobotMap.autoTimer = System.currentTimeMillis();
     	if (autoDistSelect.get()) {
     		RobotMap.autoDriveTime = 0; // if jumper is unplugged
@@ -134,8 +137,9 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-    	RobotMap.auto = false;
         System.out.println("TELEOP INIT");
+
+        RobotMap.auto = false;
         driveCommand.enableControl();
         driveCommand.start();
         armCommand.enableControl();

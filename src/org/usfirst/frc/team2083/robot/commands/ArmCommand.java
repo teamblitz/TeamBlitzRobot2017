@@ -41,14 +41,20 @@ public class  ArmCommand extends CommandBase {
 		double rY;
 		rY = -xbox.getRawAxis(5);
 		double Y = rY; 		
-		if (Math.abs(Y) < 0.1) Y = 0;
-		Y = Y*Math.abs(Y)*.5;
+		Y = Y*Math.abs(Y)*.2;
+		if (Math.abs(Y) < 0.15) {
+			Y = 0;
+		}
+		
+		
+		System.out.println("y arm = " + Y + "");
+		
 		//position += 2 * Y;
 		//double curpos = armBar.getController().getAnalogInPosition();
 		//System.out.println("Y = " + Y + ", rY = " + rY + ", curpos = " + curpos);
 		armBar.setVoltage(Y);
  
-
+	 
 		
 //		int numAxes = xbox.getAxisCount();
 //		double[] axisValues = new double[numAxes];

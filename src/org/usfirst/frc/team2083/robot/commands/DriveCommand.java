@@ -21,43 +21,69 @@ public class DriveCommand extends CommandBase {
     }
     
     public void enableControl() {
-        leftDrive.enable();
-        rightDrive.enable();
+    //    leftDrive.enable();
+    //    rightDrive.enable();
         leftDrive.enableControl();
         rightDrive.enableControl();
     }
     public void disableControl() {
-        leftDrive.disable();
-        rightDrive.disable();
+    //    leftDrive.disable();
+    //    rightDrive.disable();
         leftDrive.disableControl();
         rightDrive.disableControl();
     }
+    //public void setVoltageRampRate() {
+    
+    //}
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	//double getOutputVoltage();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double X = 0, Y = 0;
+    	double x = 0, y = 0;
 
     	if (RobotMap.auto) {
-    		Y = RobotMap.autoY;
+    		y = RobotMap.autoY;
 
     	} else {
-    		X = xbox.getX();
-    		//    	System.out.println("X = " + X);
-    		Y = -xbox.getY(); //-xbox.getRawAxis(5);
-    		//    	System.out.println("Y = " + Y);
-    		if (Math.abs(X) < 0.1) X = 0;
-    		if (Math.abs(Y) < 0.1) Y = 0;
-    		X = X*Math.abs(X);
-    		Y = Y*Math.abs(Y);
+    		x = xbox.getX();
+    		y = -xbox.getY();
+    		x = x*Math.abs(x);
+    		y = y*Math.abs(y);
+    		if (Math.abs(x) < 0.15 && Math.abs(y) < 0.15) {
+        		//System.out.println("Raw (x, y) = (" + x + ", " + y + ")");
+    			x = 0;
+    			y = 0;
+    		}
+    		System.out.println("(x, y) = (" + x + ", " + y + ")");
     	}
 
-    	System.out.println("Y = " + Y);
-    	leftDrive.setSetpoint(Y*360+X*240);
-        rightDrive.setSetpoint(Y*360-X*240);
+    	//double leftSetPointVal = y*360+x*360;
+    	//double rightSetPointVal = y*360-x*360;
+    	double leftDriveVoltage = y*12+x*12;
+    	double rightDriveVoltage = y*12-x*12;
+    	
+//    	if (leftSetPointVal < -360)
+//    		leftSetPointVal = -360;
+//    	if (leftSetPointVal > 360)
+//    		leftSetPointVal = 360;
+//    	if (rightSetPointVal < -360)
+//    		rightSetPointVal = -360;
+//    	if (rightSetPointVal > 360)
+//    		rightSetPointVal = 360;
+    	
+//		System.out.println("Left drive setPoint = " + leftSetPointVal);
+//		System.out.println("Right drive setPoint = " + rightSetPointVal);
+//		
+//    	leftDrive.setSetpoint(leftSetPointVal);
+//        rightDrive.setSetpoint(rightSetPointVal);
+        
+        leftDrive.setVoltage(leftDriveVoltage);
+        rightDrive.setVoltage(rightDriveVoltage);
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
