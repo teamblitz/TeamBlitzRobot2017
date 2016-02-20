@@ -66,12 +66,13 @@ public class Robot extends IterativeRobot {
         RobotMap.armBarMotorController = new CANTalon(RobotMap.armBarMotorControllerID);
         RobotMap.armBarMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
         
-        RobotMap.armBarMotorController.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
         RobotMap.armBarMotorController.enableBrakeMode(true);
-        RobotMap.armBarMotorController.setForwardSoftLimit(756);
-        RobotMap.armBarMotorController.enableForwardSoftLimit(true);
-        RobotMap.armBarMotorController.setReverseSoftLimit(100);  //was 8
-        RobotMap.armBarMotorController.enableReverseSoftLimit(true);
+
+//        RobotMap.armBarMotorController.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
+//        RobotMap.armBarMotorController.setForwardSoftLimit(756);
+//        RobotMap.armBarMotorController.enableForwardSoftLimit(true);
+//        RobotMap.armBarMotorController.setReverseSoftLimit(100);  //was 8
+//        RobotMap.armBarMotorController.enableReverseSoftLimit(true);
         
         autoDistSelect = new DigitalInput(RobotMap.autoDistSelectChannel);
         
