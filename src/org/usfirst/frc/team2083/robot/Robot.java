@@ -67,7 +67,8 @@ public class Robot extends IterativeRobot {
         RobotMap.armBarMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
         
         RobotMap.armBarMotorController.enableBrakeMode(true);
-
+        RobotMap.armBarMotorController.ConfigFwdLimitSwitchNormallyOpen(false);
+        
 //        RobotMap.armBarMotorController.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
 //        RobotMap.armBarMotorController.setForwardSoftLimit(756);
 //        RobotMap.armBarMotorController.enableForwardSoftLimit(true);
