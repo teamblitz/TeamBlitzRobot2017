@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.CANJaguar.JaguarControlMode;
 import edu.wpi.first.wpilibj.CANTalon;
@@ -37,8 +38,13 @@ import org.usfirst.frc.team2083.robot.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 
-    DriveCommand driveCommand;
+	// Robot commands
+	DriveCommand driveCommand;
     ArmCommand armCommand;
+
+    // Autonomous commands and selection
+    Command autonomousCommand;
+    SendableChooser autoChooser;
     DigitalInput autoDistSelect;
 
     /**
@@ -52,7 +58,7 @@ public class Robot extends IterativeRobot {
         RobotMap.leftBackMotorController = new CANJaguar(RobotMap.leftBackMotorControllerID);
         RobotMap.rightForwardMotorController = new CANJaguar(RobotMap.rightForwardMotorControllerID);
         RobotMap.rightBackMotorController = new CANJaguar(RobotMap.rightBackMotorControllerID);
-
+        
         RobotMap.leftForwardMotorController.configNeutralMode(CANJaguar.NeutralMode.Brake);
         RobotMap.leftBackMotorController.configNeutralMode(CANJaguar.NeutralMode.Brake);
         RobotMap.rightForwardMotorController.configNeutralMode(CANJaguar.NeutralMode.Brake);
@@ -68,6 +74,8 @@ public class Robot extends IterativeRobot {
         
         RobotMap.armBarMotorController.enableBrakeMode(true);
         RobotMap.armBarMotorController.ConfigFwdLimitSwitchNormallyOpen(false);
+        RobotMap.armBarMotorController.ConfigRevLimitSwitchNormallyOpen(false);
+        //RobotMap.armBarMotorController.configPeakOutputVoltage(6, -6);
         
 //        RobotMap.armBarMotorController.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
 //        RobotMap.armBarMotorController.setForwardSoftLimit(756);
@@ -106,6 +114,9 @@ public class Robot extends IterativeRobot {
         
         driveCommand.disableControl();
         armCommand.disableControl();
+        
+        // Autonomous setup.
+        
     }
 
     public void autonomousInit() {
@@ -113,11 +124,11 @@ public class Robot extends IterativeRobot {
 
         RobotMap.auto = true;
     	RobotMap.autoTimer = System.currentTimeMillis();
-    	if (autoDistSelect.get()) {
-    		RobotMap.autoDriveTime = 0; // if jumper is unplugged
-    	} else {
-    		RobotMap.autoDriveTime = 1500; // if jumper is plugged in
-    	}
+//    	if (autoDistSelect.get()) {
+//    		RobotMap.autoDriveTime = 0; // if jumper is unplugged
+//    	} else {
+    		RobotMap.autoDriveTime = 3000; // if jumper is plugged in
+//    	}
     	driveCommand.enableControl();
     	driveCommand.start();
     	//System.out.println("ran Autonomous init");
@@ -128,7 +139,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
     	if(System.currentTimeMillis()-RobotMap.autoTimer < RobotMap.autoDriveTime ){
-    		RobotMap.autoY = .5;
+    		RobotMap.autoY = 1;
 //    		System.out.println("autoY = .5, System Time millis = " 
 //    				+ System.currentTimeMillis() + 
 //    				", autoTimer = " + RobotMap.autoTimer);

@@ -11,6 +11,7 @@
 
 package org.usfirst.frc.team2083.robot.commands;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team2083.robot.Robot;
@@ -19,7 +20,7 @@ import org.usfirst.frc.team2083.robot.Robot;
  *
  */
 public class  AutonomousCommand extends Command {
-
+	public static Joystick xbox;
     public AutonomousCommand() {
         // Use requires() here to declare subsystem dependencies
         // e.g., requires(chassis);
@@ -35,6 +36,12 @@ public class  AutonomousCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+//    	double y;
+//    	double x;
+//    	y = -xbox.getRawAxis(2);
+//    	x = xbox.getRawAxis(3);
+//    	double leftDriveVoltage = y*12+x*12;
+//    	double rightDriveVoltage = y*12-x*12;
     }
 
     // Make this return true when this Command no longer needs to run execute()

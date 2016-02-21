@@ -2,6 +2,7 @@
 package org.usfirst.frc.team2083.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team2083.robot.RobotMap;
 
@@ -65,16 +66,7 @@ public class DriveCommand extends CommandBase {
     	//double rightSetPointVal = y*360-x*360;
     	double leftDriveVoltage = y*12+x*12;
     	double rightDriveVoltage = y*12-x*12;
-    	
-//    	if (leftSetPointVal < -360)
-//    		leftSetPointVal = -360;
-//    	if (leftSetPointVal > 360)
-//    		leftSetPointVal = 360;
-//    	if (rightSetPointVal < -360)
-//    		rightSetPointVal = -360;
-//    	if (rightSetPointVal > 360)
-//    		rightSetPointVal = 360;
-    	
+    	    	
 //		System.out.println("Left drive setPoint = " + leftSetPointVal);
 //		System.out.println("Right drive setPoint = " + rightSetPointVal);
 //		
@@ -83,6 +75,16 @@ public class DriveCommand extends CommandBase {
         
         leftDrive.setVoltage(leftDriveVoltage);
         rightDrive.setVoltage(rightDriveVoltage);
+        
+        double lfc = RobotMap.leftForwardMotorController.getOutputCurrent();
+        double lbc = RobotMap.leftBackMotorController.getOutputCurrent();
+        double rfc = RobotMap.rightForwardMotorController.getOutputCurrent();
+        double rbc = RobotMap.rightBackMotorController.getOutputCurrent();
+                
+        SmartDashboard.putNumber("Left Front Current", lfc);
+        SmartDashboard.putNumber("Left Back Current", lbc);
+        SmartDashboard.putNumber("Right Front Current", rfc);
+        SmartDashboard.putNumber("Right Back Current", rbc);
 
     }
 

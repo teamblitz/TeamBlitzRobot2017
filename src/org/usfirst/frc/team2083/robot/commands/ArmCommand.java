@@ -14,6 +14,7 @@ import org.usfirst.frc.team2083.robot.RobotMap;
  */
 public class  ArmCommand extends CommandBase {
 	public static Joystick xbox;
+	public static double speedMultiplier = .2;
 	//public double position = 0;
 
 	public ArmCommand() {
@@ -40,15 +41,17 @@ public class  ArmCommand extends CommandBase {
 	protected void execute() {
 		double rY;
 		rY = -xbox.getRawAxis(5);
+		System.out.println("Y = " + rY);
 		double Y = rY; 		
-		Y = Y*Math.abs(Y)*.2;
+		Y = Y*Math.abs(Y)*speedMultiplier;
 		if (Math.abs(Y) < 0.15) {
 			Y = 0;
 		}
 		
-		
 		System.out.println("y arm = " + Y + "");
-		
+		System.out.println("Forward limit: " + RobotMap.armBarMotorController.isFwdLimitSwitchClosed());
+		System.out.println("Reverse limit: " + RobotMap.armBarMotorController.isRevLimitSwitchClosed());
+
 		//position += 2 * Y;
 		//double curpos = armBar.getController().getAnalogInPosition();
 		//System.out.println("Y = " + Y + ", rY = " + rY + ", curpos = " + curpos);
