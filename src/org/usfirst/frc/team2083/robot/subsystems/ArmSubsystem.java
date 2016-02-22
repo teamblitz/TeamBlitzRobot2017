@@ -12,9 +12,8 @@
 package org.usfirst.frc.team2083.robot.subsystems;
 
 import org.usfirst.frc.team2083.robot.RobotMap;
-import org.usfirst.frc.team2083.robot.commands.*;
 
-import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 

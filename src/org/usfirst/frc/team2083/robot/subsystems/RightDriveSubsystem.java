@@ -6,11 +6,10 @@
 
 package org.usfirst.frc.team2083.robot.subsystems;
 
-import edu.wpi.first.wpilibj.CANJaguar;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
-import edu.wpi.first.wpilibj.command.Subsystem;
-
 import org.usfirst.frc.team2083.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *

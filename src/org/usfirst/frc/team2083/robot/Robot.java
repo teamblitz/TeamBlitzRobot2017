@@ -11,22 +11,28 @@
 
 package org.usfirst.frc.team2083.robot;
 
+import org.usfirst.frc.team2083.robot.commands.ArmCommand;
+import org.usfirst.frc.team2083.robot.commands.CommandBase;
+import org.usfirst.frc.team2083.robot.commands.DriveCommand;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachChevalDeFris;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachDrawbridge;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachLowBar;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachMoat;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachPortcullis;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachRamparts;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachRockWall;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachRoughTerrain;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachSallyPort;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandMoveArm;
+
+import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.CANJaguar;
-import edu.wpi.first.wpilibj.CANJaguar.JaguarControlMode;
-import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.DigitalInput;
-
-import org.usfirst.frc.team2083.robot.commands.*;
-import org.usfirst.frc.team2083.robot.subsystems.*;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -45,7 +51,6 @@ public class Robot extends IterativeRobot {
     // Autonomous commands and selection
     Command autonomousCommand;
     SendableChooser autoChooser;
-    DigitalInput autoDistSelect;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -54,10 +59,10 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         System.out.println("ROBOT INIT");
 
-        RobotMap.leftForwardMotorController = new CANJaguar(RobotMap.leftForwardMotorControllerID);
-        RobotMap.leftBackMotorController = new CANJaguar(RobotMap.leftBackMotorControllerID);
-        RobotMap.rightForwardMotorController = new CANJaguar(RobotMap.rightForwardMotorControllerID);
-        RobotMap.rightBackMotorController = new CANJaguar(RobotMap.rightBackMotorControllerID);
+        RobotMap.leftForwardMotorController = new CANJaguar(RobotMap.LEFT_FORWARD_MOTOR_CONTROLLER_ID);
+        RobotMap.leftBackMotorController = new CANJaguar(RobotMap.LEFT_BACK_MOTOR_CONTROLLER_ID);
+        RobotMap.rightForwardMotorController = new CANJaguar(RobotMap.RIGHT_FORWARD_MOTOR_CONTROLLER_ID);
+        RobotMap.rightBackMotorController = new CANJaguar(RobotMap.RIGHT_BACK_MOTOR_CONTROLLER_ID);
         
         RobotMap.leftForwardMotorController.configNeutralMode(CANJaguar.NeutralMode.Brake);
         RobotMap.leftBackMotorController.configNeutralMode(CANJaguar.NeutralMode.Brake);
@@ -69,7 +74,7 @@ public class Robot extends IterativeRobot {
         RobotMap.leftBackMotorController.setVoltageMode();
         RobotMap.leftForwardMotorController.setVoltageMode();
         
-        RobotMap.armBarMotorController = new CANTalon(RobotMap.armBarMotorControllerID);
+        RobotMap.armBarMotorController = new CANTalon(RobotMap.ARM_BAR_MOTOR_CONTROLLER_ID);
         RobotMap.armBarMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
         
         RobotMap.armBarMotorController.enableBrakeMode(true);
@@ -82,9 +87,7 @@ public class Robot extends IterativeRobot {
 //        RobotMap.armBarMotorController.enableForwardSoftLimit(true);
 //        RobotMap.armBarMotorController.setReverseSoftLimit(100);  //was 8
 //        RobotMap.armBarMotorController.enableReverseSoftLimit(true);
-        
-        autoDistSelect = new DigitalInput(RobotMap.autoDistSelectChannel);
-        
+                
 //        double p = 1;
 //        double i = .01;
 //        double d = 0;
@@ -107,52 +110,44 @@ public class Robot extends IterativeRobot {
         // Initialize all subsystems
         CommandBase.init();
         driveCommand = new DriveCommand();
-        DriveCommand.xbox = new Joystick(0);
+        driveCommand.disableControl();
 
         armCommand = new ArmCommand();
-        ArmCommand.xbox = DriveCommand.xbox;
-        
-        driveCommand.disableControl();
         armCommand.disableControl();
-        
+                
         // Autonomous setup.
+        autoChooser = new SendableChooser();
+        autoChooser.addDefault("Lower Arm Only (Default)", new AutoCommandMoveArm());
+        autoChooser.addObject("Breach Portcullis", new AutoCommandBreachPortcullis());
+        autoChooser.addObject("Breach Cheval de Fris", new AutoCommandBreachChevalDeFris());
+        autoChooser.addObject("Breach Moat", new AutoCommandBreachMoat());
+        autoChooser.addObject("Breach Ramparts", new AutoCommandBreachRamparts());
+        autoChooser.addObject("Breach Drawbridge", new AutoCommandBreachDrawbridge());
+        autoChooser.addObject("Breach Sally Port", new AutoCommandBreachSallyPort());
+        autoChooser.addObject("Breach Rock Wall", new AutoCommandBreachRockWall());
+        autoChooser.addObject("Breach Rough Terrain", new AutoCommandBreachRoughTerrain());
+        autoChooser.addObject("Breach Low Bar", new AutoCommandBreachLowBar());
         
+        SmartDashboard.putData("Autonmous Mode", autoChooser);
     }
 
     public void autonomousInit() {
         System.out.println("AUTONOMOUS INIT");
 
-        RobotMap.auto = true;
-    	RobotMap.autoTimer = System.currentTimeMillis();
-//    	if (autoDistSelect.get()) {
-//    		RobotMap.autoDriveTime = 0; // if jumper is unplugged
-//    	} else {
-    		RobotMap.autoDriveTime = 3000; // if jumper is plugged in
-//    	}
-    	driveCommand.enableControl();
-    	driveCommand.start();
-    	//System.out.println("ran Autonomous init");
+        autonomousCommand = (Command) autoChooser.getSelected();
+        autonomousCommand.start();        
     }
 
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-    	if(System.currentTimeMillis()-RobotMap.autoTimer < RobotMap.autoDriveTime ){
-    		RobotMap.autoY = 1;
-//    		System.out.println("autoY = .5, System Time millis = " 
-//    				+ System.currentTimeMillis() + 
-//    				", autoTimer = " + RobotMap.autoTimer);
-    	} else {
-    		RobotMap.autoY = 0;
-        }
     	Scheduler.getInstance().run();
     }
 
     public void teleopInit() {
         System.out.println("TELEOP INIT");
 
-        RobotMap.auto = false;
         driveCommand.enableControl();
         driveCommand.start();
         armCommand.enableControl();
