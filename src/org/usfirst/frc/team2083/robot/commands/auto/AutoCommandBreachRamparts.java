@@ -14,6 +14,8 @@ public class AutoCommandBreachRamparts extends CommandGroup {
     	requires(CommandBase.rightDrive);
     	requires(CommandBase.armBar);
     	
-       	addSequential(new AutoCommandDrive(3*1000, 6));
+       	addSequential(new AutoCommandDrive(1*1000, 6));
+       	addSequential(new AutoCommandTurnRight(1*500, 6));
+       	addSequential(new AutoCommandDrive(1*1000, 6));
     }
 }

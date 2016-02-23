@@ -15,5 +15,6 @@ public class AutoCommandBreachRoughTerrain extends CommandGroup {
     	requires(CommandBase.armBar);
     	
        	addSequential(new AutoCommandDrive(3*1000, 6));
+       	;
     }
 }

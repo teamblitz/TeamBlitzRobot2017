@@ -14,6 +14,11 @@ public class AutoCommandBreachChevalDeFris extends CommandGroup {
     	requires(CommandBase.rightDrive);
     	requires(CommandBase.armBar);
     	
-       	addSequential(new AutoCommandDrive(3*1000, 6));
-    }
+    	addSequential(new AutoCommandMoveArm());
+//    	addSequential(new AutoCommandMoveArm((long)0.5*1000, .3));
+//       	addSequential(new AutoCommandDrive((long)3.5*1000, 6));
+//        addSequential(new AutoCommandMoveArm());
+//        addSequential(new AutoCommandDrive(5*1000, 2));
+//        addSequential(new AutoCommandMoveArm(1000, 1));
+    }    
 }

@@ -14,6 +14,8 @@ public class AutoCommandBreachDrawbridge extends CommandGroup {
     	requires(CommandBase.rightDrive);
     	requires(CommandBase.armBar);
     	
-       	addSequential(new AutoCommandDrive(3*1000, 6));
+    	addSequential(new AutoCommandMoveArm());
+       	addSequential(new AutoCommandDrive(0*1000, 6));
+       	
     }
 }

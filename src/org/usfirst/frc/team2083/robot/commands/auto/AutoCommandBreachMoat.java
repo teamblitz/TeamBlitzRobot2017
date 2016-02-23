@@ -14,6 +14,6 @@ public class AutoCommandBreachMoat extends CommandGroup {
     	requires(CommandBase.rightDrive);
     	requires(CommandBase.armBar);
     	
-       	addSequential(new AutoCommandDrive(3*1000, 6));
+       	addSequential(new AutoCommandDrive(2*1000, 6));
     }
 }

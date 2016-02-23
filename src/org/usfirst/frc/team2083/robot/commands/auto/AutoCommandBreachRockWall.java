@@ -14,6 +14,6 @@ public class AutoCommandBreachRockWall extends CommandGroup {
     	requires(CommandBase.rightDrive);
     	requires(CommandBase.armBar);
     	
-       	addSequential(new AutoCommandDrive(3*1000, 6));
+       	addSequential(new AutoCommandDrive((long)3.5*1000, 6));
     }
 }
