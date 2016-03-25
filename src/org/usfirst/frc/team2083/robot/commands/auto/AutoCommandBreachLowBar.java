@@ -16,6 +16,5 @@ public class AutoCommandBreachLowBar extends CommandGroup {
     	
     	addSequential(new AutoCommandMoveArm());
        	addSequential(new AutoCommandDrive(3*1000, 6));
-       	addSequential(new AutoCommandDrive(1*1000, 6));
     }
 }

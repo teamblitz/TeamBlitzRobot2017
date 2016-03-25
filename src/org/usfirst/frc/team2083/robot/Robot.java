@@ -128,11 +128,14 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("Breach Rough Terrain", new AutoCommandBreachRoughTerrain());
         autoChooser.addObject("Breach Low Bar", new AutoCommandBreachLowBar());
         
-        SmartDashboard.putData("Autonmous Mode", autoChooser);
+        SmartDashboard.putData("Autonmous Mode", autoChooser);        
     }
 
     public void autonomousInit() {
         System.out.println("AUTONOMOUS INIT");
+
+        driveCommand.enableControl();
+        armCommand.enableControl();
 
         autonomousCommand = (Command) autoChooser.getSelected();
         autonomousCommand.start();        
