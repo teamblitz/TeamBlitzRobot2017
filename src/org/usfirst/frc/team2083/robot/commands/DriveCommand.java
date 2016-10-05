@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveCommand extends CommandBase {
     
+	public int speedMultiplier = 6; //12 was used for contest
+	
     public DriveCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -48,8 +50,8 @@ public class DriveCommand extends CommandBase {
 
     	//double leftSetPointVal = y*360+x*360;
     	//double rightSetPointVal = y*360-x*360;
-    	double leftDriveVoltage = y*12+x*12;
-    	double rightDriveVoltage = y*12-x*12;
+    	double leftDriveVoltage = y*speedMultiplier+x*speedMultiplier; //y*12+x*12;
+    	double rightDriveVoltage = y*speedMultiplier-x*speedMultiplier; //y*12-x*12;
     	    	
 //		System.out.println("Left drive setPoint = " + leftSetPointVal);
 //		System.out.println("Right drive setPoint = " + rightSetPointVal);

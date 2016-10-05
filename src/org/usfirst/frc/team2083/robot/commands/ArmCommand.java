@@ -9,7 +9,7 @@ import org.usfirst.frc.team2083.robot.RobotMap;
  *
  */
 public class  ArmCommand extends CommandBase {
-	public static double powerFactor = 1;
+	public static double powerFactor = .25;
 
 	public ArmCommand() {
 		// Use requires() here to declare subsystem dependencies
