@@ -8,7 +8,7 @@ package org.usfirst.frc.team2083.robot.subsystems;
 
 import org.usfirst.frc.team2083.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -17,8 +17,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class LeftDriveSubsystem extends Subsystem {
     
-    public CANJaguar leftFront;
-    public CANJaguar leftBack;
+    public CANTalon leftFront;
+    public CANTalon leftBack;
     
     public LeftDriveSubsystem() {
         //super("Left Drive", 0.01, 0, 0, 0.02);

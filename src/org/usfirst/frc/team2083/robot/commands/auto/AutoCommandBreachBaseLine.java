@@ -7,13 +7,15 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoCommandBreachRockWall extends CommandGroup {
+public class AutoCommandBreachBaseLine extends CommandGroup {
     
-    public  AutoCommandBreachRockWall() {    	
+    public  AutoCommandBreachBaseLine() {    	
     	requires(CommandBase.leftDrive);
     	requires(CommandBase.rightDrive);
     	requires(CommandBase.armBar);
     	
-       	addSequential(new AutoCommandDrive((long)3.5*1000, 8));
+       	addSequential(new AutoCommandDrive(1*1000, 6));
+       	addSequential(new AutoCommandTurnRight(1*500, 6));
+       	addSequential(new AutoCommandDrive(1*1000, 6));
     }
 }

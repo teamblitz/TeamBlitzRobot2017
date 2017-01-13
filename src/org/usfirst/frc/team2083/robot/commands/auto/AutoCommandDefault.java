@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoCommandBreachPortcullis extends CommandGroup {
+public class AutoCommandDefault extends CommandGroup {
     
-    public  AutoCommandBreachPortcullis() {    	
+    public  AutoCommandDefault() {    	
     	requires(CommandBase.leftDrive);
     	requires(CommandBase.rightDrive);
     	requires(CommandBase.armBar);

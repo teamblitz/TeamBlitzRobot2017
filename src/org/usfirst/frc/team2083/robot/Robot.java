@@ -11,21 +11,14 @@
 
 package org.usfirst.frc.team2083.robot;
 
-import org.usfirst.frc.team2083.robot.commands.ArmCommand;
 import org.usfirst.frc.team2083.robot.commands.CommandBase;
 import org.usfirst.frc.team2083.robot.commands.DriveCommand;
-import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachChevalDeFris;
-import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachDrawbridge;
-import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachLowBar;
-import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachMoat;
-import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachPortcullis;
-import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachRamparts;
-import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachRockWall;
-import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachRoughTerrain;
-import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachSallyPort;
-import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandMoveArm;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandDefault;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachBaseLine;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandLeftTowerLift;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandCenterTowerLift;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandRightTowerLift;
 
-import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -46,7 +39,6 @@ public class Robot extends IterativeRobot {
 
 	// Robot commands
 	DriveCommand driveCommand;
-    ArmCommand armCommand;
 
     // Autonomous commands and selection
     Command autonomousCommand;
@@ -59,34 +51,15 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         System.out.println("ROBOT INIT");
 
-        RobotMap.leftForwardMotorController = new CANJaguar(RobotMap.LEFT_FORWARD_MOTOR_CONTROLLER_ID);
-        RobotMap.leftBackMotorController = new CANJaguar(RobotMap.LEFT_BACK_MOTOR_CONTROLLER_ID);
-        RobotMap.rightForwardMotorController = new CANJaguar(RobotMap.RIGHT_FORWARD_MOTOR_CONTROLLER_ID);
-        RobotMap.rightBackMotorController = new CANJaguar(RobotMap.RIGHT_BACK_MOTOR_CONTROLLER_ID);
+        RobotMap.leftForwardMotorController = new CANTalon(RobotMap.LEFT_FORWARD_MOTOR_CONTROLLER_ID);
+        RobotMap.leftBackMotorController = new CANTalon(RobotMap.LEFT_BACK_MOTOR_CONTROLLER_ID);
+        RobotMap.rightForwardMotorController = new CANTalon(RobotMap.RIGHT_FORWARD_MOTOR_CONTROLLER_ID);
+        RobotMap.rightBackMotorController = new CANTalon(RobotMap.RIGHT_BACK_MOTOR_CONTROLLER_ID);
         
-        RobotMap.leftForwardMotorController.configNeutralMode(CANJaguar.NeutralMode.Brake);
-        RobotMap.leftBackMotorController.configNeutralMode(CANJaguar.NeutralMode.Brake);
-        RobotMap.rightForwardMotorController.configNeutralMode(CANJaguar.NeutralMode.Brake);
-        RobotMap.rightBackMotorController.configNeutralMode(CANJaguar.NeutralMode.Brake);
-        
-        RobotMap.rightBackMotorController.setVoltageMode();
-        RobotMap.rightForwardMotorController.setVoltageMode();
-        RobotMap.leftBackMotorController.setVoltageMode();
-        RobotMap.leftForwardMotorController.setVoltageMode();
-        
-        RobotMap.armBarMotorController = new CANTalon(RobotMap.ARM_BAR_MOTOR_CONTROLLER_ID);
-        RobotMap.armBarMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-        
-        RobotMap.armBarMotorController.enableBrakeMode(true);
-        RobotMap.armBarMotorController.ConfigFwdLimitSwitchNormallyOpen(false);
-        RobotMap.armBarMotorController.ConfigRevLimitSwitchNormallyOpen(false);
-        //RobotMap.armBarMotorController.configPeakOutputVoltage(6, -6);
-        
-//        RobotMap.armBarMotorController.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
-//        RobotMap.armBarMotorController.setForwardSoftLimit(756);
-//        RobotMap.armBarMotorController.enableForwardSoftLimit(true);
-//        RobotMap.armBarMotorController.setReverseSoftLimit(100);  //was 8
-//        RobotMap.armBarMotorController.enableReverseSoftLimit(true);
+        RobotMap.leftForwardMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+        RobotMap.leftBackMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+        RobotMap.rightForwardMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+        RobotMap.rightBackMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
                 
 //        double p = 1;
 //        double i = .01;
@@ -99,35 +72,27 @@ public class Robot extends IterativeRobot {
        // RobotMap.armBarMotorController.reverseSensor(false);
         
         
-//        RobotMap.leftFront.setPositionMode(CANJaguar.kQuadEncoder, 360, 0.01, 0, 0);
-//        RobotMap.rightFront.setPositionMode(CANJaguar.kQuadEncoder, 250, 0.01, 0, 0);
+//        RobotMap.leftFront.setPositionMode(CANTalon.kQuadEncoder, 360, 0.01, 0, 0);
+//        RobotMap.rightFront.setPositionMode(CANTalon.kQuadEncoder, 250, 0.01, 0, 0);
         
-//        RobotMap.leftFront.setSpeedReference(CANJaguar.SpeedReference.kQuadEncoder);
-//        RobotMap.rightFront.setSpeedReference(CANJaguar.SpeedReference.kQuadEncoder);
-//        RobotMap.leftFront.setPositionReference(CANJaguar.PositionReference.kQuadEncoder);
-//        RobotMap.rightFront.setPositionReference(CANJaguar.PositionReference.kQuadEncoder);
+//        RobotMap.leftFront.setSpeedReference(CANTalon.SpeedReference.kQuadEncoder);
+//        RobotMap.rightFront.setSpeedReference(CANTalon.SpeedReference.kQuadEncoder);
+//        RobotMap.leftFront.setPositionReference(CANTalon.PositionReference.kQuadEncoder);
+//        RobotMap.rightFront.setPositionReference(CANTalon.PositionReference.kQuadEncoder);
                                     
         // Initialize all subsystems
         CommandBase.init();
         driveCommand = new DriveCommand();
         driveCommand.disableControl();
-
-        armCommand = new ArmCommand();
-        armCommand.disableControl();
                 
         // Autonomous setup.
         autoChooser = new SendableChooser();
-        autoChooser.addDefault("Lower Arm Only (Default)", new AutoCommandMoveArm());
-        autoChooser.addObject("Breach Portcullis", new AutoCommandBreachPortcullis());
-        autoChooser.addObject("Breach Cheval de Fris", new AutoCommandBreachChevalDeFris());
-        autoChooser.addObject("Breach Moat", new AutoCommandBreachMoat());
-        autoChooser.addObject("Breach Ramparts", new AutoCommandBreachRamparts());
-        autoChooser.addObject("Breach Drawbridge", new AutoCommandBreachDrawbridge());
-        autoChooser.addObject("Breach Sally Port", new AutoCommandBreachSallyPort());
-        autoChooser.addObject("Breach Rock Wall", new AutoCommandBreachRockWall());
-        autoChooser.addObject("Breach Rough Terrain", new AutoCommandBreachRoughTerrain());
-        autoChooser.addObject("Breach Low Bar", new AutoCommandBreachLowBar());
-        
+        autoChooser.addDefault("Default (Nothing)", new AutoCommandDefault());
+        autoChooser.addObject("Breach Base Line", new AutoCommandBreachBaseLine());
+        autoChooser.addObject("Left Tower Lift", new AutoCommandLeftTowerLift());
+        autoChooser.addObject("Center Tower Lift", new AutoCommandCenterTowerLift());
+        autoChooser.addObject("Right Tower Lift", new AutoCommandRightTowerLift());
+
         SmartDashboard.putData("Autonmous Mode", autoChooser);        
     }
 
@@ -135,7 +100,6 @@ public class Robot extends IterativeRobot {
         System.out.println("AUTONOMOUS INIT");
 
         driveCommand.enableControl();
-        armCommand.enableControl();
 
         autonomousCommand = (Command) autoChooser.getSelected();
         autonomousCommand.start();        
@@ -153,8 +117,6 @@ public class Robot extends IterativeRobot {
 
         driveCommand.enableControl();
         driveCommand.start();
-        armCommand.enableControl();
-        armCommand.start();
     }
 
     /**

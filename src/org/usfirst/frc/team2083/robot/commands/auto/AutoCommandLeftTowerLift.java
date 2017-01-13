@@ -7,15 +7,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoCommandBreachDrawbridge extends CommandGroup {
+public class AutoCommandLeftTowerLift extends CommandGroup {
     
-    public  AutoCommandBreachDrawbridge() {    	
+    public  AutoCommandLeftTowerLift() {    	
     	requires(CommandBase.leftDrive);
     	requires(CommandBase.rightDrive);
     	requires(CommandBase.armBar);
     	
-    	addSequential(new AutoCommandMoveArm());
-       	addSequential(new AutoCommandDrive(0*1000, 6));
-       	
+       	addSequential(new AutoCommandDrive((long)3.5*1000, 8));
     }
 }

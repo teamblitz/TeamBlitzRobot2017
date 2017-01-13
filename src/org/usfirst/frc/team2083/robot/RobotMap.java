@@ -11,7 +11,6 @@
 
 package org.usfirst.frc.team2083.robot;
     
-import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.CANTalon;
 
 /**
@@ -28,10 +27,10 @@ public class RobotMap {
     public static final int RIGHT_FORWARD_MOTOR_CONTROLLER_ID = 2;
     public static final int RIGHT_BACK_MOTOR_CONTROLLER_ID = 12;
 
-    public static CANJaguar leftForwardMotorController;
-    public static CANJaguar leftBackMotorController;
-    public static CANJaguar rightForwardMotorController;
-    public static CANJaguar rightBackMotorController;
+    public static CANTalon leftForwardMotorController;
+    public static CANTalon leftBackMotorController;
+    public static CANTalon rightForwardMotorController;
+    public static CANTalon rightBackMotorController;
     
     // Arm
     public static final int ARM_BAR_MOTOR_CONTROLLER_ID = 18;

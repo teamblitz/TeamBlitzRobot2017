@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoCommandBreachRoughTerrain extends CommandGroup {
+public class AutoCommandCenterTowerLift extends CommandGroup {
     
-    public  AutoCommandBreachRoughTerrain() {    	
+    public  AutoCommandCenterTowerLift() {    	
     	requires(CommandBase.leftDrive);
     	requires(CommandBase.rightDrive);
     	requires(CommandBase.armBar);

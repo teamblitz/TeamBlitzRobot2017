@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoCommandBreachSallyPort extends CommandGroup {
+public class AutoCommandRightTowerLift extends CommandGroup {
     
-    public  AutoCommandBreachSallyPort() {    	
+    public  AutoCommandRightTowerLift() {    	
     	requires(CommandBase.leftDrive);
     	requires(CommandBase.rightDrive);
     	requires(CommandBase.armBar);
