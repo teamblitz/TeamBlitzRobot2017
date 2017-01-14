@@ -1,0 +1,49 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="Left Drive" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="0" y="309"/>
+	</widget>
+	<widget field="Right Drive" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="0" y="288"/>
+	</widget>
+	<widget field="Arm Bar" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="0" y="267"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="24" y="11"/>
+		<width>136</width>
+		<property name="Text" value="Autonomous Mode Program:"/>
+	</static-widget>
+	<widget field="Autonmous Mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="16" y="16"/>
+	</widget>
+	<widget field="Right Front Current" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="640" y="0"/>
+		<width>432</width>
+		<height>192</height>
+	</widget>
+	<widget field="Right Back Current" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="640" y="192"/>
+		<width>432</width>
+		<height>192</height>
+	</widget>
+	<widget field="Left Back Current" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="208" y="192"/>
+		<width>432</width>
+		<height>192</height>
+	</widget>
+	<widget field="Left Front Current" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="208" y="0"/>
+		<width>432</width>
+		<height>192</height>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
+		<location x="0" y="0"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
+		<location x="0" y="0"/>
+	</static-widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>

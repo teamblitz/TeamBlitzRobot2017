@@ -19,7 +19,8 @@ import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandLeftTowerLift;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandCenterTowerLift;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandRightTowerLift;
 
-import edu.wpi.first.wpilibj.CANTalon;
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;

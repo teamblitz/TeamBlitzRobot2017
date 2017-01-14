@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2083.robot.commands;
 
 import org.usfirst.frc.team2083.robot.OI;
-import org.usfirst.frc.team2083.robot.subsystems.ArmSubsystem;
+import org.usfirst.frc.team2083.robot.subsystems.GearDoor;
 import org.usfirst.frc.team2083.robot.subsystems.LeftDriveSubsystem;
 import org.usfirst.frc.team2083.robot.subsystems.RightDriveSubsystem;
 
@@ -18,7 +18,7 @@ public abstract class CommandBase extends Command {
 
     public static LeftDriveSubsystem leftDrive = new LeftDriveSubsystem();
     public static RightDriveSubsystem rightDrive = new RightDriveSubsystem();
-    public static ArmSubsystem armBar = new ArmSubsystem();
+    public static GearDoor armBar = new GearDoor();
         
     public static OI oi;
     // Create a single static instance of all of your subsystems
