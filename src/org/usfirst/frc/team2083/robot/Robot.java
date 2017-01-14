@@ -23,6 +23,7 @@ import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -43,7 +44,7 @@ public class Robot extends IterativeRobot {
 
     // Autonomous commands and selection
     Command autonomousCommand;
-    SendableChooser autoChooser;
+    SendableChooser<CommandGroup> autoChooser;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -87,7 +88,7 @@ public class Robot extends IterativeRobot {
         driveCommand.disableControl();
                 
         // Autonomous setup.
-        autoChooser = new SendableChooser();
+        autoChooser = new SendableChooser<CommandGroup>();
         autoChooser.addDefault("Default (Nothing)", new AutoCommandDefault());
         autoChooser.addObject("Breach Base Line", new AutoCommandBreachBaseLine());
         autoChooser.addObject("Left Tower Lift", new AutoCommandLeftTowerLift());
