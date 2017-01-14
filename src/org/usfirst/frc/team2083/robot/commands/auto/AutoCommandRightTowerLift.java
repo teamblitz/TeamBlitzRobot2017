@@ -15,7 +15,7 @@ public class AutoCommandRightTowerLift extends CommandGroup {
     	requires(CommandBase.armBar);
     	
      	addSequential(new AutoCommandDrive((long) (2.3*1000), 3));
-       	addSequential(new AutoCommandMoveArm((long)1.5*1000, -0.25));
+//       	addSequential(new AutoCommandMoveArm((long)1.5*1000, -0.25));
      	addSequential(new AutoCommandDrive((long) (1*1000), -3));
        	
     }

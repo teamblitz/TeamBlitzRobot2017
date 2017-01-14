@@ -14,12 +14,12 @@ public class AutoCommandDefault extends CommandGroup {
     	requires(CommandBase.rightDrive);
     	requires(CommandBase.armBar);
     	
-        	addSequential(new AutoCommandMoveArm());
-        	addSequential(new AutoCommandMoveArm(100, 0.3));
-         	addSequential(new AutoCommandDrive((long) (2*1000), 3));
-        	addSequential(new AutoCommandMoveArm());
-         	addSequential(new AutoCommandDrive((long) (1.2*1000), 4));     
-         	addSequential(new AutoCommandMoveArm(100, 1));
-         	addSequential(new AutoCommandDrive((long) (2.25*1000), 4));     
+//        	addSequential(new AutoCommandMoveArm());
+//        	addSequential(new AutoCommandMoveArm(100, 0.3));
+//         	addSequential(new AutoCommandDrive((long) (2*1000), 3));
+//        	addSequential(new AutoCommandMoveArm());
+//         	addSequential(new AutoCommandDrive((long) (1.2*1000), 4));     
+//         	addSequential(new AutoCommandMoveArm(100, 1));
+//         	addSequential(new AutoCommandDrive((long) (2.25*1000), 4));     
     }
 }

@@ -13,10 +13,10 @@ package org.usfirst.frc.team2083.robot;
 
 import org.usfirst.frc.team2083.robot.commands.CommandBase;
 import org.usfirst.frc.team2083.robot.commands.DriveCommand;
-import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandDefault;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachBaseLine;
-import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandLeftTowerLift;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandCenterTowerLift;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandDefault;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandLeftTowerLift;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandRightTowerLift;
 
 import com.ctre.CANTalon;
@@ -95,7 +95,7 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("Center Tower Lift", new AutoCommandCenterTowerLift());
         autoChooser.addObject("Right Tower Lift", new AutoCommandRightTowerLift());
 
-        SmartDashboard.putData("Autonmous Mode", autoChooser);        
+        SmartDashboard.putData("Autonmous Mode", autoChooser);       
     }
 
     public void autonomousInit() {
