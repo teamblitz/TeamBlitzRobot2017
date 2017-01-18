@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveCommand extends CommandBase {
     
-	public int speedMultiplier = 6; //12 was used for contest
+	public int speedMultiplier = 1; //12 was used for contest
 	
     public DriveCommand() {
         // Use requires() here to declare subsystem dependencies

@@ -22,10 +22,10 @@ import com.ctre.CANTalon;
 public class RobotMap {
 
 	// Drive Wheels
-    public static final int LEFT_FORWARD_MOTOR_CONTROLLER_ID = 1;
-    public static final int LEFT_BACK_MOTOR_CONTROLLER_ID = 5;
-    public static final int RIGHT_FORWARD_MOTOR_CONTROLLER_ID = 2;
-    public static final int RIGHT_BACK_MOTOR_CONTROLLER_ID = 12;
+    public static final int LEFT_FORWARD_MOTOR_CONTROLLER_ID = 4;
+    public static final int LEFT_BACK_MOTOR_CONTROLLER_ID = 1;
+    public static final int RIGHT_FORWARD_MOTOR_CONTROLLER_ID = 3;
+    public static final int RIGHT_BACK_MOTOR_CONTROLLER_ID = 2;
 
     public static CANTalon leftForwardMotorController;
     public static CANTalon leftBackMotorController;
