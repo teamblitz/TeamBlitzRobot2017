@@ -44,10 +44,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	// Robot commands
+	// Robot command instances.
 	DriveCommand driveCommand;
 
-    // Autonomous commands and selection
+    // Autonomous command and selection instances.
     Command autonomousCommand;
     SendableChooser<CommandGroup> autoChooser;
 
@@ -57,7 +57,8 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
         System.out.println("ROBOT INIT");
-
+       
+        // Initialize motor controllers.
         RobotMap.leftForwardMotorController = new CANTalon(RobotMap.LEFT_FORWARD_MOTOR_CONTROLLER_ID);
         RobotMap.leftBackMotorController = new CANTalon(RobotMap.LEFT_BACK_MOTOR_CONTROLLER_ID);
         RobotMap.rightForwardMotorController = new CANTalon(RobotMap.RIGHT_FORWARD_MOTOR_CONTROLLER_ID);
@@ -67,27 +68,8 @@ public class Robot extends IterativeRobot {
         RobotMap.leftBackMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
         RobotMap.rightForwardMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
         RobotMap.rightBackMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-                
-//        double p = 1;
-//        double i = .01;
-//        double d = 0;
-//        double f = 0;
-//        int izone = 0;
-//        double closeLoopRampRate = 10;
-//        int profile = 0;
-        //RobotMap.armBarMotorController.setPID(p , i , d, f, izone, closeLoopRampRate, profile);
-       // RobotMap.armBarMotorController.reverseSensor(false);
-        
-        
-//        RobotMap.leftFront.setPositionMode(CANTalon.kQuadEncoder, 360, 0.01, 0, 0);
-//        RobotMap.rightFront.setPositionMode(CANTalon.kQuadEncoder, 250, 0.01, 0, 0);
-        
-//        RobotMap.leftFront.setSpeedReference(CANTalon.SpeedReference.kQuadEncoder);
-//        RobotMap.rightFront.setSpeedReference(CANTalon.SpeedReference.kQuadEncoder);
-//        RobotMap.leftFront.setPositionReference(CANTalon.PositionReference.kQuadEncoder);
-//        RobotMap.rightFront.setPositionReference(CANTalon.PositionReference.kQuadEncoder);
-                                    
-        // Initialize all subsystems
+                                                    
+        // Initialize all subsystems.
         CommandBase.init();
         driveCommand = new DriveCommand();
         driveCommand.disableControl();
@@ -99,10 +81,14 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("Left Tower Lift", new AutoCommandLeftTowerLift());
         autoChooser.addObject("Center Tower Lift", new AutoCommandCenterTowerLift());
         autoChooser.addObject("Right Tower Lift", new AutoCommandRightTowerLift());
-
+        
+        // SmartDashboard setup. 
         SmartDashboard.putData("Autonmous Mode", autoChooser);       
     }
-
+    
+    /**
+     * This function is called to initialize autonoumous mode.
+     */
     public void autonomousInit() {
         System.out.println("AUTONOMOUS INIT");
 
@@ -113,12 +99,15 @@ public class Robot extends IterativeRobot {
     }
 
     /**
-     * This function is called periodically during autonomous
+     * This function is called periodically during autonomous.
      */
     public void autonomousPeriodic() {
     	Scheduler.getInstance().run();
     }
 
+    /**
+     * This function is called to initialize teleop mode.
+     */
     public void teleopInit() {
         System.out.println("TELEOP INIT");
 
@@ -127,14 +116,21 @@ public class Robot extends IterativeRobot {
     }
 
     /**
-     * This function is called periodically during operator control
+     * This function is called periodically during operator control.
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
     }
     
     /**
-     * This function is called periodically during test mode
+     * This function is called to initialize test mode.
+     */
+    public void testInit()  {
+    	
+    }
+    
+    /**
+     * This function is called periodically during test mode.
      */
     public void testPeriodic() {
         LiveWindow.run();
