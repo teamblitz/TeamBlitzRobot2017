@@ -101,17 +101,11 @@ public class Robot extends IterativeRobot {
 	        RobotMap.leftBackMotorController.configPeakOutputVoltage(+12.0f, -12.0);
 	        RobotMap.rightForwardMotorController.configPeakOutputVoltage(+12.0f, -12.0);
 	        RobotMap.rightBackMotorController.configPeakOutputVoltage(+12.0f, -12.0);
-	        
-	        RobotMap.leftForwardMotorController.setProfile(0);		// FIXME
-	        RobotMap.leftBackMotorController.setProfile(0);			// FIXME
-	        RobotMap.rightForwardMotorController.setProfile(0);		// FIXME
-	        RobotMap.rightBackMotorController.setProfile(0);		// FIXME
-	        
+
 	        RobotMap.leftForwardMotorController.setPID(0, 0, 0, 0, 0, 0, 0);	// FIXME
-	        RobotMap.leftBackMotorController.reverseSensor(false);
-	        RobotMap.rightForwardMotorController.reverseSensor(false);
-	        RobotMap.rightBackMotorController.reverseSensor(false);
-	 
+	        RobotMap.leftBackMotorController.setPID(0, 0, 0, 0, 0, 0, 0);		// FIXME
+	        RobotMap.rightForwardMotorController.setPID(0, 0, 0, 0, 0, 0, 0);	// FIXME
+	        RobotMap.rightBackMotorController.setPID(0, 0, 0, 0, 0, 0, 0);		// FIXME
         }
         
         // Initialize all subsystems.
