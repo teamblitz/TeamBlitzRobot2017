@@ -16,6 +16,7 @@
 
 package org.usfirst.frc.team2083.robot;
 
+import org.usfirst.frc.team2083.robot.RobotMap.DriveMotorControlType;
 import org.usfirst.frc.team2083.robot.commands.CommandBase;
 import org.usfirst.frc.team2083.robot.commands.DriveCommand;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachBaseLine;
@@ -25,6 +26,7 @@ import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandLeftTowerLift;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandRightTowerLift;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -63,12 +65,55 @@ public class Robot extends IterativeRobot {
         RobotMap.leftBackMotorController = new CANTalon(RobotMap.LEFT_BACK_MOTOR_CONTROLLER_ID);
         RobotMap.rightForwardMotorController = new CANTalon(RobotMap.RIGHT_FORWARD_MOTOR_CONTROLLER_ID);
         RobotMap.rightBackMotorController = new CANTalon(RobotMap.RIGHT_BACK_MOTOR_CONTROLLER_ID);
+    
+        if (RobotMap.driveMotorControlType == DriveMotorControlType.VOLTAGE) {
+	        RobotMap.leftForwardMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+	        RobotMap.leftBackMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+	        RobotMap.rightForwardMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+	        RobotMap.rightBackMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);                                            
+        } else if (RobotMap.driveMotorControlType == DriveMotorControlType.PID) {
+        	RobotMap.leftForwardMotorController.changeControlMode(CANTalon.TalonControlMode.Speed);
+	        RobotMap.leftBackMotorController.changeControlMode(CANTalon.TalonControlMode.Speed);
+	        RobotMap.rightForwardMotorController.changeControlMode(CANTalon.TalonControlMode.Speed);
+	        RobotMap.rightBackMotorController.changeControlMode(CANTalon.TalonControlMode.Speed);
+	        
+	        RobotMap.leftForwardMotorController.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+	        RobotMap.leftBackMotorController.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+	        RobotMap.rightForwardMotorController.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+	        RobotMap.rightBackMotorController.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+	        
+	        RobotMap.leftForwardMotorController.reverseSensor(false);
+	        RobotMap.leftBackMotorController.reverseSensor(false);
+	        RobotMap.rightForwardMotorController.reverseSensor(false);
+	        RobotMap.rightBackMotorController.reverseSensor(false);
+	        
+	        RobotMap.leftForwardMotorController.configEncoderCodesPerRev(12);
+	        RobotMap.leftBackMotorController.configEncoderCodesPerRev(12);
+	        RobotMap.rightForwardMotorController.configEncoderCodesPerRev(12);
+	        RobotMap.rightBackMotorController.configEncoderCodesPerRev(12);
+	        
+	        RobotMap.leftForwardMotorController.configNominalOutputVoltage(+0.0f, -0.0f);
+	        RobotMap.leftBackMotorController.configNominalOutputVoltage(+0.0f, -0.0f);
+	        RobotMap.rightForwardMotorController.configNominalOutputVoltage(+0.0f, -0.0f);
+	        RobotMap.rightBackMotorController.configNominalOutputVoltage(+0.0f, -0.0f);
+	        
+	        RobotMap.leftForwardMotorController.configPeakOutputVoltage(+12.0f, -12.0);
+	        RobotMap.leftBackMotorController.configPeakOutputVoltage(+12.0f, -12.0);
+	        RobotMap.rightForwardMotorController.configPeakOutputVoltage(+12.0f, -12.0);
+	        RobotMap.rightBackMotorController.configPeakOutputVoltage(+12.0f, -12.0);
+	        
+	        RobotMap.leftForwardMotorController.setProfile(0);		// FIXME
+	        RobotMap.leftBackMotorController.setProfile(0);			// FIXME
+	        RobotMap.rightForwardMotorController.setProfile(0);		// FIXME
+	        RobotMap.rightBackMotorController.setProfile(0);		// FIXME
+	        
+	        RobotMap.leftForwardMotorController.setPID(0, 0, 0, 0, 0, 0, 0);	// FIXME
+	        RobotMap.leftBackMotorController.reverseSensor(false);
+	        RobotMap.rightForwardMotorController.reverseSensor(false);
+	        RobotMap.rightBackMotorController.reverseSensor(false);
+	 
+        }
         
-        RobotMap.leftForwardMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-        RobotMap.leftBackMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-        RobotMap.rightForwardMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-        RobotMap.rightBackMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-                                                    
         // Initialize all subsystems.
         CommandBase.init();
         driveCommand = new DriveCommand();
@@ -125,8 +170,8 @@ public class Robot extends IterativeRobot {
     /**
      * This function is called to initialize test mode.
      */
-    public void testInit()  {
-    	
+    public void testInit() {
+        System.out.println("TEST INIT");
     }
     
     /**

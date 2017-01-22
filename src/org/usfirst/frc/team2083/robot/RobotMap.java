@@ -26,7 +26,12 @@ import com.ctre.CANTalon;
  */
 public class RobotMap {
 
-	// Drive Wheels
+	public enum DriveMotorControlType {
+		VOLTAGE,
+		PID
+	}
+	
+	// Drive Motors
     public static final int LEFT_FORWARD_MOTOR_CONTROLLER_ID = 4;
     public static final int LEFT_BACK_MOTOR_CONTROLLER_ID = 1;
     public static final int RIGHT_FORWARD_MOTOR_CONTROLLER_ID = 3;
@@ -37,8 +42,10 @@ public class RobotMap {
     public static CANTalon rightForwardMotorController;
     public static CANTalon rightBackMotorController;
     
+    public static final DriveMotorControlType driveMotorControlType = DriveMotorControlType.VOLTAGE;
+    
     // Arm
-    public static final int ARM_BAR_MOTOR_CONTROLLER_ID = 18;
+    public static final int ROPE_CLIMBER = 5;
     public static CANTalon armBarMotorController;
 
     // Input Controls

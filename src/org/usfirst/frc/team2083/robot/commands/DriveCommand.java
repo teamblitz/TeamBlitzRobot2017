@@ -17,6 +17,7 @@
 package org.usfirst.frc.team2083.robot.commands;
 
 import org.usfirst.frc.team2083.robot.RobotMap;
+import org.usfirst.frc.team2083.robot.RobotMap.DriveMotorControlType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -24,8 +25,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class DriveCommand extends CommandBase {
-    
-	public int speedMultiplier = 1; //12 was used for contest
+	
+	final double driveMotorScaleFactor = 1; // Values between 0 and 1.
+
+	// Used to prevent controller input when joystick doesn't center properly.
+	final double joystickZeroThreshold = 0.15;
 	
     public DriveCommand() {
         // Use requires() here to declare subsystem dependencies
@@ -38,45 +42,52 @@ public class DriveCommand extends CommandBase {
         leftDrive.enableControl();
         rightDrive.enableControl();
     }
+    
     public void disableControl() {
         leftDrive.disableControl();
         rightDrive.disableControl();
     }
 
-    // Called just before this Command runs the first time
+    // Called just before this Command runs the first time.
     protected void initialize() {
 
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    // Called repeatedly when this Command is scheduled to run.
     protected void execute() {
     	double x = 0, y = 0;
 
+    	// Get controller input.
     	x = oi.getMotorDriveLeftRightValue();
     	y = oi.getMotorDriveForwardBackValue();
     	x = x*Math.abs(x);
     	y = y*Math.abs(y);
-    	if (Math.abs(x) < 0.15 && Math.abs(y) < 0.15) {
+    	
+    	// Set drive motor input to zero if joystic is close to zero.
+    	if (Math.abs(x) < joystickZeroThreshold && Math.abs(y) < joystickZeroThreshold) {
     		//System.out.println("Raw (x, y) = (" + x + ", " + y + ")");
     		x = 0;
     		y = 0;
     	}
+    	
     	System.out.println("(x, y) = (" + x + ", " + y + ")");
 
-    	//double leftSetPointVal = y*360+x*360;
-    	//double rightSetPointVal = y*360-x*360;
-    	double leftDriveVoltage = y*speedMultiplier+x*speedMultiplier; //y*12+x*12;
-    	double rightDriveVoltage = y*speedMultiplier-x*speedMultiplier; //y*12-x*12;
-    	    	
-//		System.out.println("Left drive setPoint = " + leftSetPointVal);
-//		System.out.println("Right drive setPoint = " + rightSetPointVal);
-//		
-//    	leftDrive.setSetpoint(leftSetPointVal);
-//        rightDrive.setSetpoint(rightSetPointVal);
-        
-        leftDrive.setVoltage(leftDriveVoltage);
-        rightDrive.setVoltage(rightDriveVoltage);
-        
+    	if (RobotMap.driveMotorControlType == DriveMotorControlType.VOLTAGE) {
+	    	double leftDriveVoltage = (y + x) * driveMotorScaleFactor;
+	    	double rightDriveVoltage = (y - x) * driveMotorScaleFactor;
+	    	    	
+	//		System.out.println("Left drive setPoint = " + leftSetPointVal);
+	//		System.out.println("Right drive setPoint = " + rightSetPointVal);
+	//		
+	//    	leftDrive.setSetpoint(leftSetPointVal);
+	//        rightDrive.setSetpoint(rightSetPointVal);
+	        
+	        leftDrive.setVoltage(leftDriveVoltage);
+	        rightDrive.setVoltage(rightDriveVoltage);
+    	} else if (RobotMap.driveMotorControlType == DriveMotorControlType.PID) {
+    		// FIXME
+    	}
+    	
         double lfc = RobotMap.leftForwardMotorController.getOutputCurrent();
         double lbc = RobotMap.leftBackMotorController.getOutputCurrent();
         double rfc = RobotMap.rightForwardMotorController.getOutputCurrent();
