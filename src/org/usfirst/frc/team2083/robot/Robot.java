@@ -17,6 +17,7 @@
 package org.usfirst.frc.team2083.robot;
 
 import org.usfirst.frc.team2083.robot.RobotMap.DriveMotorControlType;
+import org.usfirst.frc.team2083.robot.commands.ClimbRopeCommand;
 import org.usfirst.frc.team2083.robot.commands.CommandBase;
 import org.usfirst.frc.team2083.robot.commands.DriveCommand;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachBaseLine;
@@ -48,6 +49,7 @@ public class Robot extends IterativeRobot {
 
 	// Robot command instances.
 	DriveCommand driveCommand;
+	ClimbRopeCommand climbRopeCommand;
 
     // Autonomous command and selection instances.
     Command autonomousCommand;
@@ -116,6 +118,9 @@ public class Robot extends IterativeRobot {
         CommandBase.init();
         driveCommand = new DriveCommand();
         driveCommand.disableControl();
+        
+        climbRopeCommand = new ClimbRopeCommand();
+        climbRopeCommand.disableControl();
                 
         // Autonomous setup.
         autoChooser = new SendableChooser<CommandGroup>();
@@ -156,6 +161,9 @@ public class Robot extends IterativeRobot {
 
         driveCommand.enableControl();
         driveCommand.start();
+        
+        climbRopeCommand.enableControl();
+        CommandBase.oi.ropeButton.whileHeld(climbRopeCommand);
     }
 
     /**

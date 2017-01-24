@@ -21,7 +21,6 @@ import org.usfirst.frc.team2083.robot.commands.ClimbRopeCommand;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -60,8 +59,6 @@ public class OI {
     public OI() {
         xbox = new Joystick(RobotMap.JS_DRIVER_PORT);
     	ropeButton = new JoystickButton(xbox, 1);
-    	
-    	ropeButton.whileHeld(new ClimbRopeCommand());
     }
     
     public double getMotorDriveLeftRightValue() {
