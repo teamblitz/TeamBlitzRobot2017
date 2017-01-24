@@ -28,7 +28,7 @@ public class AutoCommandDefault extends CommandGroup {
     public  AutoCommandDefault() {    	
     	requires(CommandBase.leftDrive);
     	requires(CommandBase.rightDrive);
-    	requires(CommandBase.armBar);
+
     	
 //        	addSequential(new AutoCommandMoveArm());
 //        	addSequential(new AutoCommandMoveArm(100, 0.3));

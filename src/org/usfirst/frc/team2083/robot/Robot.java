@@ -73,7 +73,7 @@ public class Robot extends IterativeRobot {
 	        RobotMap.rightBackMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);                                            
         } else if (RobotMap.driveMotorControlType == DriveMotorControlType.PID) {
         	RobotMap.leftForwardMotorController.changeControlMode(CANTalon.TalonControlMode.Speed);
-	        RobotMap.leftBackMotorController.changeControlMode(CANTalon.TalonControlMode.Speed);
+	        RobotMap.leftBackMotorController.changeControlMode(CANTalon.TalonControlMode.Speed );
 	        RobotMap.rightForwardMotorController.changeControlMode(CANTalon.TalonControlMode.Speed);
 	        RobotMap.rightBackMotorController.changeControlMode(CANTalon.TalonControlMode.Speed);
 	        
@@ -107,6 +107,10 @@ public class Robot extends IterativeRobot {
 	        RobotMap.rightForwardMotorController.setPID(0, 0, 0, 0, 0, 0, 0);	// FIXME
 	        RobotMap.rightBackMotorController.setPID(0, 0, 0, 0, 0, 0, 0);		// FIXME
         }
+       
+        RobotMap.ropeClimbingMotorController = new CANTalon(RobotMap.ROPE_CLIMBING_MOTOR_CONTROLLER);
+        
+        RobotMap.ropeClimbingMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
         
         // Initialize all subsystems.
         CommandBase.init();

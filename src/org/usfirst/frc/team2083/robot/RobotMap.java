@@ -36,7 +36,7 @@ public class RobotMap {
     public static final int LEFT_BACK_MOTOR_CONTROLLER_ID = 1;
     public static final int RIGHT_FORWARD_MOTOR_CONTROLLER_ID = 3;
     public static final int RIGHT_BACK_MOTOR_CONTROLLER_ID = 2;
-
+    
     public static CANTalon leftForwardMotorController;
     public static CANTalon leftBackMotorController;
     public static CANTalon rightForwardMotorController;
@@ -44,13 +44,14 @@ public class RobotMap {
     
     public static final DriveMotorControlType driveMotorControlType = DriveMotorControlType.VOLTAGE;
     
-    // Arm
-    public static final int ROPE_CLIMBER = 5;
-    public static CANTalon armBarMotorController;
+    // Rope Climbing Motor
+    public static final int ROPE_CLIMBING_MOTOR_CONTROLLER = 5;
+    
+    public static CANTalon ropeClimbingMotorController;
 
     // Input Controls
     public static final int JS_DRIVER_PORT = 0;
-    public static final int JS_DRIVER_ARM_BUTTON = 5;
+    public static final int JS_DRIVER_CLIMBER_BUTTON = 5;
 
     public static void init() {
     	

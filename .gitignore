@@ -10,3 +10,6 @@ sysProps.xml
 /dist/
 /build/
 /doc/
+build/
+build/*
+build/**

@@ -28,8 +28,7 @@ public class AutoCommandLeftTowerLift extends CommandGroup {
     public  AutoCommandLeftTowerLift() {    	
     	requires(CommandBase.leftDrive);
     	requires(CommandBase.rightDrive);
-    	requires(CommandBase.armBar);
-    	
+
        	addSequential(new AutoCommandDrive((long)3.5*1000, 8));
     }
 }

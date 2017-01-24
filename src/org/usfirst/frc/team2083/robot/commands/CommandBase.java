@@ -17,9 +17,9 @@
 package org.usfirst.frc.team2083.robot.commands;
 
 import org.usfirst.frc.team2083.robot.OI;
-import org.usfirst.frc.team2083.robot.subsystems.GearDoor;
 import org.usfirst.frc.team2083.robot.subsystems.LeftDriveSubsystem;
 import org.usfirst.frc.team2083.robot.subsystems.RightDriveSubsystem;
+import org.usfirst.frc.team2083.robot.subsystems.RopeClimbingSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -28,13 +28,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * The base for all commands. All atomic commands should subclass CommandBase.
  * CommandBase stores creates and stores each control system. To access a
  * subsystem elsewhere in your code in your code use CommandBase.exampleSubsystem
- * @author Author
  */
 public abstract class CommandBase extends Command {
 
     public static LeftDriveSubsystem leftDrive = new LeftDriveSubsystem();
     public static RightDriveSubsystem rightDrive = new RightDriveSubsystem();
-    public static GearDoor armBar = new GearDoor();
+    public static RopeClimbingSubsystem ropeClimber = new RopeClimbingSubsystem();
         
     public static OI oi;
     // Create a single static instance of all of your subsystems
@@ -47,11 +46,10 @@ public abstract class CommandBase extends Command {
         // news. Don't move it.
         oi = new OI();
         
-
         // Show what command your subsystem is running on the SmartDashboard
         SmartDashboard.putData(leftDrive);
         SmartDashboard.putData(rightDrive);
-        SmartDashboard.putData(armBar);
+        SmartDashboard.putData(ropeClimber);
     }
 
     public CommandBase(String name) {
