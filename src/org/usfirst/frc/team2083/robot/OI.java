@@ -54,13 +54,13 @@ public class OI {
     Joystick xbox;
     JoystickButton ropeButton;
     JoystickButton gearDoorsButton;
+    JoystickButton speedLockButton;
     
     public OI() {
         xbox = new Joystick(RobotMap.JS_DRIVER_PORT);
     	ropeButton = new JoystickButton(xbox, 1);
-    	
-        xbox = new Joystick(RobotMap.JS_DRIVER_PORT);
     	gearDoorsButton = new JoystickButton(xbox, 4);
+    	speedLockButton = new JoystickButton(xbox, 8);
     }
     
     public double getMotorDriveLeftRightValue() {
@@ -71,5 +71,11 @@ public class OI {
     	return -xbox.getY();
     }
    
-
+    public double driveMotorFactor() {   
+    	return xbox.getRawAxis(5);
+    }
+    
+    public boolean speedLock() {
+    	//TODO Make Start Button lock speeds ;P
+    }
 }

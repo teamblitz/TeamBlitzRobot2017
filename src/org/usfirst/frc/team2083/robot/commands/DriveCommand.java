@@ -25,8 +25,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class DriveCommand extends CommandBase {
-	
-	final double driveMotorScaleFactor = 0.25; // Values between 0 and 1.
 
 	// Used to prevent controller input when joystick doesn't center properly.
 	final double joystickZeroThreshold = 0.15;
@@ -37,8 +35,8 @@ public class DriveCommand extends CommandBase {
         requires(leftDrive);
         requires(rightDrive);
     }
-    
-    public void enableControl() {
+
+	public void enableControl() {
         leftDrive.enableControl();
         rightDrive.enableControl();
     }
@@ -73,8 +71,16 @@ public class DriveCommand extends CommandBase {
     	System.out.println("(x, y) = (" + x + ", " + y + ")");
 
     	if (RobotMap.driveMotorControlType == DriveMotorControlType.VOLTAGE) {
+    		
+    		/*if (){
+    			double driveMotorScaleFactor = -oi.driveMotorFactor()*.11+.22; // Values between 0.125 and 0.5.
+    		}
+    		else {
+    			
+    		}*/ //TODO Add Start Button checks
+    		double driveMotorScaleFactor = .25;
 	    	double leftDriveVoltage = (y + x) * driveMotorScaleFactor;
-	    	double rightDriveVoltage = (y - x) * driveMotorScaleFactor;
+	    	double rightDriveVoltage = (y - x) * driveMotorScaleFactor * .9;
 	    	    	
 	//		System.out.println("Left drive setPoint = " + leftSetPointVal);
 	//		System.out.println("Right drive setPoint = " + rightSetPointVal);
