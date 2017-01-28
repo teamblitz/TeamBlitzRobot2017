@@ -16,8 +16,6 @@
 
 package org.usfirst.frc.team2083.robot;
 
-import org.usfirst.frc.team2083.robot.commands.ClimbRopeCommand;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -55,10 +53,14 @@ public class OI {
 
     Joystick xbox;
     JoystickButton ropeButton;
-   
+    JoystickButton gearDoorsButton;
+    
     public OI() {
         xbox = new Joystick(RobotMap.JS_DRIVER_PORT);
     	ropeButton = new JoystickButton(xbox, 1);
+    	
+        xbox = new Joystick(RobotMap.JS_DRIVER_PORT);
+    	gearDoorsButton = new JoystickButton(xbox, 4);
     }
     
     public double getMotorDriveLeftRightValue() {

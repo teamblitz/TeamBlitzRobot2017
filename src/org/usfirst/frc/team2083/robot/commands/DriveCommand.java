@@ -26,7 +26,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveCommand extends CommandBase {
 	
-	final double driveMotorScaleFactor = .1; // Values between 0 and 1.
+	final double driveMotorScaleFactor = 0.25; // Values between 0 and 1.
 
 	// Used to prevent controller input when joystick doesn't center properly.
 	final double joystickZeroThreshold = 0.15;

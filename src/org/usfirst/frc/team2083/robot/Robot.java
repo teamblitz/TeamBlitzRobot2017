@@ -20,6 +20,7 @@ import org.usfirst.frc.team2083.robot.RobotMap.DriveMotorControlType;
 import org.usfirst.frc.team2083.robot.commands.ClimbRopeCommand;
 import org.usfirst.frc.team2083.robot.commands.CommandBase;
 import org.usfirst.frc.team2083.robot.commands.DriveCommand;
+import org.usfirst.frc.team2083.robot.commands.GearDoorsCommand;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachBaseLine;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandCenterTowerLift;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandDefault;
@@ -30,6 +31,7 @@ import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -50,7 +52,7 @@ public class Robot extends IterativeRobot {
 	// Robot command instances.
 	DriveCommand driveCommand;
 	ClimbRopeCommand climbRopeCommand;
-
+	GearDoorsCommand gearDoorsCommand;
     // Autonomous command and selection instances.
     Command autonomousCommand;
     SendableChooser<CommandGroup> autoChooser;
@@ -114,6 +116,9 @@ public class Robot extends IterativeRobot {
         
         RobotMap.ropeClimbingMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
         
+        RobotMap.rightGearDoorServo = new Servo(RobotMap.RIGHT_GEAR_DOOR_SERVO_ID);
+        RobotMap.leftGearDoorServo = new Servo(RobotMap.LEFT_GEAR_DOOR_SERVO_ID);
+        
         // Initialize all subsystems.
         CommandBase.init();
         driveCommand = new DriveCommand();
@@ -121,6 +126,9 @@ public class Robot extends IterativeRobot {
         
         climbRopeCommand = new ClimbRopeCommand();
         climbRopeCommand.disableControl();
+        
+        gearDoorsCommand = new GearDoorsCommand();
+
                 
         // Autonomous setup.
         autoChooser = new SendableChooser<CommandGroup>();
@@ -164,6 +172,9 @@ public class Robot extends IterativeRobot {
         
         climbRopeCommand.enableControl();
         CommandBase.oi.ropeButton.whileHeld(climbRopeCommand);
+       
+        
+        CommandBase.oi.gearDoorsButton.whenReleased(gearDoorsCommand);
     }
 
     /**

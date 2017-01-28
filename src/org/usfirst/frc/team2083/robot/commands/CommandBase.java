@@ -17,6 +17,7 @@
 package org.usfirst.frc.team2083.robot.commands;
 
 import org.usfirst.frc.team2083.robot.OI;
+import org.usfirst.frc.team2083.robot.subsystems.GearDoorsSubsystem;
 import org.usfirst.frc.team2083.robot.subsystems.LeftDriveSubsystem;
 import org.usfirst.frc.team2083.robot.subsystems.RightDriveSubsystem;
 import org.usfirst.frc.team2083.robot.subsystems.RopeClimbingSubsystem;
@@ -34,11 +35,13 @@ public abstract class CommandBase extends Command {
     public static LeftDriveSubsystem leftDrive = new LeftDriveSubsystem();
     public static RightDriveSubsystem rightDrive = new RightDriveSubsystem();
     public static RopeClimbingSubsystem ropeClimber = new RopeClimbingSubsystem();
-        
+    public static GearDoorsSubsystem gearDoor = new GearDoorsSubsystem();
+    
     public static OI oi;
     // Create a single static instance of all of your subsystems
 
     public static void init() {
+    	
         // This MUST be here. If the OI creates Commands (which it very likely
         // will), constructing it during the construction of CommandBase (from
         // which commands extend), subsystems are not guaranteed to be
@@ -50,6 +53,7 @@ public abstract class CommandBase extends Command {
         SmartDashboard.putData(leftDrive);
         SmartDashboard.putData(rightDrive);
         SmartDashboard.putData(ropeClimber);
+        SmartDashboard.putData(gearDoor);
     }
 
     public CommandBase(String name) {

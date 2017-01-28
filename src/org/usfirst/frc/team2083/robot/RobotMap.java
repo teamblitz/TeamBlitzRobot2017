@@ -18,6 +18,8 @@ package org.usfirst.frc.team2083.robot;
     
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.Servo;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -31,24 +33,31 @@ public class RobotMap {
 		PID
 	}
 	
-	// Drive Motors
+	// CAN IDs
     public static final int LEFT_FORWARD_MOTOR_CONTROLLER_ID = 2;
     public static final int LEFT_BACK_MOTOR_CONTROLLER_ID = 3;
     public static final int RIGHT_FORWARD_MOTOR_CONTROLLER_ID = 1;
     public static final int RIGHT_BACK_MOTOR_CONTROLLER_ID = 4;
+    public static final int ROPE_CLIMBING_MOTOR_CONTROLLER = 5;
     
+    // Servo IDs
+    public static final int RIGHT_GEAR_DOOR_SERVO_ID = 0;
+    public static final int LEFT_GEAR_DOOR_SERVO_ID = 1;
+    
+    // CAN-Based Instances 
     public static CANTalon leftForwardMotorController;
     public static CANTalon leftBackMotorController;
     public static CANTalon rightForwardMotorController;
     public static CANTalon rightBackMotorController;
-    
-    public static final DriveMotorControlType driveMotorControlType = DriveMotorControlType.VOLTAGE;
-    
-    // Rope Climbing Motor
-    public static final int ROPE_CLIMBING_MOTOR_CONTROLLER = 5;
-    
     public static CANTalon ropeClimbingMotorController;
+    
+    // Servo-Based Instances
+    public static Servo rightGearDoorServo;
+    public static Servo leftGearDoorServo;
 
+    // Global Configs
+    public static final DriveMotorControlType driveMotorControlType = DriveMotorControlType.VOLTAGE;
+  
     // Input Controls
     public static final int JS_DRIVER_PORT = 0;
     public static final int JS_DRIVER_CLIMBER_BUTTON = 5;
