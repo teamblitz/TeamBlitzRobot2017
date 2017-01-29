@@ -54,7 +54,7 @@ public class OI {
     Joystick xbox;
     JoystickButton ropeButton;
     JoystickButton gearDoorsButton;
-    JoystickButton speedLockButton;
+    public JoystickButton speedLockButton;
     
     public OI() {
         xbox = new Joystick(RobotMap.JS_DRIVER_PORT);
@@ -74,8 +74,15 @@ public class OI {
     public double driveMotorFactor() {   
     	return xbox.getRawAxis(5);
     }
-    
-    public boolean speedLock() {
-    	//TODO Make Start Button lock speeds ;P
-    }
 }
+//FIXME
+//public boolean speedLock() {
+//	int speedLockValue;
+//	
+//	if (speedLockValue == 1){
+//		CommandBase.oi.speedLockButton.whenPressed(speedLockValue = speedLockValue - 1);
+//	}
+//	else {
+//		CommandBase.oi.speedLockButton.whenPressed(speedLockValue = speedLockValue + 1);
+//	}
+//}
