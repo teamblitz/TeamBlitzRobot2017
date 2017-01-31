@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class ClimbRopeCommand extends CommandBase {
 	
-	final double ropeMotorScaleFactor = 1; // Values between 0 and 1.
+	final double ropeMotorScaleFactor = .2; // Values between 0 and 1.
 	
     public ClimbRopeCommand() {
         // Use requires() here to declare subsystem dependencies
@@ -54,9 +54,25 @@ public class ClimbRopeCommand extends CommandBase {
         double rcc = RobotMap.ropeClimbingMotorController.getOutputCurrent();
                 
         SmartDashboard.putNumber("Rope Climbing Motor Current", rcc);
+        
+        int value = 1;
+        	
+        if (value == 1){
+        	value = 0;
+        }
+        if (value == 0){
+        	value = 1;
+        	System.out.println("you did it");
+        }
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+//    private void println(String string) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+    
+
+	// Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;
     }

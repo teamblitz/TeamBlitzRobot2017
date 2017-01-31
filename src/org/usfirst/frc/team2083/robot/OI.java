@@ -74,8 +74,4 @@ public class OI {
     public double driveMotorFactor() {   
     	return xbox.getRawAxis(5);
     }
-    
-    public boolean speedLock() {
-    	//TODO Make Start Button lock speeds ;P
-    }
-}
+ }

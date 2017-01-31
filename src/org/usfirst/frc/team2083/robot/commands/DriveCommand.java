@@ -72,15 +72,15 @@ public class DriveCommand extends CommandBase {
 
     	if (RobotMap.driveMotorControlType == DriveMotorControlType.VOLTAGE) {
     		
-    		/*if (){
+//    		if (){
     			double driveMotorScaleFactor = -oi.driveMotorFactor()*.11+.22; // Values between 0.125 and 0.5.
-    		}
-    		else {
-    			
-    		}*/ //TODO Add Start Button checks
-    		double driveMotorScaleFactor = .25;
+//    		}
+//    		else {
+//    			
+//    		} //TODO Add Start Button checks
+//    		double driveMotorScaleFactor = .25;
 	    	double leftDriveVoltage = (y + x) * driveMotorScaleFactor;
-	    	double rightDriveVoltage = (y - x) * driveMotorScaleFactor * .9;
+	    	double rightDriveVoltage = (y - x) * driveMotorScaleFactor;
 	    	    	
 	//		System.out.println("Left drive setPoint = " + leftSetPointVal);
 	//		System.out.println("Right drive setPoint = " + rightSetPointVal);

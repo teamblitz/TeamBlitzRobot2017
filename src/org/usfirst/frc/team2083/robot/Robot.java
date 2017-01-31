@@ -128,7 +128,6 @@ public class Robot extends IterativeRobot {
         climbRopeCommand.disableControl();
         
         gearDoorsCommand = new GearDoorsCommand();
-
                 
         // Autonomous setup.
         autoChooser = new SendableChooser<CommandGroup>();
