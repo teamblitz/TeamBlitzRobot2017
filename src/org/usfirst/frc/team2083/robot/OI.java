@@ -55,7 +55,11 @@ public class OI {
     JoystickButton ropeButton;
     JoystickButton ropeReverseButton;
     JoystickButton gearDoorsButton;
+<<<<<<< HEAD
     JoystickButton slowModeButton;
+=======
+    public JoystickButton speedLockButton;
+>>>>>>> 47da7a0a21d105559ffaf58e30feb03c0a0d44f1
     
     public OI() {
         xbox = new Joystick(RobotMap.JS_DRIVER_PORT);
@@ -76,4 +80,19 @@ public class OI {
     public double driveMotorFactor() {   
     	return xbox.getRawAxis(5);
     }
+<<<<<<< HEAD
  }
+=======
+}
+//FIXME
+//public boolean speedLock() {
+//	int speedLockValue;
+//	
+//	if (speedLockValue == 1){
+//		CommandBase.oi.speedLockButton.whenPressed(speedLockValue = speedLockValue - 1);
+//	}
+//	else {
+//		CommandBase.oi.speedLockButton.whenPressed(speedLockValue = speedLockValue + 1);
+//	}
+//}
+>>>>>>> 47da7a0a21d105559ffaf58e30feb03c0a0d44f1
