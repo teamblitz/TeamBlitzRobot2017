@@ -28,6 +28,8 @@ public class DriveCommand extends CommandBase {
 
 	// Used to prevent controller input when joystick doesn't center properly.
 	final double joystickZeroThreshold = 0.15;
+	final double demoModeMultiplier = 0.1;
+	public boolean demoModeActive = false;
 	
     public DriveCommand() {
         // Use requires() here to declare subsystem dependencies
@@ -61,7 +63,7 @@ public class DriveCommand extends CommandBase {
     	x = x*Math.abs(x);
     	y = y*Math.abs(y);
     	
-    	// Set drive motor input to zero if joystic is close to zero.
+    	// Set drive motor input to zero if joystick is close to zero.
     	if (Math.abs(x) < joystickZeroThreshold && Math.abs(y) < joystickZeroThreshold) {
     		//System.out.println("Raw (x, y) = (" + x + ", " + y + ")");
     		x = 0;
@@ -69,7 +71,7 @@ public class DriveCommand extends CommandBase {
     	}
     	
     	System.out.println("(x, y) = (" + x + ", " + y + ")");
-
+    	
     	if (RobotMap.driveMotorControlType == DriveMotorControlType.VOLTAGE) {
     		
 //    		if (){
@@ -79,9 +81,8 @@ public class DriveCommand extends CommandBase {
 //    			
 //    		} //TODO Add Start Button checks
 //    		double driveMotorScaleFactor = .25;
-	    	double leftDriveVoltage = (y + x) * driveMotorScaleFactor;
-	    	double rightDriveVoltage = (y - x) * driveMotorScaleFactor;
-	    	    	
+				double leftDriveVoltage = (y + x) * driveMotorScaleFactor;
+				double rightDriveVoltage = (y - x) * driveMotorScaleFactor;
 	//		System.out.println("Left drive setPoint = " + leftSetPointVal);
 	//		System.out.println("Right drive setPoint = " + rightSetPointVal);
 	//		

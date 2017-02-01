@@ -53,14 +53,16 @@ public class OI {
 
     Joystick xbox;
     JoystickButton ropeButton;
+    JoystickButton ropeReverseButton;
     JoystickButton gearDoorsButton;
-    JoystickButton speedLockButton;
+    JoystickButton slowModeButton;
     
     public OI() {
         xbox = new Joystick(RobotMap.JS_DRIVER_PORT);
     	ropeButton = new JoystickButton(xbox, 1);
+    	ropeReverseButton = new JoystickButton(xbox, 2);    	
     	gearDoorsButton = new JoystickButton(xbox, 4);
-    	speedLockButton = new JoystickButton(xbox, 8);
+    	slowModeButton = new JoystickButton(xbox, 8);
     }
     
     public double getMotorDriveLeftRightValue() {

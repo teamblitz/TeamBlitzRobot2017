@@ -23,11 +23,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class ClimbRopeCommand extends CommandBase {
+public class ClimbRopeReverseCommand extends CommandBase {
 	
 	final double ropeMotorScaleFactor = .2; // Values between 0 and 1.
 	
-    public ClimbRopeCommand() {
+    public ClimbRopeReverseCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(ropeClimber);
@@ -49,12 +49,11 @@ public class ClimbRopeCommand extends CommandBase {
     // Called repeatedly when this Command is scheduled to run.
     protected void execute() {
     	System.out.println("executing()");
-    	ropeClimber.setVoltage(ropeMotorScaleFactor);
+    	ropeClimber.setVoltage(-1*ropeMotorScaleFactor);
     	
         double rcc = RobotMap.ropeClimbingMotorController.getOutputCurrent();
                 
-        SmartDashboard.putNumber("Rope Climbing Motor Current", rcc);
-       
+        SmartDashboard.putNumber("Rope Climbing Motor Current In Reverse", rcc);
     }
 
 //    private void println(String string) {
