@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class ClimbRopeCommand extends CommandBase {
 	
-	final double ropeMotorScaleFactor = .2; // Values between 0 and 1.
+	final double ropeMotorScaleFactor = .5; // Values between 0 and 1.
 	
     public ClimbRopeCommand() {
         // Use requires() here to declare subsystem dependencies
