@@ -30,6 +30,7 @@ import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandRightTowerLift;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Command;
@@ -137,8 +138,13 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("Center Tower Lift", new AutoCommandCenterTowerLift());
         autoChooser.addObject("Right Tower Lift", new AutoCommandRightTowerLift());
         
+        //Starts the camera server
+        CameraServer.getInstance().startAutomaticCapture();
+        
         // SmartDashboard setup. 
-        SmartDashboard.putData("Autonmous Mode", autoChooser);       
+        SmartDashboard.putData("Autonmous Mode", autoChooser); 
+        
+        
     }
     
     /**

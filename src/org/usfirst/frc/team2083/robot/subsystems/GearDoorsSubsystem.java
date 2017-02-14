@@ -53,7 +53,7 @@ public class GearDoorsSubsystem extends Subsystem {
     public void toggle() {
     	System.out.println("executing gear door command()");
 	    if (leftDoor.getAngle() < 85) {
-	    	leftDoor.setAngle(170);
+	    	leftDoor.setAngle(120);
 	    	rightDoor.setAngle(170);
 	    }
 	    else {
