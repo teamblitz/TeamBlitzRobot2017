@@ -18,7 +18,7 @@ package org.usfirst.frc.team2083.robot;
 
 import org.usfirst.frc.team2083.robot.RobotMap.DriveMotorControlType;
 import org.usfirst.frc.team2083.robot.commands.ClimbRopeCommand;
-import org.usfirst.frc.team2083.robot.commands.ClimbRopeReverseCommand;
+//import org.usfirst.frc.team2083.robot.commands.ClimbRopeReverseCommand;
 import org.usfirst.frc.team2083.robot.commands.CommandBase;
 import org.usfirst.frc.team2083.robot.commands.DriveCommand;
 import org.usfirst.frc.team2083.robot.commands.GearDoorsCommand;
@@ -54,7 +54,7 @@ public class Robot extends IterativeRobot {
 	// Robot command instances.
 	DriveCommand driveCommand;
 	ClimbRopeCommand climbRopeCommand;
-	org.usfirst.frc.team2083.robot.commands.ClimbRopeReverseCommand climbRopeReverseCommand;
+//	org.usfirst.frc.team2083.robot.commands.ClimbRopeReverseCommand climbRopeReverseCommand;
 	GearDoorsCommand gearDoorsCommand;
     // Autonomous command and selection instances.
     Command autonomousCommand;
@@ -130,8 +130,8 @@ public class Robot extends IterativeRobot {
         climbRopeCommand = new ClimbRopeCommand();
         climbRopeCommand.disableControl();
         
-        climbRopeReverseCommand = new ClimbRopeReverseCommand();
-        climbRopeReverseCommand.disableControl();
+//        climbRopeReverseCommand = new ClimbRopeReverseCommand();
+//        climbRopeReverseCommand.disableControl();
         
         gearDoorsCommand = new GearDoorsCommand();
                 
@@ -181,7 +181,7 @@ public class Robot extends IterativeRobot {
         driveCommand.start();
         
         climbRopeCommand.enableControl();
-        climbRopeReverseCommand.enableControl();
+//        climbRopeReverseCommand.enableControl();
         
         /*if(CommandBase.oi.ropeButton.get())	//TODO Make triggers, not buttons
         {
