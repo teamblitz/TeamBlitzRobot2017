@@ -14,40 +14,42 @@
  * limitations under the License.
 */
 
-package org.usfirst.frc.team2083.robot.commands;
+package org.usfirst.frc.team2083.robot.commands.auto;
+
+import org.usfirst.frc.team2083.robot.commands.CommandBase;
 
 /**
  *
  */
-public class GearDoorsCommand extends CommandBase {
+public class AutoCommandGearDoors extends CommandBase {
 
-    public GearDoorsCommand() {
+	boolean shouldOpen; 
+	
+    public AutoCommandGearDoors(boolean shouldOpen) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(gearDoors);
-    }
-    
-    public void enableControl() {
-    	gearDoors.enableControl();
-    }
-    
-    public void disableControl() {
-    	gearDoors.disableControl();
+    	requires(gearDoors);
+    	
+    	this.shouldOpen = shouldOpen;
     }
 
-    // Called just before this Command runs the first time.
+    // Called just before this Command runs the first time
     protected void initialize() {
 
     }
-    
-    // Called repeatedly when this Command is scheduled to run.
+
+    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	gearDoors.toggle();
+    	if (this.shouldOpen) {
+    		gearDoors.open();
+    	} else {
+    		gearDoors.close();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+    	return this.shouldOpen ? gearDoors.isOpen() : gearDoors.isClosed();
     }
 
     // Called once after isFinished returns true
@@ -58,6 +60,5 @@ public class GearDoorsCommand extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	
     }
 }

@@ -28,9 +28,8 @@ public class AutoCommandCenterTowerLift extends CommandGroup {
     public  AutoCommandCenterTowerLift() {    	
     	requires(CommandBase.leftDrive);
     	requires(CommandBase.rightDrive);
-
     	
        	addSequential(new AutoCommandDrive(3*1000, 6));
-       	;
+       	addSequential(new AutoCommandGearDoors(true));
     }
 }

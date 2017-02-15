@@ -77,5 +77,6 @@ public class ClimbRopeCommand extends CommandBase {
     // subsystems is scheduled to run
     protected void interrupted() {
     	ropeClimber.setVoltage(0);
+    	this.disableControl();
     }
 }

@@ -66,6 +66,8 @@ public class OI {
     	ropeReverseButton = new JoystickButton(xbox, 2);    	
     	gearDoorsButton = new JoystickButton(xbox, 4);
     	slowModeButton = new JoystickButton(xbox, 8);
+    	
+    	
     }
     
     public double getMotorDriveLeftRightValue() {

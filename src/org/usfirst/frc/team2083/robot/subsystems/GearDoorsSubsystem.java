@@ -49,17 +49,48 @@ public class GearDoorsSubsystem extends Subsystem {
     public void disableControl() {
 
     }
-
-    public void toggle() {
-    	System.out.println("executing gear door command()");
-	    if (leftDoor.getAngle() < 85) {
-	    	leftDoor.setAngle(120);
-	    	rightDoor.setAngle(170);
-	    }
-	    else {
-	    	leftDoor.setAngle(0);
-	    	rightDoor.setAngle(0);
-	    }	
+    
+    public boolean isOpen() {
+    	return isLeftDoorOpen() && isRightDoorOpen();
     }
     
+    public boolean isLeftDoorOpen() {
+    	return leftDoor.getAngle() > 119;
+    }
+    
+    public boolean isRightDoorOpen() {
+    	return rightDoor.getAngle() > 169;
+    }
+    
+    public boolean isClosed() {
+    	return isLeftDoorClosed() && isRightDoorClosed();
+    }
+    
+    public boolean isLeftDoorClosed() {
+    	return leftDoor.getAngle() < 1;
+    }
+
+    public boolean isRightDoorClosed() {
+    	return leftDoor.getAngle() < 1;
+    }
+
+    public void open() {
+    	leftDoor.setAngle(120);	//TODO Check if actually opens
+    	rightDoor.setAngle(170);
+    }
+    
+    public void close() {
+    	leftDoor.setAngle(0);	//TODO Check if actually closes
+    	rightDoor.setAngle(0);
+    }
+    
+    public void toggle() {
+    	System.out.println("executing gear door command()");
+	    if (isClosed()) {
+	    	open();
+	    }
+	    else {
+	    	close();
+	    }
+    }
 }

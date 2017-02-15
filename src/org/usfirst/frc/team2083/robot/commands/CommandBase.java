@@ -35,7 +35,7 @@ public abstract class CommandBase extends Command {
     public static LeftDriveSubsystem leftDrive = new LeftDriveSubsystem();
     public static RightDriveSubsystem rightDrive = new RightDriveSubsystem();
     public static RopeClimbingSubsystem ropeClimber = new RopeClimbingSubsystem();
-    public static GearDoorsSubsystem gearDoor = new GearDoorsSubsystem();
+    public static GearDoorsSubsystem gearDoors = new GearDoorsSubsystem();
     
     public static OI oi;
     // Create a single static instance of all of your subsystems
@@ -53,7 +53,7 @@ public abstract class CommandBase extends Command {
         SmartDashboard.putData(leftDrive);
         SmartDashboard.putData(rightDrive);
         SmartDashboard.putData(ropeClimber);
-        SmartDashboard.putData(gearDoor);
+        SmartDashboard.putData(gearDoors);
     }
 
     public CommandBase(String name) {
