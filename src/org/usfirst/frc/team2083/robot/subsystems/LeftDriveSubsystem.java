@@ -25,8 +25,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 /**
- *
- * @author Owner
+ * The subsystem for the left drive wheel. The subsystem
+ * consists of two CAN-bus Talon motor controllers.
  */
 public class LeftDriveSubsystem extends Subsystem {
     
@@ -63,6 +63,7 @@ public class LeftDriveSubsystem extends Subsystem {
 //        leftFront.set(d);
 //        leftBack.set(d);
 //    }
+    
     public void setVoltage(double voltage)
     {
     	leftFront.set(voltage);

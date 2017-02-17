@@ -19,20 +19,20 @@ package org.usfirst.frc.team2083.robot.commands;
 /**
  *
  */
-public class GearDoorsCommand extends CommandBase {
+public class GearDoorsToggleCommand extends CommandBase {
 
-    public GearDoorsCommand() {
+    public GearDoorsToggleCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(gearDoors);
+        requires(gearDoorsSubsystem);
     }
     
     public void enableControl() {
-    	gearDoors.enableControl();
+    	gearDoorsSubsystem.enableControl();
     }
     
     public void disableControl() {
-    	gearDoors.disableControl();
+    	gearDoorsSubsystem.disableControl();
     }
 
     // Called just before this Command runs the first time.
@@ -42,7 +42,7 @@ public class GearDoorsCommand extends CommandBase {
     
     // Called repeatedly when this Command is scheduled to run.
     protected void execute() {
-    	gearDoors.toggle();
+    	gearDoorsSubsystem.toggle();
     }
 
     // Make this return true when this Command no longer needs to run execute()

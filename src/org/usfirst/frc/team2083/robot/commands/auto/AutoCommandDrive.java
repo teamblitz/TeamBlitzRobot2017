@@ -30,8 +30,8 @@ public class AutoCommandDrive extends CommandBase {
     public AutoCommandDrive(long duration, double voltage) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(leftDrive);
-    	requires(rightDrive);
+    	requires(leftDriveSubsystem);
+    	requires(rightDriveSubsystem);
     	
     	this.duration = duration;
     	this.voltage = voltage;
@@ -45,8 +45,8 @@ public class AutoCommandDrive extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(System.currentTimeMillis() - startTime < duration ) {
-    		leftDrive.setVoltage(voltage);
-    		rightDrive.setVoltage(voltage);
+    		leftDriveSubsystem.setVoltage(voltage);
+    		rightDriveSubsystem.setVoltage(voltage);
     	}
     }
 
@@ -57,8 +57,8 @@ public class AutoCommandDrive extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	leftDrive.setVoltage(0);
-    	rightDrive.setVoltage(0);
+    	leftDriveSubsystem.setVoltage(0);
+    	rightDriveSubsystem.setVoltage(0);
     }
 
     // Called when another command which requires one or more of the same

@@ -1,5 +1,14 @@
 <xml version="1.0">
 <dashboard>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="1267" y="10"/>
+		<width>70</width>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="1173" y="19"/>
+		<property name="Text" value="Connection Status:"/>
+		<property name="Horizontal Alignment" value="Right"/>
+	</static-widget>
 	<widget field="Left Drive" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
 		<location x="0" y="309"/>
 	</widget>
@@ -7,7 +16,7 @@
 		<location x="0" y="288"/>
 	</widget>
 	<widget field="Arm Bar" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
-		<location x="0" y="267"/>
+		<location x="12" y="264"/>
 	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
 		<location x="24" y="11"/>
@@ -37,12 +46,6 @@
 		<width>432</width>
 		<height>192</height>
 	</widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
-		<location x="0" y="0"/>
-	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
-		<location x="0" y="0"/>
-	</static-widget>
 </dashboard>
 <live-window>
 </live-window>

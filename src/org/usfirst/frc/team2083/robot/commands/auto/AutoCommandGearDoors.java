@@ -23,14 +23,19 @@ import org.usfirst.frc.team2083.robot.commands.CommandBase;
  */
 public class AutoCommandGearDoors extends CommandBase {
 
-	boolean shouldOpen; 
+	public enum DoorAction {
+		OPEN,
+		CLOSE
+	}
+
+	DoorAction action; 
 	
-    public AutoCommandGearDoors(boolean shouldOpen) {
+    public AutoCommandGearDoors(DoorAction action) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(gearDoors);
+    	requires(gearDoorsSubsystem);
     	
-    	this.shouldOpen = shouldOpen;
+    	this.action = action;
     }
 
     // Called just before this Command runs the first time
@@ -40,16 +45,26 @@ public class AutoCommandGearDoors extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (this.shouldOpen) {
-    		gearDoors.open();
-    	} else {
-    		gearDoors.close();
+    	switch (action) {
+    		case OPEN:
+        			gearDoorsSubsystem.open();
+    			break;
+    		case CLOSE:
+    		default:
+        			gearDoorsSubsystem.close();
+    			break;
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return this.shouldOpen ? gearDoors.isOpen() : gearDoors.isClosed();
+    	switch (action) {
+			case OPEN:
+				return gearDoorsSubsystem.isOpen();
+			case CLOSE:
+			default:
+				return gearDoorsSubsystem.isClosed();
+    	}
     }
 
     // Called once after isFinished returns true

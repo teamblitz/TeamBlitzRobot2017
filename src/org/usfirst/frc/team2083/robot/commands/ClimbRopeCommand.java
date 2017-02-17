@@ -25,25 +25,30 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class ClimbRopeCommand extends CommandBase {
 	
+	public enum ClimbingDirection {
+		UP,
+		DOWN
+	}
+
 	final double ropeMotorUpScaleFactor = 0.5; // Values between 0 and 1.
 	final double ropeMotorDownScaleFactor = 0.2; // Values between 0 and 1.
 	
-	boolean up;
+	ClimbingDirection direction;
 	
-    public ClimbRopeCommand(boolean up) {
+    public ClimbRopeCommand(ClimbingDirection direction) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(ropeClimber);
+        requires(ropeClimberSubsystem);
         
-        this.up = up;
+        this.direction = direction;
     }
     
     public void enableControl() {
-    	ropeClimber.enableControl();
+    	ropeClimberSubsystem.enableControl();
     }
     
     public void disableControl() {
-    	ropeClimber.disableControl();
+    	ropeClimberSubsystem.disableControl();
     }
 
     // Called just before this Command runs the first time.
@@ -53,7 +58,15 @@ public class ClimbRopeCommand extends CommandBase {
     // Called repeatedly when this Command is scheduled to run.
     protected void execute() {
     	System.out.println("executing()");
-    	ropeClimber.setVoltage(up ? ropeMotorUpScaleFactor : -ropeMotorDownScaleFactor);
+    	switch (direction) {
+	    	case UP:
+	    		ropeClimberSubsystem.setVoltage(ropeMotorUpScaleFactor);
+	    		break;
+	    	case DOWN:
+	    	default:
+	    		ropeClimberSubsystem.setVoltage(-ropeMotorDownScaleFactor);
+	    		break;
+    	}
     	
         double rcc = RobotMap.ropeClimbingMotorController.getOutputCurrent();
         SmartDashboard.putNumber("Rope Climbing Motor Current", rcc);
@@ -66,13 +79,12 @@ public class ClimbRopeCommand extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	ropeClimber.setVoltage(0);
+    	ropeClimberSubsystem.setVoltage(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	System.out.println("ClimbRopeCommand interrupted");
-    	ropeClimber.setVoltage(0);
+    	ropeClimberSubsystem.setVoltage(0);
     }
 }

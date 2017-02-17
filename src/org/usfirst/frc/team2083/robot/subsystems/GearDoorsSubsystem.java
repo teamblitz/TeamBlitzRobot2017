@@ -24,8 +24,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 /**
- *
- * @author Owner
+ * The subsystem for the gear doors. The subsystem
+ * consists of two servers, one controlling each
+ * door.
  */
 public class GearDoorsSubsystem extends Subsystem {
     
@@ -85,7 +86,6 @@ public class GearDoorsSubsystem extends Subsystem {
     }
     
     public void toggle() {
-    	System.out.println("executing gear door command()");
 	    if (isClosed()) {
 	    	open();
 	    }

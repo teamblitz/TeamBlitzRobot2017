@@ -17,7 +17,7 @@
 package org.usfirst.frc.team2083.robot;
 
 import org.usfirst.frc.team2083.robot.commands.ClimbRopeCommand;
-import org.usfirst.frc.team2083.robot.commands.GearDoorsCommand;
+import org.usfirst.frc.team2083.robot.commands.GearDoorsToggleCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -55,19 +55,19 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
 
     Joystick xbox;
-    JoystickButton ropeUpButton;
-    JoystickButton ropeDownButton;
-    JoystickButton gearDoorsButton;
+    public JoystickButton ropeUpButton;
+    public JoystickButton ropeDownButton;
+    public JoystickButton gearDoorsButton;
     
     public OI() {
         xbox = new Joystick(RobotMap.JS_DRIVER_PORT);
-    	ropeUpButton = new JoystickButton(xbox, 8);
-    	ropeDownButton = new JoystickButton(xbox, 7);    	
-    	gearDoorsButton = new JoystickButton(xbox, 1);
+    	ropeUpButton = new JoystickButton(xbox, RobotMap.JS_DRIVER_ROPE_CLIMB_UP_BUTTON);
+    	ropeDownButton = new JoystickButton(xbox, RobotMap.JS_DRIVER_ROPE_CLIMB_DOWN_BUTTON);    	
+    	gearDoorsButton = new JoystickButton(xbox, RobotMap.JS_DRIVER_GEAR_DOOR_BUTTON);
     	
-    	gearDoorsButton.whenPressed(new GearDoorsCommand());
-    	ropeUpButton.whileHeld(new ClimbRopeCommand(true));
-    	ropeDownButton.whileHeld(new ClimbRopeCommand(false));
+    	gearDoorsButton.whenPressed(new GearDoorsToggleCommand());
+    	ropeUpButton.whileHeld(new ClimbRopeCommand(ClimbRopeCommand.ClimbingDirection.UP));
+    	ropeDownButton.whileHeld(new ClimbRopeCommand(ClimbRopeCommand.ClimbingDirection.DOWN));
     }
     
     public double getMotorDriveLeftRightValue() {

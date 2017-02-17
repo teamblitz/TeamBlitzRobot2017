@@ -26,9 +26,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoCommandLeftTowerLift extends CommandGroup {
     
     public  AutoCommandLeftTowerLift() {    	
-    	requires(CommandBase.leftDrive);
-    	requires(CommandBase.rightDrive);
+    	requires(CommandBase.leftDriveSubsystem);
+    	requires(CommandBase.rightDriveSubsystem);
 
        	addSequential(new AutoCommandDrive((long)3.5*1000, 8));
+       	addSequential(new AutoCommandGearDoors(AutoCommandGearDoors.DoorAction.OPEN));
     }
 }

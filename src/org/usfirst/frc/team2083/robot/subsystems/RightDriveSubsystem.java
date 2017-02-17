@@ -23,8 +23,8 @@ import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
- * @author Owner
+ * The subsystem for the left drive wheel. The subsystem
+ * consists of two CAN-bus Talon motor controllers.
  */
 public class RightDriveSubsystem extends Subsystem {
     

@@ -17,10 +17,8 @@
 package org.usfirst.frc.team2083.robot;
 
 import org.usfirst.frc.team2083.robot.RobotMap.DriveMotorControlType;
-import org.usfirst.frc.team2083.robot.commands.ClimbRopeCommand;
 import org.usfirst.frc.team2083.robot.commands.CommandBase;
 import org.usfirst.frc.team2083.robot.commands.DriveCommand;
-import org.usfirst.frc.team2083.robot.commands.GearDoorsCommand;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachBaseLine;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandCenterTowerLift;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandDefault;
@@ -52,8 +50,7 @@ public class Robot extends IterativeRobot {
 
 	// Robot command instances.
 	DriveCommand driveCommand;
-	ClimbRopeCommand climbRopeCommand;
-	GearDoorsCommand gearDoorsCommand;
+	
     // Autonomous command and selection instances.
     Command autonomousCommand;
     SendableChooser<CommandGroup> autoChooser;
@@ -63,8 +60,6 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-        System.out.println("ROBOT INIT");
-       
         // Initialize motor controllers.
         RobotMap.leftForwardMotorController = new CANTalon(RobotMap.LEFT_FORWARD_MOTOR_CONTROLLER_ID);
         RobotMap.leftBackMotorController = new CANTalon(RobotMap.LEFT_BACK_MOTOR_CONTROLLER_ID);
@@ -124,7 +119,7 @@ public class Robot extends IterativeRobot {
         CommandBase.init();
         driveCommand = new DriveCommand();
         driveCommand.disableControl();
-                                        
+        
         // Autonomous setup.
         autoChooser = new SendableChooser<CommandGroup>();
         autoChooser.addDefault("Default (Nothing)", new AutoCommandDefault());
@@ -133,19 +128,17 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("Center Tower Lift", new AutoCommandCenterTowerLift());
         autoChooser.addObject("Right Tower Lift", new AutoCommandRightTowerLift());
         
-        //Starts the camera server
-        CameraServer.getInstance().startAutomaticCapture();
-        
         // SmartDashboard setup. 
         SmartDashboard.putData("Autonmous Mode", autoChooser); 
+
+        // Starts the camera server
+        CameraServer.getInstance().startAutomaticCapture();        
     }
     
     /**
      * This function is called to initialize autonoumous mode.
      */
     public void autonomousInit() {
-        System.out.println("AUTONOMOUS INIT");
-
         driveCommand.enableControl();
 
         autonomousCommand = (Command) autoChooser.getSelected();

@@ -26,8 +26,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoCommandBreachBaseLine extends CommandGroup {
     
     public  AutoCommandBreachBaseLine() {    	
-    	requires(CommandBase.leftDrive);
-    	requires(CommandBase.rightDrive);
+    	requires(CommandBase.leftDriveSubsystem);
+    	requires(CommandBase.rightDriveSubsystem);
 
        	addSequential(new AutoCommandDrive(1*1000, 1));
         

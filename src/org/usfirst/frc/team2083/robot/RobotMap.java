@@ -60,9 +60,7 @@ public class RobotMap {
   
     // Input Controls
     public static final int JS_DRIVER_PORT = 0;
-    public static final int JS_DRIVER_CLIMBER_BUTTON = 5;
-
-    public static void init() {
-    	
-    }
+    public static final int JS_DRIVER_ROPE_CLIMB_UP_BUTTON = 8;
+    public static final int JS_DRIVER_ROPE_CLIMB_DOWN_BUTTON = 7;
+    public static final int JS_DRIVER_GEAR_DOOR_BUTTON = 1;
 }

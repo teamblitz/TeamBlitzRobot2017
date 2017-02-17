@@ -30,7 +30,8 @@ public class AutoCommandTurnLeft extends CommandBase {
     public AutoCommandTurnLeft(long duration, double voltage) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(rightDrive);
+    	requires(leftDriveSubsystem);
+    	requires(rightDriveSubsystem);
     	
     	this.duration = duration;
     	this.voltage = voltage;
@@ -38,13 +39,14 @@ public class AutoCommandTurnLeft extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+		leftDriveSubsystem.setVoltage(0);
     	startTime = System.currentTimeMillis();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(System.currentTimeMillis() - startTime < duration ) {
-    		rightDrive.setVoltage(voltage);
+    		rightDriveSubsystem.setVoltage(voltage);
     	}
     }
 
@@ -55,8 +57,8 @@ public class AutoCommandTurnLeft extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	leftDrive.setVoltage(0);
-    	rightDrive.setVoltage(0);
+    	leftDriveSubsystem.setVoltage(0);
+    	rightDriveSubsystem.setVoltage(0);
     }
 
     // Called when another command which requires one or more of the same
