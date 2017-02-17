@@ -32,7 +32,7 @@ public class RopeClimbingSubsystem extends Subsystem {
     public CANTalon ropeMotor;
     
     public RopeClimbingSubsystem() {
-    	super("Left Drive");
+    	super("Rope Climber");
     	ropeMotor = RobotMap.ropeClimbingMotorController;
     }
     

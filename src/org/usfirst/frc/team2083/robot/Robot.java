@@ -18,7 +18,6 @@ package org.usfirst.frc.team2083.robot;
 
 import org.usfirst.frc.team2083.robot.RobotMap.DriveMotorControlType;
 import org.usfirst.frc.team2083.robot.commands.ClimbRopeCommand;
-//import org.usfirst.frc.team2083.robot.commands.ClimbRopeReverseCommand;
 import org.usfirst.frc.team2083.robot.commands.CommandBase;
 import org.usfirst.frc.team2083.robot.commands.DriveCommand;
 import org.usfirst.frc.team2083.robot.commands.GearDoorsCommand;
@@ -54,7 +53,6 @@ public class Robot extends IterativeRobot {
 	// Robot command instances.
 	DriveCommand driveCommand;
 	ClimbRopeCommand climbRopeCommand;
-//	org.usfirst.frc.team2083.robot.commands.ClimbRopeReverseCommand climbRopeReverseCommand;
 	GearDoorsCommand gearDoorsCommand;
     // Autonomous command and selection instances.
     Command autonomousCommand;
@@ -116,8 +114,8 @@ public class Robot extends IterativeRobot {
         }
        
         RobotMap.ropeClimbingMotorController = new CANTalon(RobotMap.ROPE_CLIMBING_MOTOR_CONTROLLER);
-        
         RobotMap.ropeClimbingMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+        RobotMap.ropeClimbingMotorController.enableBrakeMode(true);
         
         RobotMap.rightGearDoorServo = new Servo(RobotMap.RIGHT_GEAR_DOOR_SERVO_ID);
         RobotMap.leftGearDoorServo = new Servo(RobotMap.LEFT_GEAR_DOOR_SERVO_ID);
@@ -126,15 +124,7 @@ public class Robot extends IterativeRobot {
         CommandBase.init();
         driveCommand = new DriveCommand();
         driveCommand.disableControl();
-        
-        climbRopeCommand = new ClimbRopeCommand();
-        climbRopeCommand.disableControl();
-        
-//        climbRopeReverseCommand = new ClimbRopeReverseCommand();
-//        climbRopeReverseCommand.disableControl();
-        
-        gearDoorsCommand = new GearDoorsCommand();
-                
+                                        
         // Autonomous setup.
         autoChooser = new SendableChooser<CommandGroup>();
         autoChooser.addDefault("Default (Nothing)", new AutoCommandDefault());
@@ -148,8 +138,6 @@ public class Robot extends IterativeRobot {
         
         // SmartDashboard setup. 
         SmartDashboard.putData("Autonmous Mode", autoChooser); 
-        
-        
     }
     
     /**
@@ -178,20 +166,7 @@ public class Robot extends IterativeRobot {
         System.out.println("TELEOP INIT");
 
         driveCommand.enableControl();
-        driveCommand.start();
-        
-        climbRopeCommand.enableControl();
-//        climbRopeReverseCommand.enableControl();
-        
-        /*if(CommandBase.oi.ropeButton.get())	//TODO Make triggers, not buttons
-        {
-        	CommandBase.oi.ropeButton.whileHeld(climbRopeCommand);
-    	}
-        else if(CommandBase.oi.ropeReverseButton.get())
-        {
-        	CommandBase.oi.ropeReverseButton.whileHeld(climbRopeReverseCommand);
-        }
-        CommandBase.oi.gearDoorsButton.whenReleased(gearDoorsCommand);*/
+        driveCommand.start();        
     }
 
     /**

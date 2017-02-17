@@ -25,12 +25,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class ClimbRopeCommand extends CommandBase {
 	
-	final double ropeMotorScaleFactor = .5; // Values between 0 and 1.
+	final double ropeMotorUpScaleFactor = 0.5; // Values between 0 and 1.
+	final double ropeMotorDownScaleFactor = 0.2; // Values between 0 and 1.
 	
-    public ClimbRopeCommand() {
+	boolean up;
+	
+    public ClimbRopeCommand(boolean up) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(ropeClimber);
+        
+        this.up = up;
     }
     
     public void enableControl() {
@@ -43,25 +48,16 @@ public class ClimbRopeCommand extends CommandBase {
 
     // Called just before this Command runs the first time.
     protected void initialize() {
-
     }
     
     // Called repeatedly when this Command is scheduled to run.
     protected void execute() {
     	System.out.println("executing()");
-    	ropeClimber.setVoltage(ropeMotorScaleFactor);
+    	ropeClimber.setVoltage(up ? ropeMotorUpScaleFactor : -ropeMotorDownScaleFactor);
     	
         double rcc = RobotMap.ropeClimbingMotorController.getOutputCurrent();
-                
         SmartDashboard.putNumber("Rope Climbing Motor Current", rcc);
-       
     }
-
-//    private void println(String string) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-    
 
 	// Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
@@ -70,13 +66,13 @@ public class ClimbRopeCommand extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-
+    	ropeClimber.setVoltage(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	System.out.println("ClimbRopeCommand interrupted");
     	ropeClimber.setVoltage(0);
-    	this.disableControl();
     }
 }

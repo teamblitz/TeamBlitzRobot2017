@@ -16,6 +16,9 @@
 
 package org.usfirst.frc.team2083.robot;
 
+import org.usfirst.frc.team2083.robot.commands.ClimbRopeCommand;
+import org.usfirst.frc.team2083.robot.commands.GearDoorsCommand;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -52,22 +55,19 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
 
     Joystick xbox;
-    JoystickButton ropeButton;
-    JoystickButton ropeReverseButton;
+    JoystickButton ropeUpButton;
+    JoystickButton ropeDownButton;
     JoystickButton gearDoorsButton;
-
-    JoystickButton slowModeButton;
-
-    public JoystickButton speedLockButton;
     
     public OI() {
         xbox = new Joystick(RobotMap.JS_DRIVER_PORT);
-    	ropeButton = new JoystickButton(xbox, 1);
-    	ropeReverseButton = new JoystickButton(xbox, 2);    	
-    	gearDoorsButton = new JoystickButton(xbox, 4);
-    	slowModeButton = new JoystickButton(xbox, 8);
+    	ropeUpButton = new JoystickButton(xbox, 8);
+    	ropeDownButton = new JoystickButton(xbox, 7);    	
+    	gearDoorsButton = new JoystickButton(xbox, 1);
     	
-    	
+    	gearDoorsButton.whenPressed(new GearDoorsCommand());
+    	ropeUpButton.whileHeld(new ClimbRopeCommand(true));
+    	ropeDownButton.whileHeld(new ClimbRopeCommand(false));
     }
     
     public double getMotorDriveLeftRightValue() {
@@ -82,14 +82,3 @@ public class OI {
     	return xbox.getRawAxis(5);
     }
 }
-//FIXME
-//public boolean speedLock() {
-//	int speedLockValue;
-//	
-//	if (speedLockValue == 1){
-//		CommandBase.oi.speedLockButton.whenPressed(speedLockValue = speedLockValue - 1);
-//	}
-//	else {
-//		CommandBase.oi.speedLockButton.whenPressed(speedLockValue = speedLockValue + 1);
-//	}
-//}
