@@ -21,6 +21,7 @@ import org.usfirst.frc.team2083.robot.subsystems.GearDoorsSubsystem;
 import org.usfirst.frc.team2083.robot.subsystems.LeftDriveSubsystem;
 import org.usfirst.frc.team2083.robot.subsystems.RightDriveSubsystem;
 import org.usfirst.frc.team2083.robot.subsystems.RopeClimbingSubsystem;
+import org.usfirst.frc.team2083.robot.subsystems.CameraLightsSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -37,6 +38,7 @@ public abstract class CommandBase extends Command {
     public static RightDriveSubsystem rightDriveSubsystem = new RightDriveSubsystem();
     public static RopeClimbingSubsystem ropeClimberSubsystem = new RopeClimbingSubsystem();
     public static GearDoorsSubsystem gearDoorsSubsystem = new GearDoorsSubsystem();
+    public static CameraLightsSubsystem cameraLightsSubsystem = new CameraLightsSubsystem();
     
     public static OI oi;
     
@@ -54,6 +56,7 @@ public abstract class CommandBase extends Command {
         SmartDashboard.putData(rightDriveSubsystem);
         SmartDashboard.putData(ropeClimberSubsystem);
         SmartDashboard.putData(gearDoorsSubsystem);
+        SmartDashboard.putData(cameraLightsSubsystem);
     }
 
     public CommandBase(String name) {

@@ -19,6 +19,7 @@ package org.usfirst.frc.team2083.robot;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.Relay;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -44,6 +45,10 @@ public class RobotMap {
     public static final int RIGHT_GEAR_DOOR_SERVO_ID = 0;
     public static final int LEFT_GEAR_DOOR_SERVO_ID = 1;
     
+    //Relay Channel Numbers
+    public static final int CAMERA_LIGHTS_RELAY_ID = 0;
+
+        
     // CAN-Based Instances 
     public static CANTalon leftForwardMotorController;
     public static CANTalon leftBackMotorController;
@@ -55,6 +60,9 @@ public class RobotMap {
     public static Servo rightGearDoorServo;
     public static Servo leftGearDoorServo;
 
+    //Relay-Based Instances
+    public static Relay cameraLightsRelay;
+    
     // Global Configs
     public static final DriveMotorControlType driveMotorControlType = DriveMotorControlType.VOLTAGE;
   
@@ -62,5 +70,6 @@ public class RobotMap {
     public static final int JS_DRIVER_PORT = 0;
     public static final int JS_DRIVER_ROPE_CLIMB_UP_BUTTON = 8;
     public static final int JS_DRIVER_ROPE_CLIMB_DOWN_BUTTON = 7;
-    public static final int JS_DRIVER_GEAR_DOOR_BUTTON = 1;
+    public static final int JS_DRIVER_GEAR_DOORS_BUTTON = 1;
+    public static final int CAMERA_LIGHTS_BUTTON = 4;
 }

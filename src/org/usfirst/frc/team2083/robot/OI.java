@@ -18,6 +18,7 @@ package org.usfirst.frc.team2083.robot;
 
 import org.usfirst.frc.team2083.robot.commands.ClimbRopeCommand;
 import org.usfirst.frc.team2083.robot.commands.GearDoorsToggleCommand;
+import org.usfirst.frc.team2083.robot.commands.CameraLightsToggleCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -58,14 +59,17 @@ public class OI {
     public JoystickButton ropeUpButton;
     public JoystickButton ropeDownButton;
     public JoystickButton gearDoorsButton;
+    public JoystickButton cameraLightsButton;
     
     public OI() {
         xbox = new Joystick(RobotMap.JS_DRIVER_PORT);
     	ropeUpButton = new JoystickButton(xbox, RobotMap.JS_DRIVER_ROPE_CLIMB_UP_BUTTON);
     	ropeDownButton = new JoystickButton(xbox, RobotMap.JS_DRIVER_ROPE_CLIMB_DOWN_BUTTON);    	
-    	gearDoorsButton = new JoystickButton(xbox, RobotMap.JS_DRIVER_GEAR_DOOR_BUTTON);
+    	gearDoorsButton = new JoystickButton(xbox, RobotMap.JS_DRIVER_GEAR_DOORS_BUTTON);
+    	cameraLightsButton = new JoystickButton(xbox, RobotMap.CAMERA_LIGHTS_BUTTON);
     	
     	gearDoorsButton.whenPressed(new GearDoorsToggleCommand());
+    	cameraLightsButton.whenPressed(new CameraLightsToggleCommand());
     	ropeUpButton.whileHeld(new ClimbRopeCommand(ClimbRopeCommand.ClimbingDirection.UP));
     	ropeDownButton.whileHeld(new ClimbRopeCommand(ClimbRopeCommand.ClimbingDirection.DOWN));
     }

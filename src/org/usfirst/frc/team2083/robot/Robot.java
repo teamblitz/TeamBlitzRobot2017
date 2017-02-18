@@ -19,18 +19,17 @@ package org.usfirst.frc.team2083.robot;
 import org.usfirst.frc.team2083.robot.RobotMap.DriveMotorControlType;
 import org.usfirst.frc.team2083.robot.commands.CommandBase;
 import org.usfirst.frc.team2083.robot.commands.DriveCommand;
-import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachBaseLine;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandCenterTowerLift;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandDefault;
-import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandLeftTowerLift;
-import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandRightTowerLift;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.Relay.Direction;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -54,7 +53,7 @@ public class Robot extends IterativeRobot {
     // Autonomous command and selection instances.
     Command autonomousCommand;
     SendableChooser<CommandGroup> autoChooser;
-
+    
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -115,6 +114,8 @@ public class Robot extends IterativeRobot {
         RobotMap.rightGearDoorServo = new Servo(RobotMap.RIGHT_GEAR_DOOR_SERVO_ID);
         RobotMap.leftGearDoorServo = new Servo(RobotMap.LEFT_GEAR_DOOR_SERVO_ID);
         
+        RobotMap.cameraLightsRelay = new Relay(RobotMap.CAMERA_LIGHTS_RELAY_ID);
+        
         // Initialize all subsystems.
         CommandBase.init();
         driveCommand = new DriveCommand();
@@ -123,25 +124,27 @@ public class Robot extends IterativeRobot {
         // Autonomous setup.
         autoChooser = new SendableChooser<CommandGroup>();
         autoChooser.addDefault("Default (Nothing)", new AutoCommandDefault());
-        autoChooser.addObject("Breach Base Line", new AutoCommandBreachBaseLine());
-        autoChooser.addObject("Left Tower Lift", new AutoCommandLeftTowerLift());
-        autoChooser.addObject("Center Tower Lift", new AutoCommandCenterTowerLift());
-        autoChooser.addObject("Right Tower Lift", new AutoCommandRightTowerLift());
+//        autoChooser.addObject("Breach Base Line", new AutoCommandBreachBaseLine());
+//        autoChooser.addObject("Left Tower Lift", new AutoCommandLeftTowerLift());
+//        autoChooser.addObject("Center Tower Lift", new AutoCommandCenterTowerLift());
+//        autoChooser.addObject("Right Tower Lift", new AutoCommandRightTowerLift());
         
         // SmartDashboard setup. 
         SmartDashboard.putData("Autonmous Mode", autoChooser); 
 
         // Starts the camera server
-        CameraServer.getInstance().startAutomaticCapture();        
+        CameraServer.getInstance().startAutomaticCapture();
+//        CameraServer.getInstance().startAutomaticCapture();        
     }
     
     /**
-     * This function is called to initialize autonoumous mode.
+     * This function is called to initialize autonomous mode.
      */
     public void autonomousInit() {
         driveCommand.enableControl();
 
-        autonomousCommand = (Command) autoChooser.getSelected();
+//        autonomousCommand = (Command) autoChooser.getSelected();
+        autonomousCommand = new AutoCommandCenterTowerLift();
         autonomousCommand.start();        
     }
 
@@ -156,8 +159,6 @@ public class Robot extends IterativeRobot {
      * This function is called to initialize teleop mode.
      */
     public void teleopInit() {
-        System.out.println("TELEOP INIT");
-
         driveCommand.enableControl();
         driveCommand.start();        
     }
@@ -173,7 +174,6 @@ public class Robot extends IterativeRobot {
      * This function is called to initialize test mode.
      */
     public void testInit() {
-        System.out.println("TEST INIT");
     }
     
     /**

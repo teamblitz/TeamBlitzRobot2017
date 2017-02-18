@@ -1,5 +1,20 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Auto Selector" type="String" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="13" y="38"/>
+		<width>222</width>
+		<height>24</height>
+	</widget>
+	<widget field="Rope Climbing Motor Current" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="21" y="392"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
+		<location x="409" y="11"/>
+		<width>538</width>
+		<height>400</height>
+		<property name="Degrees Rotation" value="180"/>
+		<property name="Camera Choice" value="USB Camera 1"/>
+	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
 		<location x="1267" y="10"/>
 		<width>70</width>
@@ -10,43 +25,30 @@
 		<property name="Horizontal Alignment" value="Right"/>
 	</static-widget>
 	<widget field="Left Drive" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
-		<location x="0" y="309"/>
+		<location x="7" y="300"/>
 	</widget>
 	<widget field="Right Drive" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
-		<location x="0" y="288"/>
-	</widget>
-	<widget field="Arm Bar" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
-		<location x="12" y="264"/>
+		<location x="148" y="300"/>
 	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
-		<location x="24" y="11"/>
+		<location x="16" y="16"/>
 		<width>136</width>
 		<property name="Text" value="Autonomous Mode Program:"/>
 	</static-widget>
 	<widget field="Autonmous Mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
 		<location x="16" y="16"/>
 	</widget>
-	<widget field="Right Front Current" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
-		<location x="640" y="0"/>
-		<width>432</width>
-		<height>192</height>
+	<widget field="Rope Climber" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="58" y="368"/>
 	</widget>
-	<widget field="Right Back Current" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
-		<location x="640" y="192"/>
-		<width>432</width>
-		<height>192</height>
-	</widget>
-	<widget field="Left Back Current" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
-		<location x="208" y="192"/>
-		<width>432</width>
-		<height>192</height>
-	</widget>
-	<widget field="Left Front Current" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
-		<location x="208" y="0"/>
-		<width>432</width>
-		<height>192</height>
+	<widget field="Gear Door" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="72" y="344"/>
 	</widget>
 </dashboard>
 <live-window>
 </live-window>
+	<hidden field="Right Front Current"/>
+	<hidden field="Left Front Current"/>
+	<hidden field="Right Back Current"/>
+	<hidden field="Left Back Current"/>
 </xml>

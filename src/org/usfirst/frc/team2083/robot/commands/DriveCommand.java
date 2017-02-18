@@ -35,7 +35,7 @@ public class DriveCommand extends CommandBase {
 	// delay when the robot decelerates to zero in the reverse direction.
 	// The user won't be able to apply drive input until this delay has expired.
 	// The delay units are in milliseconds.
-	final double backwardStopDelay = 500;
+	final double backwardStopDelay = 1000;
 	boolean backwardStopDelayInEffect;
 	double backwardStopDelayStartTime;
 	double prevY;

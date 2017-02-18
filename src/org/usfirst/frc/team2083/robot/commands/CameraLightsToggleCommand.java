@@ -16,75 +16,48 @@
 
 package org.usfirst.frc.team2083.robot.commands;
 
-import org.usfirst.frc.team2083.robot.RobotMap;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 /**
  *
  */
-public class ClimbRopeCommand extends CommandBase {
-	
-	public enum ClimbingDirection {
-		UP,
-		DOWN
-	}
+public class CameraLightsToggleCommand extends CommandBase {
 
-	final double ropeMotorUpScaleFactor = 1; // Values between 0 and 1.
-	final double ropeMotorDownScaleFactor = 0.2; // Values between 0 and 1.
-	
-	ClimbingDirection direction;
-	
-    public ClimbRopeCommand(ClimbingDirection direction) {
+    public CameraLightsToggleCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(ropeClimberSubsystem);
-        
-        this.direction = direction;
+        requires(cameraLightsSubsystem);
     }
     
     public void enableControl() {
-    	ropeClimberSubsystem.enableControl();
+    	cameraLightsSubsystem.enableControl();
     }
     
     public void disableControl() {
-    	ropeClimberSubsystem.disableControl();
+    	cameraLightsSubsystem.disableControl();
     }
 
     // Called just before this Command runs the first time.
     protected void initialize() {
+
     }
     
     // Called repeatedly when this Command is scheduled to run.
     protected void execute() {
-    	System.out.println("executing()");
-    	switch (direction) {
-	    	case UP:
-	    		ropeClimberSubsystem.setVoltage(ropeMotorUpScaleFactor);
-	    		break;
-	    	case DOWN:
-	    	default:
-	    		ropeClimberSubsystem.setVoltage(-ropeMotorDownScaleFactor);
-	    		break;
-    	}
-    	
-        double rcc = RobotMap.ropeClimbingMotorController.getOutputCurrent();
-        SmartDashboard.putNumber("Rope Climbing Motor Current", rcc);
+    	cameraLightsSubsystem.toggle();
     }
 
-	// Make this return true when this Command no longer needs to run execute()
+    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	ropeClimberSubsystem.setVoltage(0);
+
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	ropeClimberSubsystem.setVoltage(0);
+    	
     }
 }
