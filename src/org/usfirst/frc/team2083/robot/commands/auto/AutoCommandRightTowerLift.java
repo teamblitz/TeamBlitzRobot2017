@@ -29,8 +29,10 @@ public class AutoCommandRightTowerLift extends CommandGroup {
     	requires(CommandBase.leftDriveSubsystem);
     	requires(CommandBase.rightDriveSubsystem);
     	
-     	addSequential(new AutoCommandDrive((long) (2.3*1000), 3));
-       	addSequential(new AutoCommandGearDoors(AutoCommandGearDoors.DoorAction.OPEN));       	
-     	addSequential(new AutoCommandDrive((long) (1*1000), -3));
+       	addSequential(new AutoCommandDrive((long)3.5*1000, 0.2));
+       	addSequential(new AutoCommandTurnRight((long)1000, 0.2));
+       	addSequential(new AutoCommandDrive((long)1000, 0.2));
+       	addSequential(new AutoCommandGearDoors(AutoCommandGearDoors.DoorAction.OPEN));
+       	
     }
 }

@@ -35,7 +35,7 @@ public class DriveCommand extends CommandBase {
 	// delay when the robot decelerates to zero in the reverse direction.
 	// The user won't be able to apply drive input until this delay has expired.
 	// The delay units are in milliseconds.
-	final double backwardStopDelay = 1000;
+	final double backwardStopDelay = 0;
 	boolean backwardStopDelayInEffect;
 	double backwardStopDelayStartTime;
 	double prevY;
@@ -94,11 +94,11 @@ public class DriveCommand extends CommandBase {
     		y = 0;    		
     	}
     	
-    	System.out.println("(x, y) = (" + x + ", " + y + ")");
+    	// System.out.println("(x, y) = (" + x + ", " + y + ")");
     	
     	if (RobotMap.driveMotorControlType == DriveMotorControlType.VOLTAGE) {
     		
-    		double driveMotorScaleFactor = -oi.driveMotorFactor()*.11+.22; // Values between 0.125 and 0.5.
+    		double driveMotorScaleFactor = -oi.driveMotorFactor()*.2+.22; // Values between 0.125 and 0.5.
 			double leftDriveVoltage = (y + x) * driveMotorScaleFactor;
 			double rightDriveVoltage = (y - x) * driveMotorScaleFactor;
 	        

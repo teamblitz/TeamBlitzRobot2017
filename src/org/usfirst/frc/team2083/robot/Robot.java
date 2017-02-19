@@ -29,7 +29,6 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Servo;
-import edu.wpi.first.wpilibj.Relay.Direction;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -129,12 +128,14 @@ public class Robot extends IterativeRobot {
 //        autoChooser.addObject("Center Tower Lift", new AutoCommandCenterTowerLift());
 //        autoChooser.addObject("Right Tower Lift", new AutoCommandRightTowerLift());
         
+        
+        
         // SmartDashboard setup. 
-        SmartDashboard.putData("Autonmous Mode", autoChooser); 
+        SmartDashboard.putData("Autonmous Mode", autoChooser);
 
         // Starts the camera server
         CameraServer.getInstance().startAutomaticCapture();
-//        CameraServer.getInstance().startAutomaticCapture();        
+        CameraServer.getInstance().startAutomaticCapture();        
     }
     
     /**

@@ -46,7 +46,7 @@ public class AutoCommandDrive extends CommandBase {
     protected void execute() {
     	if(System.currentTimeMillis() - startTime < duration ) {
     		leftDriveSubsystem.setVoltage(voltage);
-    		rightDriveSubsystem.setVoltage(voltage);
+    		rightDriveSubsystem.setVoltage(voltage*.9);
     	}
     }
 

@@ -29,7 +29,8 @@ public class AutoCommandBreachBaseLine extends CommandGroup {
     	requires(CommandBase.leftDriveSubsystem);
     	requires(CommandBase.rightDriveSubsystem);
 
-       	addSequential(new AutoCommandDrive(1*1000, 1));
+       	addSequential(new AutoCommandDrive(3*1000, 0.2));
+       	
         
     }
 }

@@ -78,11 +78,13 @@ public class GearDoorsSubsystem extends Subsystem {
     public void open() {
     	leftDoor.setAngle(120);	
     	rightDoor.setAngle(140);
+    	System.out.println("Open Doors");
     }
     
     public void close() {
     	leftDoor.setAngle(0);	
     	rightDoor.setAngle(0);
+    	System.out.println("Closed Doors");
     }
     
     public void toggle() {
