@@ -98,7 +98,7 @@ public class DriveCommand extends CommandBase {
     	
     	if (RobotMap.driveMotorControlType == DriveMotorControlType.VOLTAGE) {
     		
-    		double driveMotorScaleFactor = -oi.driveMotorFactor()*.2+.22; // Values between 0.125 and 0.5.
+    		double driveMotorScaleFactor = -oi.driveMotorFactor()*.3+.4; // Values between 0.125 and 0.5.
 			double leftDriveVoltage = (y + x) * driveMotorScaleFactor;
 			double rightDriveVoltage = (y - x) * driveMotorScaleFactor;
 	        

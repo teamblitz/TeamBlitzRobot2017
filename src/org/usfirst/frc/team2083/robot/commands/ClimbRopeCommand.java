@@ -31,7 +31,7 @@ public class ClimbRopeCommand extends CommandBase {
 	}
 
 	final double ropeMotorUpScaleFactor = 1; // Values between 0 and 1.
-	final double ropeMotorDownScaleFactor = 0.2; // Values between 0 and 1.
+	final double ropeMotorDownScaleFactor = 0.3; // Values between 0 and 1.
 	
 	ClimbingDirection direction;
 	
@@ -64,7 +64,7 @@ public class ClimbRopeCommand extends CommandBase {
 	    		break;
 	    	case DOWN:
 	    	default:
-	    		ropeClimberSubsystem.setVoltage(-ropeMotorDownScaleFactor);
+	    		ropeClimberSubsystem.setVoltage(ropeMotorDownScaleFactor);
 	    		break;
     	}
     	
