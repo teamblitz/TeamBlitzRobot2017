@@ -27,11 +27,13 @@ public class ClimbRopeCommand extends CommandBase {
 	
 	public enum ClimbingDirection {
 		UP,
-		DOWN
+		DOWN,
+		HOLD
 	}
 
 	final double ropeMotorUpScaleFactor = 1; // Values between 0 and 1.
-	final double ropeMotorDownScaleFactor = 0.3; // Values between 0 and 1.
+	final double ropeMotorDownScaleFactor = 0.2; // Values between 0 and 1.
+	final double ropeMotorHoldScaleFactor = 0.3; 
 	
 	ClimbingDirection direction;
 	
@@ -57,14 +59,16 @@ public class ClimbRopeCommand extends CommandBase {
     
     // Called repeatedly when this Command is scheduled to run.
     protected void execute() {
-    	System.out.println("executing()");
     	switch (direction) {
 	    	case UP:
 	    		ropeClimberSubsystem.setVoltage(ropeMotorUpScaleFactor);
 	    		break;
+	    	case HOLD:
+	    		ropeClimberSubsystem.setVoltage(ropeMotorHoldScaleFactor);
+	    		break;
 	    	case DOWN:
 	    	default:
-	    		ropeClimberSubsystem.setVoltage(ropeMotorDownScaleFactor);
+	    		ropeClimberSubsystem.setVoltage(-ropeMotorDownScaleFactor);
 	    		break;
     	}
     	

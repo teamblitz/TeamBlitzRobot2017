@@ -58,13 +58,15 @@ public class OI {
     Joystick xbox;
     public JoystickButton ropeUpButton;
     public JoystickButton ropeDownButton;
+    public JoystickButton ropeHoldButton;
     public JoystickButton gearDoorsButton;
     public JoystickButton cameraLightsButton;
     
     public OI() {
         xbox = new Joystick(RobotMap.JS_DRIVER_PORT);
-    	ropeUpButton = new JoystickButton(xbox, RobotMap.JS_DRIVER_ROPE_CLIMB_UP_BUTTON);
-    	ropeDownButton = new JoystickButton(xbox, RobotMap.JS_DRIVER_ROPE_CLIMB_DOWN_BUTTON);    	
+    	ropeUpButton = new JoystickButton(xbox, RobotMap.JS_DRIVER_ROPE_UP_BUTTON);
+    	ropeDownButton = new JoystickButton(xbox, RobotMap.JS_DRIVER_ROPE_DOWN_BUTTON); 
+    	ropeHoldButton = new JoystickButton(xbox, RobotMap.JS_DRIVER_ROPE_HOLD_BUTTON);
     	gearDoorsButton = new JoystickButton(xbox, RobotMap.JS_DRIVER_GEAR_DOORS_BUTTON);
     	cameraLightsButton = new JoystickButton(xbox, RobotMap.CAMERA_LIGHTS_BUTTON);
     	
@@ -72,6 +74,7 @@ public class OI {
     	cameraLightsButton.whenPressed(new CameraLightsToggleCommand());
     	ropeUpButton.whileHeld(new ClimbRopeCommand(ClimbRopeCommand.ClimbingDirection.UP));
     	ropeDownButton.whileHeld(new ClimbRopeCommand(ClimbRopeCommand.ClimbingDirection.DOWN));
+    	ropeHoldButton.whileHeld(new ClimbRopeCommand(ClimbRopeCommand.ClimbingDirection.HOLD));
     }
     
     public double getMotorDriveLeftRightValue() {
@@ -82,7 +85,7 @@ public class OI {
     	return -xbox.getY();
     }
    
-    public double driveMotorFactor() {   
+    public double driveMotorInput() {   
     	return xbox.getRawAxis(5);
     }
 }

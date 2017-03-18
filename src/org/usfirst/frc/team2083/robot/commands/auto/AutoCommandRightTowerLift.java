@@ -29,10 +29,21 @@ public class AutoCommandRightTowerLift extends CommandGroup {
     	requires(CommandBase.leftDriveSubsystem);
     	requires(CommandBase.rightDriveSubsystem);
     	
-       	addSequential(new AutoCommandDrive((long)3.5*1000, 0.2));
-       	addSequential(new AutoCommandTurnRight((long)1000, 0.2));
-       	addSequential(new AutoCommandDrive((long)1000, 0.2));
-       	addSequential(new AutoCommandGearDoors(AutoCommandGearDoors.DoorAction.OPEN));
+    	// Drive Forward.
+       	addSequential(new AutoCommandDrive((long)2*1000, 0.2));
        	
+       	// Turn towards tower.
+       	addSequential(new AutoCommandTurnLeft((long)2.2 * 1000, 0.2));
+       	
+       	// Drive towards tower.
+       	addSequential(new AutoCommandDrive((long)2 * 1000, 0.2));
+       	
+       	// Stall for a short period while the gear doors open.
+       	addSequential(new AutoCommandDrive((long)1000, 0));
+       	addParallel(new AutoCommandGearDoors(AutoCommandGearDoors.DoorAction.OPEN));
+       	
+       	// Drive backwards and close gear doors.
+       	addSequential(new AutoCommandDrive((long)1000, -0.2));
+       	addParallel(new AutoCommandGearDoors(AutoCommandGearDoors.DoorAction.CLOSE));
     }
 }

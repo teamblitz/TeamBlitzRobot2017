@@ -1,7 +1,7 @@
 <xml version="1.0">
 <dashboard>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
-		<location x="348" y="2"/>
+		<location x="621" y="20"/>
 		<width>483</width>
 		<height>362</height>
 		<property name="Degrees Rotation" value="180"/>
@@ -31,7 +31,7 @@
 		<location x="148" y="300"/>
 	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
-		<location x="208" y="23"/>
+		<location x="213" y="20"/>
 		<width>136</width>
 		<property name="Text" value="Autonomous Mode Program:"/>
 	</static-widget>

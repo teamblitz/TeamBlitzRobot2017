@@ -97,8 +97,12 @@ public class DriveCommand extends CommandBase {
     	// System.out.println("(x, y) = (" + x + ", " + y + ")");
     	
     	if (RobotMap.driveMotorControlType == DriveMotorControlType.VOLTAGE) {
-    		
-    		double driveMotorScaleFactor = -oi.driveMotorFactor()*.3+.4; // Values between 0.125 and 0.5.
+    		double m = -oi.driveMotorInput();
+    		final double a0 = 0.4;
+    		final double a1 = 0.26666;
+    		final double a2 = 0.2;
+    		final double a3 = 0.13333;
+    		double driveMotorScaleFactor = a0 + (a1 * m) + (a2 * Math.pow(m, 2)) + (a3 * Math.pow(m, 3));
 			double leftDriveVoltage = (y + x) * driveMotorScaleFactor;
 			double rightDriveVoltage = (y - x) * driveMotorScaleFactor;
 	        

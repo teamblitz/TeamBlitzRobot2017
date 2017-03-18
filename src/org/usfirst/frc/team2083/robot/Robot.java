@@ -19,8 +19,11 @@ package org.usfirst.frc.team2083.robot;
 import org.usfirst.frc.team2083.robot.RobotMap.DriveMotorControlType;
 import org.usfirst.frc.team2083.robot.commands.CommandBase;
 import org.usfirst.frc.team2083.robot.commands.DriveCommand;
-import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandCenterTowerLift;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandRightTowerLift;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandDefault;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachBaseLine;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandLeftTowerLift;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandCenterTowerLift;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
@@ -35,7 +38,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -145,7 +147,11 @@ public class Robot extends IterativeRobot {
         driveCommand.enableControl();
 
 //        autonomousCommand = (Command) autoChooser.getSelected();
-        autonomousCommand = new AutoCommandCenterTowerLift();
+        autonomousCommand = new AutoCommandRightTowerLift();
+//        autonomousCommand = new AutoCommandLeftTowerLift();
+//        autonomousCommand = new AutoCommandCenterTowerLift();
+//        autonomousCommand = new AutoCommandBreachBaseLine();
+//        autonomousCommand = new AutoCommandDefault();
         autonomousCommand.start();        
     }
 
