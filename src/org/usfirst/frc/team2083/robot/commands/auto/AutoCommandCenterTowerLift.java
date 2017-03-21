@@ -23,9 +23,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoCommandCenterTowerLift extends CommandGroup {
-    
-    public  AutoCommandCenterTowerLift() {    	
+public class AutoCommandCenterTowerLift extends CommandGroup
+{    
+    public AutoCommandCenterTowerLift()
+    {    	
     	requires(CommandBase.leftDriveSubsystem);
     	requires(CommandBase.rightDriveSubsystem);
     	

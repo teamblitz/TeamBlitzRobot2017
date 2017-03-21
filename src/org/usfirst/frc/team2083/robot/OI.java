@@ -62,7 +62,8 @@ public class OI {
     public JoystickButton gearDoorsButton;
     public JoystickButton cameraLightsButton;
     
-    public OI() {
+    public OI()
+    {
         xbox = new Joystick(RobotMap.JS_DRIVER_PORT);
     	ropeUpButton = new JoystickButton(xbox, RobotMap.JS_DRIVER_ROPE_UP_BUTTON);
     	ropeDownButton = new JoystickButton(xbox, RobotMap.JS_DRIVER_ROPE_DOWN_BUTTON); 
@@ -77,15 +78,18 @@ public class OI {
     	ropeHoldButton.whileHeld(new ClimbRopeCommand(ClimbRopeCommand.ClimbingDirection.HOLD));
     }
     
-    public double getMotorDriveLeftRightValue() {
+    public double getMotorDriveLeftRightValue()
+    {
     	return xbox.getX();
     }
     
-    public double getMotorDriveForwardBackValue() {
+    public double getMotorDriveForwardBackValue()
+    {
     	return -xbox.getY();
     }
    
-    public double driveMotorInput() {   
+    public double getMoterDriveScaleFactor()
+    {   
     	return xbox.getRawAxis(5);
     }
 }

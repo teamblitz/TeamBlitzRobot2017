@@ -27,9 +27,10 @@ import edu.wpi.first.wpilibj.Relay;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
-public class RobotMap {
-
-	public enum DriveMotorControlType {
+public class RobotMap
+{
+	public enum DriveMotorControlType
+	{
 		VOLTAGE,
 		PID
 	}

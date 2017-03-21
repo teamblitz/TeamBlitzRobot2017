@@ -20,26 +20,26 @@ import org.usfirst.frc.team2083.robot.RobotMap;
 
 import com.ctre.CANTalon;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 /**
  * The subsystem for the left drive wheel. The subsystem
- * consists of two CAN-bus Talon motor controllers.
+ * consists of two CAN-bus Talon motor controllers with
+ * an encoder..
  */
-public class RightDriveSubsystem extends Subsystem
+public class RightDrivePIDSubsystem extends PIDSubsystem
 {
     public CANTalon rightFront;
     public CANTalon rightBack;
     
-    public RightDriveSubsystem()
+    public RightDrivePIDSubsystem()
     {
-    //    super("Right Drive", 0.01, 0, 0, 0.02);
-    	super("Right Drive");
+        super("Right Drive", 0.01, 0, 0, 0.02);
+
     	this.rightFront = RobotMap.rightForwardMotorController;
         this.rightBack = RobotMap.rightBackMotorController;
-    //    this.enable();
-    //    this.getPIDController().setOutputRange(-12, 12);
-        
+
+        this.getPIDController().setOutputRange(-12, 12);        
     }
 
     protected void initDefaultCommand()
@@ -51,28 +51,23 @@ public class RightDriveSubsystem extends Subsystem
         rightBack.enableControl();
         rightFront.enableControl();
     }
+    
     public void disableControl()
     {
         rightBack.disableControl();
         rightFront.disableControl();
     }
 
-//    public double returnPIDInput()
-//    {
-//       return -rightFront.getSpeed();
-//    }
-//
-//    public void usePIDOutput(double d)
-//    {
-////    	System.out.println("Right " + getSetpoint() + " " + returnPIDInput() + " " + d + " " + rightFront.getOutputCurrent() + " " + rightBack.getOutputCurrent());
-////    	System.out.println("Right d = " + d);
-//        rightFront.set(-d);
-//        rightBack.set(-d);
-//    }
-    
-    public void setVoltage(double voltage)
+    public double returnPIDInput()
     {
-    	rightFront.set(-voltage);
-        rightBack.set(-voltage);
+       return -rightFront.getSpeed();
+    }
+
+    public void usePIDOutput(double d)
+    {
+//    	System.out.println("Right " + getSetpoint() + " " + returnPIDInput() + " " + d + " " + rightFront.getOutputCurrent() + " " + rightBack.getOutputCurrent());
+//    	System.out.println("Right d = " + d);
+        rightFront.pidWrite(-d);
+        rightBack.pidWrite(-d);
     }
 }

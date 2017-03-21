@@ -28,70 +28,82 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * consists of two servers, one controlling each
  * door.
  */
-public class GearDoorsSubsystem extends Subsystem {
-    
+public class GearDoorsSubsystem extends Subsystem
+{    
     public Servo rightDoor;
     public Servo leftDoor;
     
-    public GearDoorsSubsystem() {
+    public GearDoorsSubsystem()
+    {
     	super("Gear Door");
     	rightDoor = RobotMap.rightGearDoorServo;
         leftDoor = RobotMap.leftGearDoorServo;
     }
     
-    protected void initDefaultCommand() {
-    
+    protected void initDefaultCommand()
+    {
     }
     
-    public void enableControl() {
-
+    public void enableControl()
+    {
     }
 
-    public void disableControl() {
-
+    public void disableControl()
+    {
     }
     
-    public boolean isOpen() {
+    public boolean isOpen()
+    {
     	return isLeftDoorOpen() && isRightDoorOpen();
     }
     
-    public boolean isLeftDoorOpen() {
+    public boolean isLeftDoorOpen()
+    {
     	return leftDoor.getAngle() > 119;
     }
     
-    public boolean isRightDoorOpen() {
+    public boolean isRightDoorOpen()
+    {
     	return rightDoor.getAngle() > 169;
     }
     
-    public boolean isClosed() {
+    public boolean isClosed()
+    {
     	return isLeftDoorClosed() && isRightDoorClosed();
     }
     
-    public boolean isLeftDoorClosed() {
+    public boolean isLeftDoorClosed()
+    {
     	return leftDoor.getAngle() < 1;
     }
 
-    public boolean isRightDoorClosed() {
+    public boolean isRightDoorClosed()
+    {
     	return leftDoor.getAngle() < 1;
     }
 
-    public void open() {
+    public void open()
+    {
     	leftDoor.setAngle(120);	
     	rightDoor.setAngle(140);
     	System.out.println("Open Doors");
     }
     
-    public void close() {
+    public void close()
+    {
     	leftDoor.setAngle(0);	
     	rightDoor.setAngle(0);
     	System.out.println("Closed Doors");
     }
     
-    public void toggle() {
-	    if (isClosed()) {
+    public void toggle()
+    {
+	    if (isClosed())
+	    {
 	    	open();
 	    }
-	    else {
+	    else
+	    {
 	    	close();
 	    }
     }

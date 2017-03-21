@@ -59,19 +59,23 @@ public class Robot extends IterativeRobot {
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
-    public void robotInit() {
+    public void robotInit()
+    {
         // Initialize motor controllers.
         RobotMap.leftForwardMotorController = new CANTalon(RobotMap.LEFT_FORWARD_MOTOR_CONTROLLER_ID);
         RobotMap.leftBackMotorController = new CANTalon(RobotMap.LEFT_BACK_MOTOR_CONTROLLER_ID);
         RobotMap.rightForwardMotorController = new CANTalon(RobotMap.RIGHT_FORWARD_MOTOR_CONTROLLER_ID);
         RobotMap.rightBackMotorController = new CANTalon(RobotMap.RIGHT_BACK_MOTOR_CONTROLLER_ID);
     
-        if (RobotMap.driveMotorControlType == DriveMotorControlType.VOLTAGE) {
+        if (RobotMap.driveMotorControlType == DriveMotorControlType.VOLTAGE)
+        {
 	        RobotMap.leftForwardMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 	        RobotMap.leftBackMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 	        RobotMap.rightForwardMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 	        RobotMap.rightBackMotorController.changeControlMode(CANTalon.TalonControlMode.PercentVbus);                                            
-        } else if (RobotMap.driveMotorControlType == DriveMotorControlType.PID) {
+        }
+        else if (RobotMap.driveMotorControlType == DriveMotorControlType.PID)
+        {
         	RobotMap.leftForwardMotorController.changeControlMode(CANTalon.TalonControlMode.Speed);
 	        RobotMap.leftBackMotorController.changeControlMode(CANTalon.TalonControlMode.Speed );
 	        RobotMap.rightForwardMotorController.changeControlMode(CANTalon.TalonControlMode.Speed);
@@ -81,7 +85,7 @@ public class Robot extends IterativeRobot {
 	        RobotMap.leftBackMotorController.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 	        RobotMap.rightForwardMotorController.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 	        RobotMap.rightBackMotorController.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-	        
+	        	        
 	        RobotMap.leftForwardMotorController.reverseSensor(false);
 	        RobotMap.leftBackMotorController.reverseSensor(false);
 	        RobotMap.rightForwardMotorController.reverseSensor(false);
@@ -102,10 +106,10 @@ public class Robot extends IterativeRobot {
 	        RobotMap.rightForwardMotorController.configPeakOutputVoltage(+12.0f, -12.0);
 	        RobotMap.rightBackMotorController.configPeakOutputVoltage(+12.0f, -12.0);
 
-	        RobotMap.leftForwardMotorController.setPID(0, 0, 0, 0, 0, 0, 0);	// FIXME
-	        RobotMap.leftBackMotorController.setPID(0, 0, 0, 0, 0, 0, 0);		// FIXME
-	        RobotMap.rightForwardMotorController.setPID(0, 0, 0, 0, 0, 0, 0);	// FIXME
-	        RobotMap.rightBackMotorController.setPID(0, 0, 0, 0, 0, 0, 0);		// FIXME
+	        RobotMap.leftForwardMotorController.setPID(0.01, 0, 0, 0.02, 0, 0, 0);		// p, i, d, f, izone, closeLoopRampRate, profile
+	        RobotMap.leftBackMotorController.setPID(0.01, 0, 0, 0.02, 0, 0, 0);
+	        RobotMap.rightForwardMotorController.setPID(0.01, 0, 0, 0.02, 0, 0, 0);
+	        RobotMap.rightBackMotorController.setPID(0.01, 0, 0, 0.02, 0, 0, 0);
         }
        
         RobotMap.ropeClimbingMotorController = new CANTalon(RobotMap.ROPE_CLIMBING_MOTOR_CONTROLLER);
@@ -143,7 +147,8 @@ public class Robot extends IterativeRobot {
     /**
      * This function is called to initialize autonomous mode.
      */
-    public void autonomousInit() {
+    public void autonomousInit()
+    {
         driveCommand.enableControl();
 
 //        autonomousCommand = (Command) autoChooser.getSelected();
@@ -158,14 +163,16 @@ public class Robot extends IterativeRobot {
     /**
      * This function is called periodically during autonomous.
      */
-    public void autonomousPeriodic() {
+    public void autonomousPeriodic()
+    {
     	Scheduler.getInstance().run();
     }
 
     /**
      * This function is called to initialize teleop mode.
      */
-    public void teleopInit() {
+    public void teleopInit()
+    {
         driveCommand.enableControl();
         driveCommand.start();        
     }
@@ -173,20 +180,23 @@ public class Robot extends IterativeRobot {
     /**
      * This function is called periodically during operator control.
      */
-    public void teleopPeriodic() {
+    public void teleopPeriodic()
+    {
         Scheduler.getInstance().run();
     }
     
     /**
      * This function is called to initialize test mode.
      */
-    public void testInit() {
+    public void testInit()
+    {
     }
     
     /**
      * This function is called periodically during test mode.
      */
-    public void testPeriodic() {
+    public void testPeriodic()
+    {
         LiveWindow.run();
     }
 }

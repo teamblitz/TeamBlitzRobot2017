@@ -28,24 +28,27 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * The rope-climbing subsystem. The subsystem is composed
  * of a single CAN-bus Talon motor controller.
  */
-public class RopeClimbingSubsystem extends Subsystem {
-    
+public class RopeClimbingSubsystem extends Subsystem
+{    
     public CANTalon ropeMotor;
     
-    public RopeClimbingSubsystem() {
+    public RopeClimbingSubsystem()
+    {
     	super("Rope Climber");
     	ropeMotor = RobotMap.ropeClimbingMotorController;
     }
     
-    protected void initDefaultCommand() {
-
+    protected void initDefaultCommand()
+    {
     }
     
-    public void enableControl() {
+    public void enableControl()
+    {
     	ropeMotor.enableControl();
     }
     
-    public void disableControl() {
+    public void disableControl()
+    {
     	ropeMotor.disableControl();
     }
 

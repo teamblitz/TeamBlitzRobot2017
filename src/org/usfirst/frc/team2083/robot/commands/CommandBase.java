@@ -17,11 +17,15 @@
 package org.usfirst.frc.team2083.robot.commands;
 
 import org.usfirst.frc.team2083.robot.OI;
+import org.usfirst.frc.team2083.robot.RobotMap;
+import org.usfirst.frc.team2083.robot.RobotMap.DriveMotorControlType;
+import org.usfirst.frc.team2083.robot.subsystems.CameraLightsSubsystem;
 import org.usfirst.frc.team2083.robot.subsystems.GearDoorsSubsystem;
+import org.usfirst.frc.team2083.robot.subsystems.LeftDrivePIDSubsystem;
 import org.usfirst.frc.team2083.robot.subsystems.LeftDriveSubsystem;
+import org.usfirst.frc.team2083.robot.subsystems.RightDrivePIDSubsystem;
 import org.usfirst.frc.team2083.robot.subsystems.RightDriveSubsystem;
 import org.usfirst.frc.team2083.robot.subsystems.RopeClimbingSubsystem;
-import org.usfirst.frc.team2083.robot.subsystems.CameraLightsSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -36,6 +40,10 @@ public abstract class CommandBase extends Command {
     // Create a single static instance of each of your subsystems.
 	public static LeftDriveSubsystem leftDriveSubsystem = new LeftDriveSubsystem();
     public static RightDriveSubsystem rightDriveSubsystem = new RightDriveSubsystem();
+    
+	public static LeftDrivePIDSubsystem leftDrivePIDSubsystem = new LeftDrivePIDSubsystem();
+    public static RightDrivePIDSubsystem rightDrivePIDSubsystem = new RightDrivePIDSubsystem();
+    
     public static RopeClimbingSubsystem ropeClimberSubsystem = new RopeClimbingSubsystem();
     public static GearDoorsSubsystem gearDoorsSubsystem = new GearDoorsSubsystem();
     public static CameraLightsSubsystem cameraLightsSubsystem = new CameraLightsSubsystem();
@@ -52,8 +60,17 @@ public abstract class CommandBase extends Command {
         oi = new OI();
        
         // Show what command your subsystem is running on the SmartDashboard
-        SmartDashboard.putData(leftDriveSubsystem);
-        SmartDashboard.putData(rightDriveSubsystem);
+    	if (RobotMap.driveMotorControlType == DriveMotorControlType.VOLTAGE)
+    	{
+    		SmartDashboard.putData(leftDriveSubsystem);
+        	SmartDashboard.putData(rightDriveSubsystem);
+    	}
+    	else
+    	{
+    		SmartDashboard.putData(leftDrivePIDSubsystem);
+        	SmartDashboard.putData(rightDrivePIDSubsystem);
+    	}
+        	
         SmartDashboard.putData(ropeClimberSubsystem);
         SmartDashboard.putData(gearDoorsSubsystem);
         SmartDashboard.putData(cameraLightsSubsystem);

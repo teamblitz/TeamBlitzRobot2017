@@ -23,26 +23,27 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoCommandRightTowerLift extends CommandGroup {
-    
-    public  AutoCommandRightTowerLift() {    	
+public class AutoCommandRightTowerLift extends CommandGroup
+{    
+    public  AutoCommandRightTowerLift()
+    {    	
     	requires(CommandBase.leftDriveSubsystem);
     	requires(CommandBase.rightDriveSubsystem);
     	
-    	// Drive Forward.
+    	// 1. Drive Forward.
        	addSequential(new AutoCommandDrive((long)2*1000, 0.2));
        	
-       	// Turn towards tower.
+       	// 2. Turn towards tower.
        	addSequential(new AutoCommandTurnLeft((long)2.2 * 1000, 0.2));
        	
-       	// Drive towards tower.
+       	// 3. Drive towards tower.
        	addSequential(new AutoCommandDrive((long)2 * 1000, 0.2));
        	
-       	// Stall for a short period while the gear doors open.
+       	// 4. Stall for a short period while the gear doors open.
        	addSequential(new AutoCommandDrive((long)1000, 0));
        	addParallel(new AutoCommandGearDoors(AutoCommandGearDoors.DoorAction.OPEN));
        	
-       	// Drive backwards and close gear doors.
+       	// 5. Drive backwards and close gear doors.
        	addSequential(new AutoCommandDrive((long)1000, -0.2));
        	addParallel(new AutoCommandGearDoors(AutoCommandGearDoors.DoorAction.CLOSE));
     }

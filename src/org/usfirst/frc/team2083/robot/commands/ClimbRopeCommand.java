@@ -23,9 +23,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class ClimbRopeCommand extends CommandBase {
-	
-	public enum ClimbingDirection {
+public class ClimbRopeCommand extends CommandBase
+{	
+	public enum ClimbingDirection
+	{
 		UP,
 		DOWN,
 		HOLD
@@ -37,7 +38,8 @@ public class ClimbRopeCommand extends CommandBase {
 	
 	ClimbingDirection direction;
 	
-    public ClimbRopeCommand(ClimbingDirection direction) {
+    public ClimbRopeCommand(ClimbingDirection direction)
+    {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(ropeClimberSubsystem);
@@ -45,20 +47,24 @@ public class ClimbRopeCommand extends CommandBase {
         this.direction = direction;
     }
     
-    public void enableControl() {
+    public void enableControl()
+    {
     	ropeClimberSubsystem.enableControl();
     }
     
-    public void disableControl() {
+    public void disableControl()
+    {
     	ropeClimberSubsystem.disableControl();
     }
 
     // Called just before this Command runs the first time.
-    protected void initialize() {
+    protected void initialize()
+    {
     }
     
     // Called repeatedly when this Command is scheduled to run.
-    protected void execute() {
+    protected void execute()
+    {
     	switch (direction) {
 	    	case UP:
 	    		ropeClimberSubsystem.setVoltage(ropeMotorUpScaleFactor);
@@ -77,18 +83,21 @@ public class ClimbRopeCommand extends CommandBase {
     }
 
 	// Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    protected boolean isFinished()
+    {
         return false;
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    protected void end()
+    {
     	ropeClimberSubsystem.setVoltage(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+    protected void interrupted()
+    {
     	ropeClimberSubsystem.setVoltage(0);
     }
 }

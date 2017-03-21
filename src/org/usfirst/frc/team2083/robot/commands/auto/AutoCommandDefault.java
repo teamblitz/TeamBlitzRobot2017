@@ -23,9 +23,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoCommandDefault extends CommandGroup {
-    
-    public  AutoCommandDefault() {    	
+public class AutoCommandDefault extends CommandGroup
+{    
+    public AutoCommandDefault()
+    {    	
     	requires(CommandBase.leftDriveSubsystem);
     	requires(CommandBase.rightDriveSubsystem);
 

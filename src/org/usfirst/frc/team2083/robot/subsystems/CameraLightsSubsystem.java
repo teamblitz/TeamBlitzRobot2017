@@ -28,34 +28,40 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * consists of two servers, one controlling each
  * door.
  */
-public class CameraLightsSubsystem extends Subsystem {
-    
+public class CameraLightsSubsystem extends Subsystem
+{    
     public Relay cameraLightsRelay;
     
-    public CameraLightsSubsystem() {
+    public CameraLightsSubsystem()
+    {
     	super("Camera Lights");
     	cameraLightsRelay = RobotMap.cameraLightsRelay;
     }
     
-    protected void initDefaultCommand() {
-    
+    protected void initDefaultCommand()
+    {
     }
     
-    public void enableControl() {
-
+    public void enableControl()
+    {
     }
 
-    public void disableControl() {
-
+    public void disableControl()
+    {
     }
     
-     public void toggle() {
-    	if (cameraLightsRelay.get() == Relay.Value.kForward) {
+     public void toggle()
+     {
+    	if (cameraLightsRelay.get() == Relay.Value.kForward)
+    	{
     		cameraLightsRelay.set(Relay.Value.kOff);
     	}
-    	else if (cameraLightsRelay.get() == Relay.Value.kOff) {
+    	else if (cameraLightsRelay.get() == Relay.Value.kOff)
+    	{
     		cameraLightsRelay.set(Relay.Value.kForward);
-    	} else {
+    	}
+    	else
+    	{
     		cameraLightsRelay.set(Relay.Value.kOff);
     	}
     }
