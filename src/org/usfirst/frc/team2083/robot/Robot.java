@@ -36,6 +36,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -77,9 +78,9 @@ public class Robot extends IterativeRobot {
         else if (RobotMap.driveMotorControlType == DriveMotorControlType.PID)
         {
         	RobotMap.leftForwardMotorController.changeControlMode(CANTalon.TalonControlMode.Speed);
-	        RobotMap.leftBackMotorController.changeControlMode(CANTalon.TalonControlMode.Speed );
+	        RobotMap.leftBackMotorController.changeControlMode(CANTalon.TalonControlMode.Follower);
 	        RobotMap.rightForwardMotorController.changeControlMode(CANTalon.TalonControlMode.Speed);
-	        RobotMap.rightBackMotorController.changeControlMode(CANTalon.TalonControlMode.Speed);
+	        RobotMap.rightBackMotorController.changeControlMode(CANTalon.TalonControlMode.Follower);
 	        
 	        RobotMap.leftForwardMotorController.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 	        RobotMap.leftBackMotorController.setFeedbackDevice(FeedbackDevice.QuadEncoder);
@@ -87,14 +88,10 @@ public class Robot extends IterativeRobot {
 	        RobotMap.rightBackMotorController.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 	        	        
 	        RobotMap.leftForwardMotorController.reverseSensor(false);
-	        RobotMap.leftBackMotorController.reverseSensor(false);
 	        RobotMap.rightForwardMotorController.reverseSensor(false);
-	        RobotMap.rightBackMotorController.reverseSensor(false);
 	        
-	        RobotMap.leftForwardMotorController.configEncoderCodesPerRev(12);
-	        RobotMap.leftBackMotorController.configEncoderCodesPerRev(12);
-	        RobotMap.rightForwardMotorController.configEncoderCodesPerRev(12);
-	        RobotMap.rightBackMotorController.configEncoderCodesPerRev(12);
+	        RobotMap.leftForwardMotorController.configEncoderCodesPerRev(1440);
+	        RobotMap.rightForwardMotorController.configEncoderCodesPerRev(1440);
 	        
 	        RobotMap.leftForwardMotorController.configNominalOutputVoltage(+0.0f, -0.0f);
 	        RobotMap.leftBackMotorController.configNominalOutputVoltage(+0.0f, -0.0f);
@@ -121,6 +118,9 @@ public class Robot extends IterativeRobot {
         
         RobotMap.cameraLightsRelay = new Relay(RobotMap.CAMERA_LIGHTS_RELAY_ID);
         
+        // Initialize network tables.
+        RobotMap.targetTrackingTable = NetworkTable.getTable(RobotMap.TARGET_TRACKING_TABLE_NAME);
+        
         // Initialize all subsystems.
         CommandBase.init();
         driveCommand = new DriveCommand();
@@ -133,8 +133,6 @@ public class Robot extends IterativeRobot {
 //        autoChooser.addObject("Left Tower Lift", new AutoCommandLeftTowerLift());
 //        autoChooser.addObject("Center Tower Lift", new AutoCommandCenterTowerLift());
 //        autoChooser.addObject("Right Tower Lift", new AutoCommandRightTowerLift());
-        
-        
         
         // SmartDashboard setup. 
         SmartDashboard.putData("Autonmous Mode", autoChooser);

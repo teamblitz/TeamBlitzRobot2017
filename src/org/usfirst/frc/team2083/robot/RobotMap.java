@@ -18,8 +18,9 @@ package org.usfirst.frc.team2083.robot;
     
 import com.ctre.CANTalon;
 
-import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -74,4 +75,12 @@ public class RobotMap
     public static final int JS_DRIVER_ROPE_DOWN_BUTTON = 7;
     public static final int JS_DRIVER_GEAR_DOORS_BUTTON = 1;
     public static final int CAMERA_LIGHTS_BUTTON = 4;
+    
+    // Network Table
+    public static final String TARGET_TRACKING_TABLE_NAME = "target_tracking";
+    public static final String TARGET_TRACKING_TABLE_KEY_TRACKING = "tracking";
+    public static final String TARGET_TRACKING_TABLE_KEY_TARGET_CENTER = "center";
+    public static final String TARGET_TRACKING_TABLE_KEY_TARGET_RECT = "rect";    
+    public static final String TARGET_TRACKING_TABLE_KEY_TARGET_AREA = "area";    
+    public static NetworkTable targetTrackingTable;
 }

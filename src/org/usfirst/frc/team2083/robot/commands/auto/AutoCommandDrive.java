@@ -34,8 +34,8 @@ public class AutoCommandDrive extends CommandBase
     	requires(leftDriveSubsystem);
     	requires(rightDriveSubsystem);
     	
-    	this.duration = duration;
     	this.voltage = voltage;
+    	this.duration = duration;
     }
 
     // Called just before this Command runs the first time
