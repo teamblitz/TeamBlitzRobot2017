@@ -49,11 +49,16 @@ public class AutoCommandDriveWhileTracking extends CommandBase
     {
     }
 
+    public static double clamp(double val, double min, double max) {
+        return Math.max(min, Math.min(max, val));
+    }
+    
     // Called repeatedly when this Command is scheduled to run
     protected void execute()
     {
     	long x = TargetTracker.getX();
-    	double scaleFactor = Math.min(0.25, 1 - Math.abs(x - ROBOT_CENTER_POSITION)/ROBOT_CENTER_POSITION);
+    	double scaleFactor = 1 - Math.abs(x - ROBOT_CENTER_POSITION)/ROBOT_CENTER_POSITION;
+    	scaleFactor = clamp(scaleFactor, 0.4, 1);
     	
     	if (x > 0 && x < ROBOT_CENTER_POSITION)
     	{
