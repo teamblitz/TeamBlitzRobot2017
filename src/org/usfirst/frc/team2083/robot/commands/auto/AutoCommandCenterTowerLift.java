@@ -31,7 +31,7 @@ public class AutoCommandCenterTowerLift extends CommandGroup
     	requires(CommandBase.rightDriveSubsystem);
     	
     	// 1. Drive forward.
-       	addSequential(new AutoCommandDrive(2950, .2));
+       	addSequential(new AutoCommandDrive(3500, .2));
 
        	// 2. Stall for a short period while the gear doors open.
        	addSequential(new AutoCommandDrive(2000, 0));
