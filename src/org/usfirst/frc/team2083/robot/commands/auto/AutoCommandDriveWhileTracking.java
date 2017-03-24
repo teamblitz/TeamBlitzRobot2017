@@ -24,15 +24,14 @@ import org.usfirst.frc.team2083.robot.commands.CommandBase;
  */
 public class AutoCommandDriveWhileTracking extends CommandBase
 {
-	final long DEACQUISITION_DURATION_LIMIT = 200; 	// ms
-	final long ROBOT_CENTER_POSITION = 200; 	    // FIXME
+	final long ROBOT_CENTER_POSITION = 320;
+	final long TARGET_AREA_THRESHOLD = 100000;
+	final long DEACQUISITION_DURATION_LIMIT = 60 * 1000; 	// seconds
 	
 	double voltage;
-	double xPos;
-	double targetAreaTheshold;
 	long lostTargetTimerStart;
 	
-    public AutoCommandDriveWhileTracking(double voltage, double xPos, double targetAreaThreshold)
+    public AutoCommandDriveWhileTracking(double voltage)
     {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -40,8 +39,6 @@ public class AutoCommandDriveWhileTracking extends CommandBase
     	requires(rightDriveSubsystem);
     	
     	this.voltage = voltage;
-    	this.xPos = xPos;
-    	this.targetAreaTheshold = targetAreaThreshold;
     }
 
     // Called just before this Command runs the first time
@@ -58,22 +55,25 @@ public class AutoCommandDriveWhileTracking extends CommandBase
     {
     	long x = TargetTracker.getX();
     	double scaleFactor = 1 - Math.abs(x - ROBOT_CENTER_POSITION)/ROBOT_CENTER_POSITION;
-    	scaleFactor = clamp(scaleFactor, 0.4, 1);
+    	scaleFactor = clamp(scaleFactor, 0.6, 1);
     	
-    	if (x > 0 && x < ROBOT_CENTER_POSITION)
+    	if ((x > 0) && (x < ROBOT_CENTER_POSITION))
     	{
+    		System.out.println("TRACKING: Steering left");
     		// Turn left while driving forward.
     		leftDriveSubsystem.setVoltage(voltage * scaleFactor);
     		rightDriveSubsystem.setVoltage(voltage);
     	}
-    	else if (x > 0 && x > ROBOT_CENTER_POSITION)
+    	else if ((x > 0) && (x > ROBOT_CENTER_POSITION))
     	{
+    		System.out.println("TRACKING: Steering right");
     		// Turn right while driving forward.
     		leftDriveSubsystem.setVoltage(voltage);
     		rightDriveSubsystem.setVoltage(voltage * scaleFactor);
     	}
     	else
     	{
+    		System.out.println("TRACKING: Heading straight");
     		// Keep going straight.
     		leftDriveSubsystem.setVoltage(voltage);
     		rightDriveSubsystem.setVoltage(voltage);
@@ -106,7 +106,7 @@ public class AutoCommandDriveWhileTracking extends CommandBase
     		lostTargetTimerStart = 0;    		
     	}
 
-    	return TargetTracker.getArea() > targetAreaTheshold;
+    	return TargetTracker.getArea() > TARGET_AREA_THRESHOLD;
     }
 
     // Called once after isFinished returns true
