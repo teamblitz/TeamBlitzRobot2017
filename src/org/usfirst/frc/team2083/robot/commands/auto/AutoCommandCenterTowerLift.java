@@ -31,16 +31,15 @@ public class AutoCommandCenterTowerLift extends CommandGroup
     	requires(CommandBase.rightDriveSubsystem);
     	
     	// 1. Drive forward.
-       	addSequential(new AutoCommandDrive(2950, .2));
-
-       	// 2. Stall for a short period while the gear doors open.
-       	addSequential(new AutoCommandDrive(2000, 0));
-       	addParallel(new AutoCommandGearDoors(AutoCommandGearDoors.DoorAction.OPEN));
-       	
-       	// 3. Drive backwards to clear the lift peg.
-       	addSequential(new AutoCommandDrive(2000, -.15));
-       	
-       	// 4. Close the gear doors so they are ready for the next reload.
-      	addSequential(new AutoCommandGearDoors(AutoCommandGearDoors.DoorAction.CLOSE));
+//       	addSequential(new AutoCommandDriveWhileTracking(.2));
+//
+//       	// 2. Stall for a short period while the gear doors open.
+//       	addSequential(new AutoCommandGearDoors(AutoCommandGearDoors.DoorAction.OPEN));
+//       	
+//       	// 3. Drive backwards to clear the lift peg.
+//       	addSequential(new AutoCommandDrive(2000, -.15));
+//       	
+//       	// 4. Close the gear doors so they are ready for the next reload.
+//      	addSequential(new AutoCommandGearDoors(AutoCommandGearDoors.DoorAction.CLOSE));
     }
 }

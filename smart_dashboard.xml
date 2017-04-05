@@ -5,7 +5,7 @@
 		<width>483</width>
 		<height>362</height>
 		<property name="Degrees Rotation" value="180"/>
-		<property name="Camera Choice" value="USB Camera 0"/>
+		<property name="Camera Choice" value="USB Camera 1"/>
 	</static-widget>
 	<widget field="Auto Selector" type="String" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
 		<location x="4" y="259"/>

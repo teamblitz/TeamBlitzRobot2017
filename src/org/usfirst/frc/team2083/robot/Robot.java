@@ -20,10 +20,13 @@ import org.usfirst.frc.team2083.robot.RobotMap.DriveMotorControlType;
 import org.usfirst.frc.team2083.robot.commands.CommandBase;
 import org.usfirst.frc.team2083.robot.commands.DriveCommand;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandRightTowerLift;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandRightTowerLiftWithTracking;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandDefault;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandDriveWhileTracking;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandBreachBaseLine;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandLeftTowerLift;
 import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandCenterTowerLift;
+import org.usfirst.frc.team2083.robot.commands.auto.AutoCommandCenterTowerLiftWithTracking;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
@@ -120,6 +123,7 @@ public class Robot extends IterativeRobot {
         
         // Initialize network tables.
         RobotMap.targetTrackingTable = NetworkTable.getTable(RobotMap.TARGET_TRACKING_TABLE_NAME);
+        TargetTracker.reset();
         
         // Initialize all subsystems.
         CommandBase.init();
@@ -128,7 +132,8 @@ public class Robot extends IterativeRobot {
         
         // Autonomous setup.
         autoChooser = new SendableChooser<CommandGroup>();
-        autoChooser.addDefault("Default (Nothing)", new AutoCommandDefault());
+        autoChooser.addDefault("Default", new AutoCommandDefault());
+//        autoChooser.addDefault("Default (Nothing)", new AutoCommandDefault());
 //        autoChooser.addObject("Breach Base Line", new AutoCommandBreachBaseLine());
 //        autoChooser.addObject("Left Tower Lift", new AutoCommandLeftTowerLift());
 //        autoChooser.addObject("Center Tower Lift", new AutoCommandCenterTowerLift());
@@ -139,7 +144,6 @@ public class Robot extends IterativeRobot {
 
         // Starts the camera server
         CameraServer.getInstance().startAutomaticCapture();
-        CameraServer.getInstance().startAutomaticCapture();        
     }
     
     /**
@@ -150,9 +154,12 @@ public class Robot extends IterativeRobot {
         driveCommand.enableControl();
 
 //        autonomousCommand = (Command) autoChooser.getSelected();
-        autonomousCommand = new AutoCommandRightTowerLift();
+//        autonomousCommand = new AutoCommandRightTowerLift();
+//        autonomousCommand = new AutoCommandDriveWhileTracking(.15);
 //        autonomousCommand = new AutoCommandLeftTowerLift();
 //        autonomousCommand = new AutoCommandCenterTowerLift();
+        autonomousCommand = new AutoCommandCenterTowerLiftWithTracking();
+//        autonomousCommand = new AutoCommandRightTowerLiftWithTracking();
 //        autonomousCommand = new AutoCommandBreachBaseLine();
 //        autonomousCommand = new AutoCommandDefault();
         autonomousCommand.start();        

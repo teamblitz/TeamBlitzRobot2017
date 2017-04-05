@@ -59,12 +59,12 @@ public class GearDoorsSubsystem extends Subsystem
     
     public boolean isLeftDoorOpen()
     {
-    	return leftDoor.getAngle() > 119;
+    	return leftDoor.getAngle() > 80;
     }
     
     public boolean isRightDoorOpen()
     {
-    	return rightDoor.getAngle() > 169;
+    	return rightDoor.getAngle() > 120;
     }
     
     public boolean isClosed()
@@ -74,12 +74,12 @@ public class GearDoorsSubsystem extends Subsystem
     
     public boolean isLeftDoorClosed()
     {
-    	return leftDoor.getAngle() < 1;
+    	return leftDoor.getAngle() < 20;
     }
 
     public boolean isRightDoorClosed()
     {
-    	return leftDoor.getAngle() < 1;
+    	return leftDoor.getAngle() < 20;
     }
 
     public void open()

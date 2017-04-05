@@ -23,23 +23,29 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoCommandCenterTowerLiftWithTracking extends CommandGroup
+public class AutoCommandRightTowerLiftWithTracking extends CommandGroup
 {    
-    public AutoCommandCenterTowerLiftWithTracking()
+    public  AutoCommandRightTowerLiftWithTracking()
     {    	
     	requires(CommandBase.leftDriveSubsystem);
     	requires(CommandBase.rightDriveSubsystem);
     	
-    	// 1. Drive forward.
+    	// 1. Drive Forward.
+       	addSequential(new AutoCommandDrive((long)1.2*1000, 0.2));
+       	
+       	// 2. Turn towards tower.
+       	addSequential(new AutoCommandTurnLeft((long)2 * 1000, 0.2));
+       	
+       	// 3. Drive towards tower.
        	addSequential(new AutoCommandDriveWhileTracking(.2));
-
-       	// 2. Stall for a short period while the gear doors open.
-       	addSequential(new AutoCommandGearDoors(AutoCommandGearDoors.DoorAction.OPEN));
        	
-       	// 3. Drive backwards to clear the lift peg.
-       	addSequential(new AutoCommandDrive(2000, -.15));
+       	// 4. Stall for a short period while the gear doors open.
+       	addSequential(new AutoCommandDrive((long)1000, 0));
+       	addParallel(new AutoCommandGearDoors(AutoCommandGearDoors.DoorAction.OPEN));
+       	addSequential(new AutoCommandDrive((long)1000, 0));
        	
-       	// 4. Close the gear doors so they are ready for the next reload.
-      	addSequential(new AutoCommandGearDoors(AutoCommandGearDoors.DoorAction.CLOSE));
+       	// 5. Drive backwards and close gear doors.
+       	addSequential(new AutoCommandDrive((long)1000, -0.2));
+       	addParallel(new AutoCommandGearDoors(AutoCommandGearDoors.DoorAction.CLOSE));
     }
 }

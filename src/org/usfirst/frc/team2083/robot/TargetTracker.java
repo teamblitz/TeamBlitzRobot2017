@@ -25,4 +25,12 @@ public final class TargetTracker
 	{
 		return (long)RobotMap.targetTrackingTable.getNumber(RobotMap.TARGET_TRACKING_TABLE_KEY_TARGET_AREA, 0);
 	}
+	
+	public static void reset()
+	{
+		RobotMap.targetTrackingTable.putBoolean(RobotMap.TARGET_TRACKING_TABLE_KEY_TRACKING, false);
+		RobotMap.targetTrackingTable.putNumberArray(RobotMap.TARGET_TRACKING_TABLE_KEY_TARGET_CENTER, new double[] {0.0, 0.0} );
+		RobotMap.targetTrackingTable.putNumberArray(RobotMap.TARGET_TRACKING_TABLE_KEY_TARGET_RECT, new double[] {0.0, 0.0, 0.0, 0.0} );
+		RobotMap.targetTrackingTable.putNumber(RobotMap.TARGET_TRACKING_TABLE_KEY_TARGET_AREA, 0);
+	}
 }

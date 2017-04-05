@@ -29,6 +29,7 @@ public class AutoCommandGearDoors extends CommandBase
 		CLOSE
 	}
 
+	long commandStartTime;
 	DoorAction action; 
 	
     public AutoCommandGearDoors(DoorAction action)
@@ -43,6 +44,7 @@ public class AutoCommandGearDoors extends CommandBase
     // Called just before this Command runs the first time
     protected void initialize()
     {
+    	commandStartTime = System.currentTimeMillis();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -63,13 +65,7 @@ public class AutoCommandGearDoors extends CommandBase
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished()
     {
-    	switch (action) {
-			case OPEN:
-				return gearDoorsSubsystem.isOpen();
-			case CLOSE:
-			default:
-				return gearDoorsSubsystem.isClosed();
-    	}
+    	return System.currentTimeMillis() - commandStartTime > 1000;
     }
 
     // Called once after isFinished returns true

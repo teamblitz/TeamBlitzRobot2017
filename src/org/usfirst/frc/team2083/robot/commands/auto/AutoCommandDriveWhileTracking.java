@@ -24,51 +24,63 @@ import org.usfirst.frc.team2083.robot.commands.CommandBase;
  */
 public class AutoCommandDriveWhileTracking extends CommandBase
 {
-	final long DEACQUISITION_DURATION_LIMIT = 200; 	// ms
-	final long ROBOT_CENTER_POSITION = 200; 	    // FIXME
+	final long ROBOT_CENTER_POSITION = 152;
+	final long TARGET_AREA_THRESHOLD = 9800;
+	final long DEACQUISITION_DURATION_LIMIT = 5 * 1000; 	// seconds
 	
 	double voltage;
-	double xPos;
-	double targetAreaTheshold;
 	long lostTargetTimerStart;
 	
-    public AutoCommandDriveWhileTracking(double voltage, double xPos, double targetAreaThreshold)
+    public AutoCommandDriveWhileTracking(double voltage)
     {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(leftDriveSubsystem);
     	requires(rightDriveSubsystem);
+    	requires(cameraLightsSubsystem);
     	
     	this.voltage = voltage;
-    	this.xPos = xPos;
-    	this.targetAreaTheshold = targetAreaThreshold;
     }
 
     // Called just before this Command runs the first time
     protected void initialize()
     {
+    	cameraLightsSubsystem.turnOn();
     }
 
+    public static double clamp(double val, double min, double max)
+    {
+    	return Math.max(min, Math.min(max,  val));
+    }
+    
     // Called repeatedly when this Command is scheduled to run
     protected void execute()
     {
+    	final long epsilon = 10;
     	long x = TargetTracker.getX();
-    	double scaleFactor = Math.min(0.25, 1 - Math.abs(x - ROBOT_CENTER_POSITION)/ROBOT_CENTER_POSITION);
+    	double scaleFactor = 1 - Math.abs((double)x -(double)ROBOT_CENTER_POSITION)/(double)ROBOT_CENTER_POSITION;
+    	scaleFactor = clamp(scaleFactor, 0, 1);
+    	System.out.println("TRACKING: " + scaleFactor);
     	
-    	if (x > 0 && x < ROBOT_CENTER_POSITION)
+    	if ((x > 0) && (x < ROBOT_CENTER_POSITION - epsilon))
     	{
+    		System.out.println("TRACKING: Steering left");
     		// Turn left while driving forward.
-    		leftDriveSubsystem.setVoltage(voltage * scaleFactor);
+//    		leftDriveSubsystem.setVoltage(voltage * scaleFactor);
+    		leftDriveSubsystem.setVoltage(-voltage);
     		rightDriveSubsystem.setVoltage(voltage);
     	}
-    	else if (x > 0 && x > ROBOT_CENTER_POSITION)
+    	else if (x > 0 && x > ROBOT_CENTER_POSITION + epsilon)
     	{
+    		System.out.println("TRACKING: Steering right");
     		// Turn right while driving forward.
     		leftDriveSubsystem.setVoltage(voltage);
-    		rightDriveSubsystem.setVoltage(voltage * scaleFactor);
+//    		rightDriveSubsystem.setVoltage(voltage * scaleFactor);
+    		rightDriveSubsystem.setVoltage(-voltage);
     	}
     	else
     	{
+    		System.out.println("TRACKING: Heading straight");
     		// Keep going straight.
     		leftDriveSubsystem.setVoltage(voltage);
     		rightDriveSubsystem.setVoltage(voltage);
@@ -80,6 +92,7 @@ public class AutoCommandDriveWhileTracking extends CommandBase
     {
     	if (!TargetTracker.isTracking())
     	{
+//    		System.out.println("TRACKING: Lost target");
     		if (lostTargetTimerStart == 0)
     		{
     			// Start timer because we've just lost the target.
@@ -97,11 +110,13 @@ public class AutoCommandDriveWhileTracking extends CommandBase
     	}
     	else
     	{        	
-        	// Reset the timer in case we're re-acquired the target.
+//    		System.out.println("TRACKING: Lost acquired");
+
+    		// Reset the timer in case we're re-acquired the target.
     		lostTargetTimerStart = 0;    		
     	}
 
-    	return TargetTracker.getArea() > targetAreaTheshold;
+    	return TargetTracker.getArea() > TARGET_AREA_THRESHOLD;
     }
 
     // Called once after isFinished returns true
@@ -109,6 +124,7 @@ public class AutoCommandDriveWhileTracking extends CommandBase
     {
     	leftDriveSubsystem.setVoltage(0);
     	rightDriveSubsystem.setVoltage(0);
+    	cameraLightsSubsystem.turnOff();
     }
 
     // Called when another command which requires one or more of the same

@@ -50,19 +50,29 @@ public class CameraLightsSubsystem extends Subsystem
     {
     }
     
-     public void toggle()
-     {
+    public void turnOn()
+    {
+		cameraLightsRelay.set(Relay.Value.kForward);
+    }
+    
+    public void turnOff()
+    {
+		cameraLightsRelay.set(Relay.Value.kOff);
+    }
+    
+    public void toggle()
+    {
     	if (cameraLightsRelay.get() == Relay.Value.kForward)
     	{
-    		cameraLightsRelay.set(Relay.Value.kOff);
+    		turnOff();
     	}
     	else if (cameraLightsRelay.get() == Relay.Value.kOff)
     	{
-    		cameraLightsRelay.set(Relay.Value.kForward);
+    		turnOn();
     	}
     	else
     	{
-    		cameraLightsRelay.set(Relay.Value.kOff);
+    		turnOff();
     	}
     }
 }
